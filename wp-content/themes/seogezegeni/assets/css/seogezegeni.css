@@ -1,0 +1,312 @@
+/**
+ * SEO Gezegeni – Ek / Override CSS
+ * style.css'deki temel stillerin üstüne biner
+ */
+
+/* ============================================================
+   WHATSAPP FLOAT BUTTON
+   ============================================================ */
+.sg-whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 900;
+    width: 56px;
+    height: 56px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(37,211,102,.4);
+    transition: transform .3s ease, box-shadow .3s ease, opacity .3s ease;
+    opacity: 0;
+}
+.sg-whatsapp-float:hover {
+    transform: scale(1.12);
+    box-shadow: 0 6px 28px rgba(37,211,102,.6);
+    color: #fff;
+}
+
+/* ============================================================
+   FOOTER COL RESPONSIVE
+   ============================================================ */
+@media (max-width: 991px) {
+    .footer-col-brand,
+    .footer-col-links,
+    .footer-col-services,
+    .footer-col-contact {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+        margin-bottom: 32px;
+    }
+}
+@media (max-width: 600px) {
+    .footer-col-brand,
+    .footer-col-links,
+    .footer-col-services,
+    .footer-col-contact {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ============================================================
+   HERO RESPONSIVE COLS
+   ============================================================ */
+@media (max-width: 991px) {
+    .hero-text-col,
+    .hero-visual-col {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+    .hero-visual-col {
+        display: none;
+    }
+}
+
+/* ============================================================
+   ABOUT RESPONSIVE
+   ============================================================ */
+@media (max-width: 991px) {
+    .sg-about .row > div {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 0 15px !important;
+        margin-bottom: 32px;
+    }
+}
+
+/* ============================================================
+   SERVICES 2-COL ON TABLET
+   ============================================================ */
+@media (max-width: 991px) and (min-width: 600px) {
+    .sg-services .row > div {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+@media (max-width: 599px) {
+    .sg-services .row > div,
+    .sg-why .row > div {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ============================================================
+   CONTACT RESPONSIVE
+   ============================================================ */
+@media (max-width: 991px) {
+    .sg-contact .row > div {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding: 0 15px !important;
+        margin-bottom: 32px;
+    }
+}
+
+/* ============================================================
+   ABOUT STAT CARDS 2-COL
+   ============================================================ */
+@media (max-width: 480px) {
+    .sg-about .sg-stat-card-wrap {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* ============================================================
+   TESTIMONIALS RESPONSIVE
+   ============================================================ */
+@media (max-width: 767px) {
+    .sg-tes-card {
+        min-width: 100% !important;
+    }
+}
+
+/* ============================================================
+   CUSTOMIZER LIVE PREVIEW SELECTORS
+   ============================================================ */
+.customize-preview-hero-title  { display: block; }
+.customize-preview-cta-title   { display: block; }
+
+/* ============================================================
+   WP COMMENT STYLES
+   ============================================================ */
+.comments-area {
+    margin-top: 48px;
+    background: var(--sg-bg-card);
+    border: 1px solid var(--sg-border-light);
+    border-radius: var(--sg-radius-lg);
+    padding: 36px;
+}
+.comments-area h2 {
+    color: var(--sg-text-primary);
+    font-size: 1.4rem;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--sg-border-light);
+}
+.comment-list { list-style: none; }
+.comment-list .comment {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--sg-border-light);
+}
+.comment-author .fn { color: var(--sg-text-primary); font-weight: 700; }
+.comment-metadata { font-size: .8rem; color: var(--sg-text-secondary); margin-bottom: 10px; }
+.comment-body p { color: var(--sg-text-secondary); }
+.comment-reply-link {
+    color: var(--sg-accent);
+    font-size: .85rem;
+    font-weight: 600;
+}
+.comment-form label {
+    display: block;
+    color: var(--sg-text-primary);
+    font-size: .85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--sg-bg-secondary);
+    border: 1px solid var(--sg-border-light);
+    border-radius: var(--sg-radius);
+    color: var(--sg-text-primary);
+    font-size: .95rem;
+    margin-bottom: 16px;
+    outline: none;
+    transition: border-color .3s ease;
+}
+.comment-form input:focus,
+.comment-form textarea:focus { border-color: var(--sg-accent); }
+.comment-form .submit {
+    padding: 12px 32px;
+    background: var(--sg-accent);
+    color: var(--sg-text-dark);
+    font-weight: 700;
+    border: none;
+    border-radius: var(--sg-radius);
+    cursor: pointer;
+    transition: background .3s ease;
+}
+.comment-form .submit:hover { background: var(--sg-accent-dark); }
+
+/* ============================================================
+   WP SEARCH FORM
+   ============================================================ */
+.search-form {
+    display: flex;
+    max-width: 480px;
+    margin: 0 auto;
+}
+.search-form label { flex: 1; }
+.search-field {
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--sg-bg-card);
+    border: 1px solid var(--sg-border-light);
+    border-right: none;
+    border-radius: var(--sg-radius) 0 0 var(--sg-radius);
+    color: var(--sg-text-primary);
+    font-size: .95rem;
+    outline: none;
+}
+.search-submit {
+    padding: 14px 24px;
+    background: var(--sg-accent);
+    color: var(--sg-text-dark);
+    font-weight: 700;
+    border: none;
+    border-radius: 0 var(--sg-radius) var(--sg-radius) 0;
+    cursor: pointer;
+}
+.search-submit:hover { background: var(--sg-accent-dark); }
+
+/* ============================================================
+   PRINT STYLES
+   ============================================================ */
+@media print {
+    #sg-header,
+    .sg-whatsapp-float,
+    .sg-footer,
+    .sg-mobile-nav,
+    .sg-mobile-overlay {
+        display: none !important;
+    }
+    body, .sg-hero { background: #fff !important; color: #000 !important; }
+    a { color: #000 !important; }
+}
+
+/* ============================================================
+   ACCESSIBILITY – focus styles
+   ============================================================ */
+:focus-visible {
+    outline: 2px solid var(--sg-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+.screen-reader-text:focus {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    left: 6px;
+    top: 6px;
+    width: auto;
+    z-index: 9999;
+    padding: 8px 16px;
+    background: var(--sg-accent);
+    color: var(--sg-text-dark);
+    border-radius: var(--sg-radius);
+    font-weight: 700;
+}
+
+/* ============================================================
+   PORTFOLIO DETAIL PAGE
+   ============================================================ */
+.sg-portfolio-detail-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+}
+.sg-portfolio-meta-item {
+    background: var(--sg-bg-card);
+    border: 1px solid var(--sg-border-light);
+    border-radius: var(--sg-radius);
+    padding: 18px;
+    text-align: center;
+}
+.sg-portfolio-meta-item .label {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--sg-text-secondary);
+    margin-bottom: 6px;
+}
+.sg-portfolio-meta-item .value {
+    color: var(--sg-accent);
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* ============================================================
+   LOADING / SKELETON
+   ============================================================ */
+@keyframes sg-skeleton {
+    0%   { background-position: -200px 0; }
+    100% { background-position: calc(200px + 100%) 0; }
+}
+.sg-skeleton {
+    background: linear-gradient(90deg, var(--sg-bg-card) 0px, var(--sg-bg-secondary) 60px, var(--sg-bg-card) 120px);
+    background-size: 300px 100%;
+    animation: sg-skeleton 1.4s ease infinite;
+    border-radius: var(--sg-radius);
+}

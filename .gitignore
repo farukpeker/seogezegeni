@@ -1,0 +1,10 @@
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/cache/
+
+.DS_Store
+Thumbs.db
+
+*.log
