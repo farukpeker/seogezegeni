@@ -961,6 +961,7 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
 /* AJAX: Native contact form handler */
 add_action('wp_ajax_sg_contact',        'sg_handle_contact');
 add_action('wp_ajax_nopriv_sg_contact', 'sg_handle_contact');
+if ( ! function_exists( 'sg_handle_contact' ) ) :
 function sg_handle_contact() {
     check_ajax_referer('sg_contact_nonce', 'sg_contact_nonce_field');
 
@@ -990,5 +991,6 @@ function sg_handle_contact() {
         wp_send_json_error(['message' => __('Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'seogezegeni')]);
     }
 }
+endif;
 
 get_footer();

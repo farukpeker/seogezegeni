@@ -306,10 +306,62 @@ function sg_stats_sc( $atts ) {
 add_shortcode( 'sg_stats', 'sg_stats_sc' );
 
 /* ============================================================
+   AJAX: Native contact form handler
+   ============================================================ */
+if ( ! function_exists( 'sg_handle_contact' ) ) {
+    function sg_handle_contact() {
+        check_ajax_referer( 'sg_contact_nonce', 'sg_contact_nonce_field' );
+
+        $name    = isset( $_POST['sg_name'] ) ? sanitize_text_field( wp_unslash( $_POST['sg_name'] ) ) : '';
+        $email   = isset( $_POST['sg_email'] ) ? sanitize_email( wp_unslash( $_POST['sg_email'] ) ) : '';
+        $tel     = isset( $_POST['sg_tel'] ) ? sanitize_text_field( wp_unslash( $_POST['sg_tel'] ) ) : '';
+        $company = isset( $_POST['sg_company'] ) ? sanitize_text_field( wp_unslash( $_POST['sg_company'] ) ) : '';
+        $website = isset( $_POST['sg_website'] ) ? esc_url_raw( wp_unslash( $_POST['sg_website'] ) ) : '';
+        $service = isset( $_POST['sg_service'] ) ? sanitize_text_field( wp_unslash( $_POST['sg_service'] ) ) : '';
+        $message = isset( $_POST['sg_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['sg_message'] ) ) : '';
+
+        if ( ! $name || ! $email || ! $message ) {
+            wp_send_json_error( [ 'message' => __( 'Lütfen zorunlu alanları doldurun.', 'seogezegeni' ) ] );
+        }
+
+        if ( ! is_email( $email ) ) {
+            wp_send_json_error( [ 'message' => __( 'Geçerli bir e-posta adresi giriniz.', 'seogezegeni' ) ] );
+        }
+
+        $to      = get_option( 'admin_email' );
+        $subject = sprintf( __( '[SEO Gezegeni] %s - İletişim Formu', 'seogezegeni' ), $name );
+        $body    = sprintf(
+            "Ad Soyad: %s\nE-posta: %s\nTelefon: %s\nŞirket: %s\nWeb: %s\nHizmet: %s\n\nMesaj:\n%s",
+            $name,
+            $email,
+            $tel,
+            $company,
+            $website,
+            $service,
+            $message
+        );
+        $headers = [
+            'Content-Type: text/plain; charset=UTF-8',
+            sprintf( 'Reply-To: %s <%s>', $name, $email ),
+        ];
+
+        if ( wp_mail( $to, $subject, $body, $headers ) ) {
+            wp_send_json_success( [ 'message' => __( 'Mesajınız iletildi. En kısa sürede dönüş yapacağız!', 'seogezegeni' ) ] );
+        }
+
+        wp_send_json_error( [ 'message' => __( 'Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'seogezegeni' ) ] );
+    }
+}
+add_action( 'wp_ajax_sg_contact', 'sg_handle_contact' );
+add_action( 'wp_ajax_nopriv_sg_contact', 'sg_handle_contact' );
+
+/* ============================================================
    BREADCRUMBS
    ============================================================ */
 function seogezegeni_breadcrumb() {
     if ( is_front_page() ) return;
+
+    global $post;
 
     echo '<nav class="sg-breadcrumb" aria-label="' . esc_attr__( 'Gezinme yolu', 'seogezegeni' ) . '">';
     echo '<a href="' . esc_url( home_url() ) . '">' . __( 'Ana Sayfa', 'seogezegeni' ) . '</a>';
@@ -331,11 +383,13 @@ function seogezegeni_breadcrumb() {
         }
         echo '<span>' . get_the_title() . '</span>';
     } elseif ( is_page() ) {
-        if ( $post->post_parent ) {
+        if ( $post && $post->post_parent ) {
             echo '<a href="' . esc_url( get_permalink( $post->post_parent ) ) . '">' . get_the_title( $post->post_parent ) . '</a>';
             echo '<span class="sep" aria-hidden="true">›</span>';
         }
         echo '<span>' . get_the_title() . '</span>';
+    } elseif ( is_post_type_archive( 'portfolio' ) ) {
+        echo '<span>' . __( 'Portföy', 'seogezegeni' ) . '</span>';
     } elseif ( is_archive() ) {
         echo '<span>' . get_the_archive_title() . '</span>';
     } elseif ( is_search() ) {
