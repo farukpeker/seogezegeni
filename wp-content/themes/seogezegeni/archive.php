@@ -11,7 +11,6 @@ get_header();
     <div class="sg-page-hero">
         <div class="container">
             <div class="sg-page-hero-inner">
-                <?php seogezegeni_breadcrumb(); ?>
                 <h1>
                     <?php
                     if ( is_category() ) {
@@ -43,6 +42,11 @@ get_header();
                 <?php endif; ?>
             </div>
         </div>
+    </div>
+
+    <!-- Breadcrumb Bar -->
+    <div class="sg-breadcrumb-bar">
+        <div class="container"><?php seogezegeni_breadcrumb(); ?></div>
     </div>
 
     <!-- Archive Content -->

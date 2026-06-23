@@ -11,10 +11,14 @@ get_header();
     <div class="sg-page-hero">
         <div class="container">
             <div class="sg-page-hero-inner">
-                <?php seogezegeni_breadcrumb(); ?>
                 <h1><?php the_title(); ?></h1>
             </div>
         </div>
+    </div>
+
+    <!-- Breadcrumb Bar -->
+    <div class="sg-breadcrumb-bar">
+        <div class="container"><?php seogezegeni_breadcrumb(); ?></div>
     </div>
 
     <!-- Page Content -->
