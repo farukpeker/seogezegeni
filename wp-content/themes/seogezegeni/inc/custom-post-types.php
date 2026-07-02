@@ -38,7 +38,7 @@ function seogezegeni_register_portfolio() {
         'hierarchical'       => false,
         'menu_position'      => 5,
         'menu_icon'          => 'dashicons-portfolio',
-        'supports'           => [ 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' ],
+        'supports'           => [ 'title', 'editor', 'thumbnail', 'excerpt' ],
         'show_in_rest'       => true,
     ]);
 }
@@ -118,69 +118,6 @@ function seogezegeni_register_testimonials() {
     ]);
 }
 add_action( 'init', 'seogezegeni_register_testimonials' );
-
-/* ============================================================
-   META BOXES: Portfolio Details
-   ============================================================ */
-function sg_portfolio_meta_boxes() {
-    add_meta_box(
-        'sg_portfolio_details',
-        __( 'Proje Detayları', 'seogezegeni' ),
-        'sg_portfolio_meta_callback',
-        'portfolio',
-        'normal',
-        'high'
-    );
-}
-add_action( 'add_meta_boxes', 'sg_portfolio_meta_boxes' );
-
-function sg_portfolio_meta_callback( $post ) {
-    wp_nonce_field( 'sg_portfolio_save', 'sg_portfolio_nonce' );
-    $client   = get_post_meta( $post->ID, '_sg_client',   true );
-    $duration = get_post_meta( $post->ID, '_sg_duration', true );
-    $result   = get_post_meta( $post->ID, '_sg_result',   true );
-    $url      = get_post_meta( $post->ID, '_sg_url',      true );
-    ?>
-    <table class="form-table" style="width:100%">
-        <tr>
-            <th><?php _e( 'Müşteri Adı', 'seogezegeni' ); ?></th>
-            <td><input type="text" name="sg_client" value="<?php echo esc_attr( $client ); ?>" class="widefat"></td>
-        </tr>
-        <tr>
-            <th><?php _e( 'Proje Süresi', 'seogezegeni' ); ?></th>
-            <td><input type="text" name="sg_duration" value="<?php echo esc_attr( $duration ); ?>" class="widefat" placeholder="örn: 3 Ay"></td>
-        </tr>
-        <tr>
-            <th><?php _e( 'Sonuç / Başarı', 'seogezegeni' ); ?></th>
-            <td><input type="text" name="sg_result" value="<?php echo esc_attr( $result ); ?>" class="widefat" placeholder="örn: %320 Organik Trafik Artışı"></td>
-        </tr>
-        <tr>
-            <th><?php _e( 'Proje URL', 'seogezegeni' ); ?></th>
-            <td><input type="url" name="sg_url" value="<?php echo esc_url( $url ); ?>" class="widefat" placeholder="https://"></td>
-        </tr>
-    </table>
-    <?php
-}
-
-function sg_portfolio_meta_save( $post_id ) {
-    if (
-        ! isset( $_POST['sg_portfolio_nonce'] ) ||
-        ! wp_verify_nonce( $_POST['sg_portfolio_nonce'], 'sg_portfolio_save' ) ||
-        ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ||
-        ! current_user_can( 'edit_post', $post_id )
-    ) return;
-
-    $fields = [ 'sg_client', 'sg_duration', 'sg_result' ];
-    foreach ( $fields as $field ) {
-        if ( isset( $_POST[ $field ] ) ) {
-            update_post_meta( $post_id, '_' . $field, sanitize_text_field( wp_unslash( $_POST[ $field ] ) ) );
-        }
-    }
-    if ( isset( $_POST['sg_url'] ) ) {
-        update_post_meta( $post_id, '_sg_url', esc_url_raw( wp_unslash( $_POST['sg_url'] ) ) );
-    }
-}
-add_action( 'save_post_portfolio', 'sg_portfolio_meta_save' );
 
 /* ============================================================
    META BOXES: Testimonial Details

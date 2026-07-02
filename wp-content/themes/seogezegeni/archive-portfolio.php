@@ -58,11 +58,10 @@ $paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
         <?php
         $references_query = new WP_Query( [
             'post_type'      => 'portfolio',
-            'posts_per_page' => 9,
+            'posts_per_page' => 12,
             'paged'          => $paged,
             'post_status'    => 'publish',
-            'orderby'        => 'date',
-            'order'          => 'DESC',
+            'orderby'        => [ 'menu_order' => 'ASC', 'date' => 'DESC' ],
         ] );
         ?>
 
@@ -71,33 +70,19 @@ $paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
                 <?php
                 while ( $references_query->have_posts() ) :
                     $references_query->the_post();
-                    ?>
-                    <article class="sg-portfolio-item sg-reference-logo-card" data-sg-reveal>
-                        <?php if ( has_post_thumbnail() ) : ?>
-                            <div class="sg-portfolio-img">
-                                <?php the_post_thumbnail( 'sg-portfolio-thumb', [ 'loading' => 'lazy', 'alt' => get_the_title() ] ); ?>
-                            </div>
-                        <?php else : ?>
-                            <div class="sg-portfolio-img sg-portfolio-img-placeholder">
-                                <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-                            </div>
-                        <?php endif; ?>
-                    </article>
-                <?php endwhile; wp_reset_postdata(); ?>
+                    sg_reference_logo_card();
+                endwhile; wp_reset_postdata(); ?>
             </div>
 
             <?php if ( $references_query->max_num_pages > 1 ) : ?>
-                <div class="sg-pagination" style="margin-top:48px;">
-                    <?php
-                    echo paginate_links( [
-                        'base'      => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
-                        'format'    => '?paged=%#%',
-                        'current'   => $paged,
-                        'total'     => $references_query->max_num_pages,
-                        'prev_text' => '<i class="fa-solid fa-chevron-left" aria-hidden="true"></i>',
-                        'next_text' => '<i class="fa-solid fa-chevron-right" aria-hidden="true"></i>',
-                    ] );
-                    ?>
+                <div class="sg-reference-load-more-wrap">
+                    <button type="button"
+                            class="sg-btn sg-btn-outline sg-reference-load-more"
+                            data-current-page="<?php echo esc_attr( $paged ); ?>"
+                            data-max-page="<?php echo esc_attr( $references_query->max_num_pages ); ?>">
+                        <span>Daha Fazla Y&uuml;kle</span>
+                        <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                    </button>
                 </div>
             <?php endif; ?>
 

@@ -26,6 +26,7 @@
             this.metricBars();
             this.testimonialSlider();
             this.portfolioFilter();
+            this.referenceLoadMore();
             this.auditForm();
             this.servicesDropdown();
             this.heroQuoteForm();
@@ -321,6 +322,55 @@
                         }.bind(this), 10);
                     } else {
                         $(this).css({'opacity': '0', 'display': 'none'});
+                    }
+                });
+            });
+        },
+
+        referenceLoadMore: function () {
+            var $grid = $('#sgReferencesArchiveGrid');
+            var $btn  = $('.sg-reference-load-more');
+            if (!$grid.length || !$btn.length) return;
+
+            $btn.on('click', function () {
+                var currentPage = parseInt($btn.data('current-page'), 10) || 1;
+                var maxPage     = parseInt($btn.data('max-page'), 10) || 1;
+                var nextPage    = currentPage + 1;
+
+                if (nextPage > maxPage || $btn.prop('disabled')) return;
+
+                $btn.prop('disabled', true).addClass('is-loading');
+                $btn.find('span').text('Y\u00fckleniyor');
+                $btn.find('i').removeClass('fa-arrow-down').addClass('fa-spinner fa-spin');
+
+                $.post(sgData.ajaxUrl, {
+                    action: 'sg_load_more_references',
+                    nonce: sgData.nonce,
+                    page: nextPage
+                })
+                .done(function (res) {
+                    if (!res.success || !res.data.html) {
+                        $btn.closest('.sg-reference-load-more-wrap').remove();
+                        return;
+                    }
+
+                    var $items = $(res.data.html);
+                    $grid.append($items);
+                    $items.addClass('revealed');
+                    $btn.data('current-page', nextPage);
+
+                    if (nextPage >= maxPage || nextPage >= parseInt(res.data.maxPage, 10)) {
+                        $btn.closest('.sg-reference-load-more-wrap').remove();
+                    }
+                })
+                .fail(function () {
+                    $btn.find('span').text('Tekrar Dene');
+                })
+                .always(function () {
+                    if ($.contains(document, $btn[0])) {
+                        $btn.prop('disabled', false).removeClass('is-loading');
+                        $btn.find('span').text('Daha Fazla Y\u00fckle');
+                        $btn.find('i').removeClass('fa-spinner fa-spin').addClass('fa-arrow-down');
                     }
                 });
             });

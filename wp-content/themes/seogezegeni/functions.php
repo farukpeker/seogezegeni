@@ -504,6 +504,16 @@ function seogezegeni_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'seogezegeni_body_classes' );
 
+function sg_portfolio_archive_query( $query ) {
+    if ( is_admin() || ! $query->is_main_query() || ! $query->is_post_type_archive( 'portfolio' ) ) {
+        return;
+    }
+
+    $query->set( 'posts_per_page', 12 );
+    $query->set( 'orderby', [ 'menu_order' => 'ASC', 'date' => 'DESC' ] );
+}
+add_action( 'pre_get_posts', 'sg_portfolio_archive_query' );
+
 function sg_redirect_portfolio_single_to_archive() {
     if ( is_singular( 'portfolio' ) ) {
         wp_safe_redirect( home_url( '/referanslar/' ), 301 );
@@ -581,6 +591,63 @@ function sg_handle_audit_ajax() {
 add_action( 'wp_ajax_sg_audit',        'sg_handle_audit_ajax' );
 add_action( 'wp_ajax_nopriv_sg_audit', 'sg_handle_audit_ajax' );
 
+function sg_reference_logo_card( $post_id = null ) {
+    if ( $post_id ) {
+        $post = get_post( $post_id );
+        if ( ! $post ) {
+            return;
+        }
+        setup_postdata( $post );
+    }
+    ?>
+    <article class="sg-portfolio-item sg-reference-logo-card" data-sg-reveal>
+        <?php if ( has_post_thumbnail() ) : ?>
+            <div class="sg-portfolio-img">
+                <?php the_post_thumbnail( 'sg-portfolio-thumb', [ 'loading' => 'lazy', 'alt' => get_the_title() ] ); ?>
+            </div>
+        <?php else : ?>
+            <div class="sg-portfolio-img sg-portfolio-img-placeholder">
+                <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+            </div>
+        <?php endif; ?>
+    </article>
+    <?php
+    if ( $post_id ) {
+        wp_reset_postdata();
+    }
+}
+
+function sg_load_more_references_ajax() {
+    check_ajax_referer( 'sg_nonce', 'nonce' );
+
+    $page = isset( $_POST['page'] ) ? max( 1, absint( $_POST['page'] ) ) : 1;
+
+    $references_query = new WP_Query( [
+        'post_type'      => 'portfolio',
+        'posts_per_page' => 12,
+        'paged'          => $page,
+        'post_status'    => 'publish',
+        'orderby'        => [ 'menu_order' => 'ASC', 'date' => 'DESC' ],
+    ] );
+
+    ob_start();
+    if ( $references_query->have_posts() ) {
+        while ( $references_query->have_posts() ) {
+            $references_query->the_post();
+            sg_reference_logo_card();
+        }
+        wp_reset_postdata();
+    }
+
+    wp_send_json_success( [
+        'html'    => ob_get_clean(),
+        'page'    => $page,
+        'maxPage' => (int) $references_query->max_num_pages,
+    ] );
+}
+add_action( 'wp_ajax_sg_load_more_references', 'sg_load_more_references_ajax' );
+add_action( 'wp_ajax_nopriv_sg_load_more_references', 'sg_load_more_references_ajax' );
+
 /* ============================================================
    ADMIN – REMOVE DEFAULT JQUERY UI DATEPICKER
    ============================================================ */
@@ -589,6 +656,155 @@ function seogezegeni_admin_enqueue( $hook ) {
     wp_enqueue_style( 'sg-admin-style', SG_URI . '/assets/css/admin.css', [], SG_VER );
 }
 add_action( 'admin_enqueue_scripts', 'seogezegeni_admin_enqueue' );
+
+function sg_is_default_portfolio_admin_order() {
+    if ( ! is_admin() ) {
+        return false;
+    }
+
+    $post_type = isset( $_GET['post_type'] ) ? sanitize_key( wp_unslash( $_GET['post_type'] ) ) : 'post';
+    if ( 'portfolio' !== $post_type ) {
+        return false;
+    }
+
+    $blocking_params = [ 's', 'orderby', 'order', 'm', 'portfolio_cat', 'portfolio_tag' ];
+    foreach ( $blocking_params as $param ) {
+        if ( ! empty( $_GET[ $param ] ) ) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function sg_portfolio_admin_order_query( $query ) {
+    global $pagenow;
+
+    if ( ! is_admin() || 'edit.php' !== $pagenow || ! $query->is_main_query() || ! sg_is_default_portfolio_admin_order() ) {
+        return;
+    }
+
+    $query->set( 'orderby', [ 'menu_order' => 'ASC', 'date' => 'DESC' ] );
+}
+add_action( 'pre_get_posts', 'sg_portfolio_admin_order_query' );
+
+function sg_portfolio_sort_admin_assets( $hook ) {
+    if ( 'edit.php' !== $hook || ! sg_is_default_portfolio_admin_order() ) {
+        return;
+    }
+
+    $per_page = (int) get_user_option( 'edit_portfolio_per_page' );
+    if ( $per_page < 1 ) {
+        $per_page = 20;
+    }
+
+    wp_enqueue_script( 'jquery-ui-sortable' );
+    wp_add_inline_style(
+        'common',
+        '.post-type-portfolio #the-list tr.type-portfolio{cursor:move}.post-type-portfolio #the-list tr.ui-sortable-helper{background:#fff;box-shadow:0 8px 24px rgba(0,0,0,.16)}.post-type-portfolio #the-list.sg-reference-sorting-saving{opacity:.65;pointer-events:none}.sg-reference-sort-note{margin:10px 0 12px}.sg-reference-sort-status{display:inline-block;margin-left:8px;color:#646970}'
+    );
+    wp_add_inline_script(
+        'jquery-ui-sortable',
+        'window.sgPortfolioSort=' . wp_json_encode( [
+            'nonce'   => wp_create_nonce( 'sg_portfolio_sort' ),
+            'paged'   => isset( $_GET['paged'] ) ? max( 1, absint( $_GET['paged'] ) ) : 1,
+            'perPage' => $per_page,
+            'saving'  => __( 'Kaydediliyor...', 'seogezegeni' ),
+            'saved'   => __( 'Sıralama kaydedildi.', 'seogezegeni' ),
+            'error'   => __( 'Sıralama kaydedilemedi.', 'seogezegeni' ),
+        ] ) . ';
+        jQuery(function($){
+            var $list = $("#the-list");
+            if (!$list.length || !$list.children("tr.type-portfolio").length) {
+                return;
+            }
+
+            $(".tablenav.top").after("<div class=\"notice notice-info inline sg-reference-sort-note\"><p>Referansları öne almak için satırları sürükleyip bırakın.<span class=\"sg-reference-sort-status\" aria-live=\"polite\"></span></p></div>");
+            var $status = $(".sg-reference-sort-status");
+
+            $list.sortable({
+                items: "tr.type-portfolio",
+                axis: "y",
+                cursor: "move",
+                opacity: 0.9,
+                helper: function(e, row) {
+                    row.children().each(function() {
+                        $(this).width($(this).width());
+                    });
+                    return row;
+                },
+                update: function() {
+                    var ids = $list.children("tr.type-portfolio").map(function() {
+                        return this.id.replace("post-", "");
+                    }).get();
+
+                    $list.addClass("sg-reference-sorting-saving");
+                    $status.text(sgPortfolioSort.saving);
+
+                    $.post(ajaxurl, {
+                        action: "sg_sort_portfolio_references",
+                        nonce: sgPortfolioSort.nonce,
+                        ids: ids,
+                        paged: sgPortfolioSort.paged,
+                        per_page: sgPortfolioSort.perPage
+                    }).done(function(response) {
+                        $status.text(response && response.success ? sgPortfolioSort.saved : sgPortfolioSort.error);
+                    }).fail(function() {
+                        $status.text(sgPortfolioSort.error);
+                    }).always(function() {
+                        $list.removeClass("sg-reference-sorting-saving");
+                    });
+                }
+            });
+        });'
+    );
+}
+add_action( 'admin_enqueue_scripts', 'sg_portfolio_sort_admin_assets' );
+
+function sg_sort_portfolio_references_ajax() {
+    check_ajax_referer( 'sg_portfolio_sort', 'nonce' );
+
+    if ( ! current_user_can( 'edit_posts' ) ) {
+        wp_send_json_error();
+    }
+
+    $ids = isset( $_POST['ids'] ) && is_array( $_POST['ids'] )
+        ? array_values( array_filter( array_map( 'absint', wp_unslash( $_POST['ids'] ) ) ) )
+        : [];
+
+    if ( empty( $ids ) ) {
+        wp_send_json_error();
+    }
+
+    $paged    = isset( $_POST['paged'] ) ? max( 1, absint( $_POST['paged'] ) ) : 1;
+    $per_page = isset( $_POST['per_page'] ) ? max( 1, absint( $_POST['per_page'] ) ) : 20;
+    $offset   = ( $paged - 1 ) * $per_page;
+
+    $all_ids = get_posts( [
+        'post_type'      => 'portfolio',
+        'post_status'    => [ 'publish', 'draft', 'pending', 'future', 'private' ],
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'orderby'        => [ 'menu_order' => 'ASC', 'date' => 'DESC' ],
+        'no_found_rows'  => true,
+    ] );
+
+    $ids     = array_values( array_intersect( $ids, $all_ids ) );
+    $all_ids = array_values( array_diff( $all_ids, $ids ) );
+    array_splice( $all_ids, $offset, 0, $ids );
+
+    foreach ( $all_ids as $menu_order => $post_id ) {
+        if ( current_user_can( 'edit_post', $post_id ) ) {
+            wp_update_post( [
+                'ID'         => $post_id,
+                'menu_order' => $menu_order,
+            ] );
+        }
+    }
+
+    wp_send_json_success();
+}
+add_action( 'wp_ajax_sg_sort_portfolio_references', 'sg_sort_portfolio_references_ajax' );
 
 /* ============================================================
    HELPER: get option with fallback

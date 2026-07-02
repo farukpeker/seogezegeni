@@ -32,10 +32,9 @@ $references_url = home_url( '/referanslar/' );
             <?php
             $references_query = new WP_Query( [
                 'post_type'      => 'portfolio',
-                'posts_per_page' => 6,
+                'posts_per_page' => 8,
                 'post_status'    => 'publish',
-                'orderby'        => 'date',
-                'order'          => 'DESC',
+                'orderby'        => [ 'menu_order' => 'ASC', 'date' => 'DESC' ],
             ] );
 
             if ( $references_query->have_posts() ) :
@@ -56,7 +55,7 @@ $references_url = home_url( '/referanslar/' );
                 endwhile;
                 wp_reset_postdata();
             else :
-                for ( $i = 0; $i < 6; $i++ ) :
+                for ( $i = 0; $i < 8; $i++ ) :
                     ?>
                     <article class="sg-portfolio-item sg-reference-logo-card" data-sg-reveal>
                         <div class="sg-portfolio-img sg-portfolio-img-placeholder">

@@ -294,8 +294,7 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
                 'post_type'      => 'portfolio',
                 'posts_per_page' => 6,
                 'post_status'    => 'publish',
-                'orderby'        => 'date',
-                'order'          => 'DESC',
+                'orderby'        => [ 'menu_order' => 'ASC', 'date' => 'DESC' ],
             ]);
 
             if ( $portfolio_query->have_posts() ) :
