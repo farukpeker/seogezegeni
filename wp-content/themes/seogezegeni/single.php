@@ -83,6 +83,43 @@ get_header();
                             ?>
                         </article>
 
+                        <?php
+                        $share_url   = rawurlencode(get_permalink());
+                        $share_title = rawurlencode(get_the_title());
+                        $share_links = [
+                            [
+                                'url'   => 'https://www.facebook.com/sharer/sharer.php?u=' . $share_url,
+                                'icon'  => 'fa-brands fa-facebook-f',
+                                'label' => __('Facebook', 'seogezegeni'),
+                            ],
+                            [
+                                'url'   => 'https://twitter.com/intent/tweet?url=' . $share_url . '&text=' . $share_title,
+                                'icon'  => 'fa-brands fa-x-twitter',
+                                'label' => __('X', 'seogezegeni'),
+                            ],
+                            [
+                                'url'   => 'https://www.linkedin.com/shareArticle?mini=true&url=' . $share_url . '&title=' . $share_title,
+                                'icon'  => 'fa-brands fa-linkedin-in',
+                                'label' => __('LinkedIn', 'seogezegeni'),
+                            ],
+                            [
+                                'url'   => 'https://api.whatsapp.com/send?text=' . $share_title . '%20' . $share_url,
+                                'icon'  => 'fa-brands fa-whatsapp',
+                                'label' => __('WhatsApp', 'seogezegeni'),
+                            ],
+                        ];
+                        ?>
+                        <div class="sg-post-share" aria-label="<?php esc_attr_e('Yazıyı paylaş', 'seogezegeni'); ?>">
+                            <span class="sg-post-share-label"><?php _e('Paylaş', 'seogezegeni'); ?></span>
+                            <div class="sg-post-share-links">
+                                <?php foreach ($share_links as $share_link) : ?>
+                                    <a href="<?php echo esc_url($share_link['url']); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr($share_link['label']); ?>">
+                                        <i class="<?php echo esc_attr($share_link['icon']); ?>" aria-hidden="true"></i>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
                         <!-- Tags -->
                         <?php $tags = get_the_tags(); if ($tags) : ?>
                             <div class="sg-post-tags" aria-label="<?php esc_attr_e('Etiketler', 'seogezegeni'); ?>">

@@ -29,40 +29,46 @@
                             <p><?php _e( 'SEO Gezegeni, işletmenizi dijital dünyada zirveye taşımak için özelleştirilmiş SEO, SEM ve dijital pazarlama stratejileri sunar.', 'seogezegeni' ); ?></p>
                         <?php endif; ?>
 
-                        <!-- Social icons -->
-                        <div class="sg-footer-socials" role="list" aria-label="<?php esc_attr_e( 'Sosyal medya bağlantıları', 'seogezegeni' ); ?>">
-                            <?php
-                            $socials = [
-                                'sg_facebook'  => [ 'icon' => 'fa-brands fa-facebook-f',  'label' => 'Facebook' ],
-                                'sg_instagram' => [ 'icon' => 'fa-brands fa-instagram',    'label' => 'Instagram' ],
-                                'sg_linkedin'  => [ 'icon' => 'fa-brands fa-linkedin-in',  'label' => 'LinkedIn' ],
-                                'sg_twitter'   => [ 'icon' => 'fa-brands fa-x-twitter',    'label' => 'Twitter / X' ],
-                                'sg_youtube'   => [ 'icon' => 'fa-brands fa-youtube',      'label' => 'YouTube' ],
-                                'sg_whatsapp'  => [ 'icon' => 'fa-brands fa-whatsapp',     'label' => 'WhatsApp' ],
-                            ];
-                            $any_social = false;
-                            foreach ( $socials as $key => $data ) :
-                                $url = sg_option( $key );
-                                if ( ! $url ) continue;
-                                $any_social = true;
-                                if ( $key === 'sg_whatsapp' ) {
-                                    $url = 'https://wa.me/' . preg_replace( '/\D/', '', $url );
-                                }
-                            ?>
-                                <a href="<?php echo esc_url( $url ); ?>"
+                        <?php
+                        $footer_badges = [
+                            [
+                                'url'   => sg_option( 'sg_google_partner_url', 'https://www.google.com/partners/agency?id=9685918675' ),
+                                'image' => sg_option( 'sg_google_partner_badge', 'https://www.gstatic.com/partners/badge/images/2022/PremierBadgeClickable.svg' ),
+                                'icon'  => 'fa-brands fa-google',
+                                'label' => __( 'Google Partner', 'seogezegeni' ),
+                                'class' => 'sg-footer-badge-partner',
+                            ],
+                            [
+                                'url'   => sg_option( 'sg_dmca_url', 'https://www.dmca.com/Protection/Status.aspx' ),
+                                'image' => sg_option( 'sg_dmca_badge' ),
+                                'icon'  => 'fa-solid fa-shield-halved',
+                                'label' => __( 'DMCA Protected', 'seogezegeni' ),
+                                'class' => 'sg-footer-badge-small',
+                            ],
+                            [
+                                'url'   => sg_option( 'sg_credit_card_url', home_url( '/kredi-karti-ile-odeme/' ) ),
+                                'image' => '',
+                                'icon'  => 'fa-regular fa-credit-card',
+                                'label' => __( 'Kredi Kartı ile Ödeme', 'seogezegeni' ),
+                                'class' => 'sg-footer-badge-small',
+                            ],
+                        ];
+                        ?>
+                        <div class="sg-footer-badges" aria-label="<?php esc_attr_e( 'Footer rozetleri', 'seogezegeni' ); ?>">
+                            <?php foreach ( $footer_badges as $badge ) : ?>
+                                <a class="sg-footer-badge <?php echo esc_attr( $badge['class'] ); ?>"
+                                   href="<?php echo esc_url( $badge['url'] ); ?>"
                                    target="_blank"
                                    rel="noopener noreferrer"
-                                   role="listitem"
-                                   aria-label="<?php echo esc_attr( $data['label'] ); ?>">
-                                    <i class="<?php echo esc_attr( $data['icon'] ); ?>" aria-hidden="true"></i>
+                                   aria-label="<?php echo esc_attr( $badge['label'] ); ?>">
+                                    <?php if ( $badge['image'] ) : ?>
+                                        <img src="<?php echo esc_url( $badge['image'] ); ?>" alt="<?php echo esc_attr( $badge['label'] ); ?>">
+                                    <?php else : ?>
+                                        <i class="<?php echo esc_attr( $badge['icon'] ); ?>" aria-hidden="true"></i>
+                                        <span><?php echo esc_html( $badge['label'] ); ?></span>
+                                    <?php endif; ?>
                                 </a>
                             <?php endforeach; ?>
-                            <?php if ( ! $any_social ) : ?>
-                                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
-                                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
-                                <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div><!-- /col brand -->
@@ -84,9 +90,9 @@
                                     'fallback_cb'    => function() {
                                         $links = [
                                             home_url('/')             => __('Ana Sayfa', 'seogezegeni'),
-                                            home_url('/hakkimizda/')  => __('Hakkımızda', 'seogezegeni'),
+                                            home_url('/biz-kimiz/')  => __('Biz Kimiz', 'seogezegeni'),
                                             home_url('/hizmetler/')   => __('Hizmetler', 'seogezegeni'),
-                                            home_url('/portfolio/')   => __('Portföy', 'seogezegeni'),
+                                            home_url('/referanslar/') => __('Referanslar', 'seogezegeni'),
                                             home_url('/blog/')        => __('Blog', 'seogezegeni'),
                                             home_url('/iletisim/')    => __('İletişim', 'seogezegeni'),
                                         ];
@@ -175,6 +181,45 @@
                                 </div>
                                 <?php endif; ?>
 
+                                <div class="sg-footer-socials sg-footer-contact-socials" role="list" aria-label="<?php esc_attr_e( 'Sosyal medya bağlantıları', 'seogezegeni' ); ?>">
+                                    <?php
+                                    $socials = [
+                                        'sg_facebook'  => [ 'icon' => 'fa-brands fa-facebook-f',  'label' => 'Facebook' ],
+                                        'sg_instagram' => [ 'icon' => 'fa-brands fa-instagram',    'label' => 'Instagram' ],
+                                        'sg_linkedin'  => [ 'icon' => 'fa-brands fa-linkedin-in',  'label' => 'LinkedIn' ],
+                                        'sg_twitter'   => [ 'icon' => 'fa-brands fa-x-twitter',    'label' => 'Twitter / X' ],
+                                        'sg_youtube'   => [ 'icon' => 'fa-brands fa-youtube',      'label' => 'YouTube' ],
+                                        'sg_pinterest' => [ 'icon' => 'fa-brands fa-pinterest-p',  'label' => 'Pinterest' ],
+                                        'sg_whatsapp'  => [ 'icon' => 'fa-brands fa-whatsapp',     'label' => 'WhatsApp' ],
+                                    ];
+                                    $any_social = false;
+                                    foreach ( $socials as $key => $data ) :
+                                        $url = sg_option( $key );
+                                        if ( ! $url ) continue;
+                                        $any_social = true;
+                                        if ( $key === 'sg_whatsapp' ) {
+                                            $url = 'https://wa.me/' . preg_replace( '/\D/', '', $url );
+                                        }
+                                    ?>
+                                        <a href="<?php echo esc_url( $url ); ?>"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           role="listitem"
+                                           aria-label="<?php echo esc_attr( $data['label'] ); ?>">
+                                            <i class="<?php echo esc_attr( $data['icon'] ); ?>" aria-hidden="true"></i>
+                                        </a>
+                                    <?php endforeach; ?>
+                                    <?php if ( ! $any_social ) : ?>
+                                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a>
+                                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+                                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+                                        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i></a>
+                                        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube" aria-hidden="true"></i></a>
+                                        <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p" aria-hidden="true"></i></a>
+                                        <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+                                    <?php endif; ?>
+                                </div>
+
                             </div>
                         </div>
                     <?php endif; ?>
@@ -208,6 +253,9 @@
                     <a href="<?php echo esc_url( home_url('/kullanim-kosullari/') ); ?>">
                         <?php _e( 'Kullanım Koşulları', 'seogezegeni' ); ?>
                     </a>
+                    <a href="<?php echo esc_url( home_url('/kredi-karti-ile-odeme/') ); ?>">
+                        <?php _e( 'Kredi Kartı ile Ödeme', 'seogezegeni' ); ?>
+                    </a>
                     <a href="<?php echo esc_url( home_url('/cerez-politikasi/') ); ?>">
                         <?php _e( 'Çerez Politikası', 'seogezegeni' ); ?>
                     </a>
@@ -235,6 +283,12 @@ if ( ! $wa_number ) $wa_number = '905551626211';
    aria-label="<?php esc_attr_e( 'WhatsApp ile iletişim', 'seogezegeni' ); ?>">
     <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
 </a>
+
+<button type="button"
+        class="sg-scroll-top"
+        aria-label="<?php esc_attr_e( 'Sayfanin basina don', 'seogezegeni' ); ?>">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</button>
 
 <?php wp_footer(); ?>
 </body>

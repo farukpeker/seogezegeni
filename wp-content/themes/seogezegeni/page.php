@@ -54,6 +54,9 @@ get_header();
         </div>
     </div>
 
+<?php get_template_part( 'template-parts/pre-footer-cta' ); ?>
+<?php get_template_part( 'template-parts/pre-footer-contact' ); ?>
+
 </main>
 
 <?php get_footer(); ?>

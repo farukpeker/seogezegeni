@@ -6,23 +6,23 @@
 defined( 'ABSPATH' ) || exit;
 
 /* ============================================================
-   CPT: Portfolio (Portföy)
+   CPT: Portfolio (Referanslar)
    ============================================================ */
 function seogezegeni_register_portfolio() {
     $labels = [
-        'name'               => _x( 'Portföy',           'post type genel adı',     'seogezegeni' ),
-        'singular_name'      => _x( 'Portföy Öğesi',     'post type tekil adı',     'seogezegeni' ),
-        'menu_name'          => __( 'Portföy',                                       'seogezegeni' ),
-        'name_admin_bar'     => __( 'Portföy Öğesi',                                 'seogezegeni' ),
+        'name'               => _x( 'Referanslar',      'post type genel adı',     'seogezegeni' ),
+        'singular_name'      => _x( 'Referans',         'post type tekil adı',     'seogezegeni' ),
+        'menu_name'          => __( 'Referanslar',                                  'seogezegeni' ),
+        'name_admin_bar'     => __( 'Referans',                                     'seogezegeni' ),
         'add_new'            => __( 'Yeni Ekle',                                     'seogezegeni' ),
-        'add_new_item'       => __( 'Yeni Portföy Ekle',                             'seogezegeni' ),
-        'new_item'           => __( 'Yeni Portföy Öğesi',                            'seogezegeni' ),
-        'edit_item'          => __( 'Portföy Öğesini Düzenle',                       'seogezegeni' ),
-        'view_item'          => __( 'Portföy Öğesini Görüntüle',                     'seogezegeni' ),
-        'all_items'          => __( 'Tüm Portföyler',                                'seogezegeni' ),
-        'search_items'       => __( 'Portföy Ara',                                   'seogezegeni' ),
-        'not_found'          => __( 'Portföy bulunamadı.',                           'seogezegeni' ),
-        'not_found_in_trash' => __( 'Çöp kutusunda portföy bulunamadı.',             'seogezegeni' ),
+        'add_new_item'       => __( 'Yeni Referans Ekle',                            'seogezegeni' ),
+        'new_item'           => __( 'Yeni Referans',                                 'seogezegeni' ),
+        'edit_item'          => __( 'Referansı Düzenle',                             'seogezegeni' ),
+        'view_item'          => __( 'Referansı Görüntüle',                           'seogezegeni' ),
+        'all_items'          => __( 'Tüm Referanslar',                               'seogezegeni' ),
+        'search_items'       => __( 'Referans Ara',                                  'seogezegeni' ),
+        'not_found'          => __( 'Referans bulunamadı.',                          'seogezegeni' ),
+        'not_found_in_trash' => __( 'Çöp kutusunda referans bulunamadı.',            'seogezegeni' ),
     ];
 
     register_post_type( 'portfolio', [
@@ -32,9 +32,9 @@ function seogezegeni_register_portfolio() {
         'show_ui'            => true,
         'show_in_menu'       => true,
         'query_var'          => true,
-        'rewrite'            => [ 'slug' => 'portfolio', 'with_front' => false ],
+        'rewrite'            => [ 'slug' => 'referans', 'with_front' => false ],
         'capability_type'    => 'post',
-        'has_archive'        => true,
+        'has_archive'        => 'referanslar',
         'hierarchical'       => false,
         'menu_position'      => 5,
         'menu_icon'          => 'dashicons-portfolio',
@@ -250,4 +250,5 @@ function seogezegeni_flush_rewrites() {
     seogezegeni_register_testimonials();
     flush_rewrite_rules();
 }
+add_action( 'after_switch_theme', 'seogezegeni_flush_rewrites' );
 register_activation_hook( __FILE__, 'seogezegeni_flush_rewrites' );

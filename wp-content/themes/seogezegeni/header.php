@@ -66,6 +66,7 @@
                             'sg_linkedin'  => [ 'icon' => 'fa-brands fa-linkedin-in',  'label' => 'LinkedIn' ],
                             'sg_twitter'   => [ 'icon' => 'fa-brands fa-x-twitter',    'label' => 'Twitter / X' ],
                             'sg_youtube'   => [ 'icon' => 'fa-brands fa-youtube',      'label' => 'YouTube' ],
+                            'sg_pinterest' => [ 'icon' => 'fa-brands fa-pinterest-p',  'label' => 'Pinterest' ],
                         ];
                         foreach ( $socials as $key => $data ) :
                             $url = sg_option( $key );
@@ -233,39 +234,88 @@
    DEFAULT MENU FALLBACK
    ============================================================ */
 function seogezegeni_default_menu() {
-    $links = [
-        home_url( '/' )             => __( 'Ana Sayfa',   'seogezegeni' ),
-        home_url( '/seo/' )         => __( 'SEO',         'seogezegeni' ),
-        home_url( '/sem/' )         => __( 'SEM',         'seogezegeni' ),
-        home_url( '/sosyal-medya/' )=> __( 'Sosyal Medya','seogezegeni' ),
-        home_url( '/web-tasarim/' ) => __( 'Web Tasarım', 'seogezegeni' ),
-        home_url( '/dijital-reklam/')=> __( 'Dijital Reklam','seogezegeni' ),
-        home_url( '/hakkimizda/' )  => __( 'Hakkımızda',  'seogezegeni' ),
-        home_url( '/iletisim/' )    => __( 'İletişim',    'seogezegeni' ),
+    $current = get_permalink();
+    $hizmetler_urls = [
+        home_url( '/seo/' ),
+        home_url( '/360-dijital-pazarlama/' ),
+        home_url( '/sosyal-medya-yonetimi/' ),
+        home_url( '/google-meta-reklamlari/' ),
+        home_url( '/web-tasarim-ve-yazilim/' ),
     ];
+    $hizmetler_active = in_array( $current, $hizmetler_urls ) ? ' current-page-ancestor' : '';
+
+    $top_links = [
+        home_url( '/' )            => __( 'Anasayfa',   'seogezegeni' ),
+        home_url( '/biz-kimiz/' ) => __( 'Biz Kimiz?', 'seogezegeni' ),
+        home_url( '/referanslar/' )=> __( 'Referanslar','seogezegeni' ),
+        home_url( '/iletisim/' )   => __( 'İletişim',   'seogezegeni' ),
+    ];
+
+    $hizmetler_sub = [
+        home_url( '/seo/' )                    => __( 'SEO',                        'seogezegeni' ),
+        home_url( '/360-dijital-pazarlama/' )  => __( '360° DİJİTAL PAZARLAMA',    'seogezegeni' ),
+        home_url( '/sosyal-medya-yonetimi/' )  => __( 'SOSYAL MEDYA YÖNETİMİ',     'seogezegeni' ),
+        home_url( '/google-meta-reklamlari/' ) => __( 'GOOGLE & META REKLAMLARI',   'seogezegeni' ),
+        home_url( '/web-tasarim-ve-yazilim/' ) => __( 'WEB TASARIM ve YAZILIM',     'seogezegeni' ),
+    ];
+
     echo '<ul class="sg-nav" role="menubar">';
-    foreach ( $links as $url => $label ) {
-        $active = ( get_permalink() === $url ) ? ' class="current-menu-item"' : '';
-        echo '<li' . $active . ' role="none"><a href="' . esc_url( $url ) . '" role="menuitem">' . esc_html( $label ) . '</a></li>';
+
+    // Anasayfa
+    $a = ( $current === home_url( '/' ) ) ? ' class="current-menu-item"' : '';
+    echo '<li' . $a . ' role="none"><a href="' . esc_url( home_url( '/' ) ) . '" role="menuitem">' . __( 'Anasayfa', 'seogezegeni' ) . '</a></li>';
+
+    // Biz Kimiz?
+    $a = ( $current === home_url( '/biz-kimiz/' ) ) ? ' class="current-menu-item"' : '';
+    echo '<li' . $a . ' role="none"><a href="' . esc_url( home_url( '/biz-kimiz/' ) ) . '" role="menuitem">' . __( 'Biz Kimiz?', 'seogezegeni' ) . '</a></li>';
+
+    // Hizmetler (dropdown)
+    echo '<li class="menu-item-has-children' . $hizmetler_active . '" role="none">';
+    echo '<a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">';
+    echo __( 'Hizmetler', 'seogezegeni' );
+    echo '<i class="fa-solid fa-chevron-down" style="font-size:.6rem;margin-left:5px;" aria-hidden="true"></i>';
+    echo '</a>';
+    echo '<ul class="sub-menu" role="menu">';
+    foreach ( $hizmetler_sub as $url => $label ) {
+        $a = ( $current === $url ) ? ' class="current-menu-item"' : '';
+        echo '<li' . $a . ' role="none"><a href="' . esc_url( $url ) . '" role="menuitem">' . esc_html( $label ) . '</a></li>';
     }
+    echo '</ul>';
+    echo '</li>';
+
+    // Referanslar
+    $a = ( $current === home_url( '/referanslar/' ) ) ? ' class="current-menu-item"' : '';
+    echo '<li' . $a . ' role="none"><a href="' . esc_url( home_url( '/referanslar/' ) ) . '" role="menuitem">' . __( 'Referanslar', 'seogezegeni' ) . '</a></li>';
+
+    // İletişim
+    $a = ( $current === home_url( '/iletisim/' ) ) ? ' class="current-menu-item"' : '';
+    echo '<li' . $a . ' role="none"><a href="' . esc_url( home_url( '/iletisim/' ) ) . '" role="menuitem">' . __( 'İletişim', 'seogezegeni' ) . '</a></li>';
+
     echo '</ul>';
 }
 
 function seogezegeni_default_mobile_menu() {
-    $links = [
-        home_url( '/' )             => __( 'Ana Sayfa',    'seogezegeni' ),
-        home_url( '/seo/' )         => __( 'SEO',          'seogezegeni' ),
-        home_url( '/sem/' )         => __( 'SEM',          'seogezegeni' ),
-        home_url( '/sosyal-medya/' )=> __( 'Sosyal Medya', 'seogezegeni' ),
-        home_url( '/web-tasarim/' ) => __( 'Web Tasarım',  'seogezegeni' ),
-        home_url( '/dijital-reklam/')=> __( 'Dijital Reklam','seogezegeni' ),
-        home_url( '/hakkimizda/' )  => __( 'Hakkımızda',   'seogezegeni' ),
-        home_url( '/iletisim/' )    => __( 'İletişim',     'seogezegeni' ),
+    $hizmetler_sub = [
+        home_url( '/seo/' )                    => __( 'SEO',                       'seogezegeni' ),
+        home_url( '/360-dijital-pazarlama/' )  => __( '360° DİJİTAL PAZARLAMA',   'seogezegeni' ),
+        home_url( '/sosyal-medya-yonetimi/' )  => __( 'SOSYAL MEDYA YÖNETİMİ',    'seogezegeni' ),
+        home_url( '/google-meta-reklamlari/' ) => __( 'GOOGLE & META REKLAMLARI',  'seogezegeni' ),
+        home_url( '/web-tasarim-ve-yazilim/' ) => __( 'WEB TASARIM ve YAZILIM',    'seogezegeni' ),
     ];
+
     echo '<ul class="sg-mobile-menu">';
-    foreach ( $links as $url => $label ) {
+    echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">' . __( 'Anasayfa', 'seogezegeni' ) . '</a></li>';
+    echo '<li><a href="' . esc_url( home_url( '/biz-kimiz/' ) ) . '">' . __( 'Biz Kimiz?', 'seogezegeni' ) . '</a></li>';
+    echo '<li class="menu-item-has-children">';
+    echo '<a href="#">' . __( 'Hizmetler', 'seogezegeni' ) . '<i class="fa-solid fa-chevron-down" style="font-size:.7rem;" aria-hidden="true"></i></a>';
+    echo '<ul class="sub-menu">';
+    foreach ( $hizmetler_sub as $url => $label ) {
         echo '<li><a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a></li>';
     }
+    echo '</ul>';
+    echo '</li>';
+    echo '<li><a href="' . esc_url( home_url( '/referanslar/' ) ) . '">' . __( 'Referanslar', 'seogezegeni' ) . '</a></li>';
+    echo '<li><a href="' . esc_url( home_url( '/iletisim/' ) ) . '">' . __( 'İletişim', 'seogezegeni' ) . '</a></li>';
     echo '</ul>';
 }
 

@@ -13,7 +13,6 @@ if ( have_posts() ) {
 
 $email          = sg_option( 'sg_email', 'info@seogezegeni.com' );
 $mobile_phone   = sg_option( 'sg_phone', '0555 162 62 11' );
-$working_hours  = sg_option( 'sg_working_hours', 'Hafta İçi 09.00 / 18.00' );
 $contact_forms  = function_exists( 'wpcf7' ) ? get_posts( [
     'post_type'      => 'wpcf7_contact_form',
     'posts_per_page' => 1,
@@ -137,51 +136,27 @@ $channels = [
         </div>
     </section>
 
-    <section class="sg-contact-main section-pad alt-section" aria-labelledby="contact-form-heading">
+    <section class="sg-contact-main section-pad soft-section" aria-labelledby="contact-form-heading">
         <div class="container">
             <div class="sg-contact-main-grid">
-                <div data-sg-reveal="left">
+                <div class="sg-contact-map-col" data-sg-reveal="left">
                     <?php
                     sg_section_head(
                         __( 'Bizimle İletişime Geçin', 'seogezegeni' ),
                         __( 'Bize Yazın, En Kısa Sürede <span class="text-accent">Dönüş Yapalım</span>', 'seogezegeni' ),
                         __( 'Ücretsiz analiz yapmak veya teklif vermek bizim işimizin bir parçasıdır. Projenizi ve hedeflerinizi bizimle paylaşın.', 'seogezegeni' )
                     );
+                    $map_url = sg_option( 'sg_map_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3124.5637428195546!2d27.182291599999996!3d38.4515446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b963fc0467457f%3A0xbac51dac81878446!2sSEO%20GEZEGEN%C4%B0%20-%20Dijital%20Pazarlama%20Ajans%C4%B1%20%7C%20%C4%B0zmir!5e0!3m2!1str!2str!4v1782479633402!5m2!1str!2str' );
                     ?>
-
-                    <div class="sg-contact-info">
-                        <div class="sg-contact-item">
-                            <div class="sg-contact-icon" aria-hidden="true"><i class="fa-regular fa-clock"></i></div>
-                            <div class="sg-contact-detail">
-                                <strong><?php esc_html_e( 'Çalışma Saatleri', 'seogezegeni' ); ?></strong>
-                                <span><?php echo esc_html( $working_hours ); ?></span>
-                                <span><?php esc_html_e( 'Diğer saatlerde mail gönderebilirsiniz.', 'seogezegeni' ); ?></span>
-                            </div>
-                        </div>
-
-                        <div class="sg-contact-item">
-                            <div class="sg-contact-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></div>
-                            <div class="sg-contact-detail">
-                                <strong><?php esc_html_e( 'Ne İçin Ulaşabilirsiniz?', 'seogezegeni' ); ?></strong>
-                                <span><?php esc_html_e( 'SEO, Google Ads, sosyal medya, web tasarım ve dijital pazarlama talepleriniz için bize yazabilirsiniz.', 'seogezegeni' ); ?></span>
-                            </div>
-                        </div>
+                    <div class="sg-map-wrap">
+                        <iframe
+                            src="<?php echo esc_url( $map_url ); ?>"
+                            title="<?php esc_attr_e( 'SEO Gezegeni ofis konumu', 'seogezegeni' ); ?>"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen>
+                        </iframe>
                     </div>
-
-                    <?php
-                    $map_url = sg_option( 'sg_map_embed' );
-                    if ( $map_url ) :
-                    ?>
-                        <div class="sg-map-wrap">
-                            <iframe
-                                src="<?php echo esc_url( $map_url ); ?>"
-                                title="<?php esc_attr_e( 'SEO Gezegeni ofis konumu', 'seogezegeni' ); ?>"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    <?php endif; ?>
                 </div>
 
                 <div class="sg-contact-form-wrap" data-sg-reveal="right">
@@ -223,17 +198,28 @@ $channels = [
                             </div>
 
                             <div class="sg-form-group">
-                                <label for="sg_service"><?php esc_html_e( 'İlgilendiğiniz Hizmet', 'seogezegeni' ); ?></label>
-                                <select id="sg_service" name="sg_service">
-                                    <option value=""><?php esc_html_e( 'Seçiniz...', 'seogezegeni' ); ?></option>
-                                    <option value="seo"><?php esc_html_e( 'SEO Hizmetleri', 'seogezegeni' ); ?></option>
-                                    <option value="sem"><?php esc_html_e( 'SEM / Google Ads', 'seogezegeni' ); ?></option>
-                                    <option value="sosyal"><?php esc_html_e( 'Sosyal Medya Yönetimi', 'seogezegeni' ); ?></option>
-                                    <option value="web"><?php esc_html_e( 'Web Tasarım', 'seogezegeni' ); ?></option>
-                                    <option value="icerik"><?php esc_html_e( 'İçerik Pazarlaması', 'seogezegeni' ); ?></option>
-                                    <option value="reklam"><?php esc_html_e( 'Dijital Reklam', 'seogezegeni' ); ?></option>
-                                    <option value="diger"><?php esc_html_e( 'Diğer', 'seogezegeni' ); ?></option>
-                                </select>
+                                <span class="sg-form-label"><?php esc_html_e( 'İlgilendiğiniz Hizmetler', 'seogezegeni' ); ?></span>
+                                <div class="sg-hq-dropdown sg-form-services-dropdown" id="sgContactServicesDropdown">
+                                    <button type="button" class="sg-hq-dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+                                        <span class="sg-hq-dropdown-text"><?php esc_html_e( 'Hizmet seçin…', 'seogezegeni' ); ?></span>
+                                        <i class="fa-solid fa-chevron-down sg-hq-dropdown-arrow" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="sg-hq-dropdown-panel" role="listbox" aria-multiselectable="true" aria-label="<?php esc_attr_e( 'İlgilendiğiniz Hizmetler', 'seogezegeni' ); ?>">
+                                        <?php foreach ( sg_get_quote_services() as $value => $label ) :
+                                            $id = 'sg_svc_' . esc_attr( $value );
+                                        ?>
+                                            <label class="sg-hq-option" for="<?php echo $id; ?>">
+                                                <input type="checkbox"
+                                                       id="<?php echo $id; ?>"
+                                                       name="sg_services[]"
+                                                       value="<?php echo esc_attr( $value ); ?>"
+                                                       class="sg-hq-option-cb">
+                                                <span class="sg-hq-option-check" aria-hidden="true"></span>
+                                                <span><?php echo esc_html( $label ); ?></span>
+                                            </label>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="sg-form-group">
@@ -253,6 +239,8 @@ $channels = [
             </div>
         </div>
     </section>
+
+<?php get_template_part( 'template-parts/pre-footer-cta' ); ?>
 
 </main>
 

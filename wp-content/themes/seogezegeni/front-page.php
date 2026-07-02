@@ -31,7 +31,7 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
         <div class="row align-items-center" style="align-items:center;">
 
             <!-- Left: content -->
-            <div style="flex:0 0 55%;max-width:55%;padding:0 15px;" class="hero-text-col">
+            <div style="flex:0 0 42%;max-width:42%;padding:0 15px;" class="hero-text-col">
                 <div class="sg-hero-content">
 
                     <div class="sg-hero-badge" data-sg-reveal>
@@ -51,46 +51,32 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
                         ) ); ?>
                     </p>
 
-                    <!-- Audit form -->
-                    <form class="sg-audit-form" id="sgAuditForm" aria-label="<?php esc_attr_e( 'Web sitesi analiz formu', 'seogezegeni' ); ?>" data-sg-reveal>
-                        <?php wp_nonce_field( 'sg_nonce', 'sg_audit_nonce' ); ?>
-                        <label for="sgAuditInput" class="screen-reader-text">
-                            <?php _e( 'Web sitenizin adresi', 'seogezegeni' ); ?>
-                        </label>
-                        <input type="url"
-                               id="sgAuditInput"
-                               name="site_url"
-                               placeholder="<?php esc_attr_e( 'Web sitenizin adresini girin...', 'seogezegeni' ); ?>"
-                               required
-                               aria-required="true">
-                        <button type="submit">
-                            <?php _e( 'Ücretsiz Analiz', 'seogezegeni' ); ?>
-                        </button>
-                    </form>
-                    <div class="sg-audit-message" id="sgAuditMsg" role="status" aria-live="polite" style="display:none;margin-top:12px;padding:10px 16px;background:rgba(168,230,61,.1);border:1px solid rgba(168,230,61,.3);border-radius:8px;color:#a8e63d;font-size:.9rem;"></div>
-
                     <!-- Stats -->
                     <div class="sg-hero-stats" data-sg-reveal role="list" aria-label="<?php esc_attr_e( 'İstatistikler', 'seogezegeni' ); ?>">
                         <?php
                         $stats = [
-                            [ 'key' => 'sg_stat_projects', 'lkey' => 'sg_stat_projects_label', 'default_val' => '250', 'default_lbl' => __('Tamamlanan Proje', 'seogezegeni') ],
-                            [ 'key' => 'sg_stat_clients',  'lkey' => 'sg_stat_clients_label',  'default_val' => '180', 'default_lbl' => __('Mutlu Müşteri',   'seogezegeni') ],
-                            [ 'key' => 'sg_stat_years',    'lkey' => 'sg_stat_years_label',    'default_val' => '8',   'default_lbl' => __('Yıllık Deneyim',  'seogezegeni') ],
+                            [ 'key' => 'sg_stat_projects', 'lkey' => 'sg_stat_projects_label', 'default_val' => '1000', 'default_lbl' => __('Tamamlanan Proje', 'seogezegeni') ],
+                            [ 'key' => 'sg_stat_clients',  'lkey' => 'sg_stat_clients_label',  'default_val' => '20',   'default_lbl' => __('Ekip Üyesi',        'seogezegeni') ],
+                            [ 'key' => 'sg_stat_years',    'lkey' => 'sg_stat_years_label',    'default_val' => '15',   'default_lbl' => __('Yıllık Deneyim',    'seogezegeni') ],
                         ];
                         foreach ( $stats as $i => $stat ) :
                             if ( $i > 0 ) : ?>
                                 <div class="sg-stat-divider" aria-hidden="true"></div>
                             <?php endif; ?>
+                            <?php
+                            $stat_value = sg_stat_option( $stat['key'], $stat['default_val'] );
+                            $stat_label = sg_stat_option( $stat['lkey'], $stat['default_lbl'] );
+                            ?>
                             <div class="sg-stat-item" role="listitem">
                                 <div class="sg-stat-number">
                                     <span class="sg-counter"
-                                          data-target="<?php echo esc_attr( sg_option( $stat['key'], $stat['default_val'] ) ); ?>"
-                                          aria-label="<?php echo esc_attr( sg_option($stat['key'], $stat['default_val']) ) . ' ' . esc_attr( sg_option($stat['lkey'], $stat['default_lbl']) ); ?>">
+                                          data-target="<?php echo esc_attr( $stat_value ); ?>"
+                                          aria-label="<?php echo esc_attr( $stat_value . ' ' . $stat_label ); ?>">
                                         0
                                     </span>+
                                 </div>
                                 <div class="sg-stat-label">
-                                    <?php echo esc_html( sg_option( $stat['lkey'], $stat['default_lbl'] ) ); ?>
+                                    <?php echo esc_html( $stat_label ); ?>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -99,40 +85,72 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
                 </div>
             </div><!-- /hero text col -->
 
-            <!-- Right: visual card -->
-            <div style="flex:0 0 45%;max-width:45%;padding:0 15px;" class="hero-visual-col">
+            <!-- Right: quote form -->
+            <div style="flex:0 0 58%;max-width:58%;padding:0 15px;" class="hero-visual-col">
                 <div class="sg-hero-visual" data-sg-reveal="right">
-                    <div class="sg-hero-card" role="img" aria-label="<?php esc_attr_e( 'SEO performans göstergesi', 'seogezegeni' ); ?>">
+                    <div class="sg-hero-quote-card">
                         <p class="sg-hero-card-title">
-                            <i class="fa-solid fa-chart-line" style="color:var(--sg-accent);margin-right:6px;" aria-hidden="true"></i>
-                            <?php _e( 'SEO Performans Göstergesi', 'seogezegeni' ); ?>
+                            <i class="fa-solid fa-file-invoice-dollar" style="color:var(--sg-accent);margin-right:6px;" aria-hidden="true"></i>
+                            <?php _e( 'Ücretsiz Teklif Alın', 'seogezegeni' ); ?>
                         </p>
 
-                        <?php
-                        $metrics = [
-                            [ 'label' => __('Organik Trafik', 'seogezegeni'), 'value' => '92', 'pct' => '92%' ],
-                            [ 'label' => __('Anahtar Kelime Sıralaması', 'seogezegeni'), 'value' => '85', 'pct' => '85%' ],
-                            [ 'label' => __('Dönüşüm Oranı', 'seogezegeni'), 'value' => '78', 'pct' => '78%' ],
-                            [ 'label' => __('Sayfa Hızı', 'seogezegeni'), 'value' => '96', 'pct' => '96%' ],
-                        ];
-                        foreach ( $metrics as $m ) : ?>
-                            <div class="sg-metric-item">
-                                <div class="sg-metric-label">
-                                    <span><?php echo esc_html( $m['label'] ); ?></span>
-                                    <span><?php echo esc_html( $m['pct'] ); ?></span>
-                                </div>
-                                <div class="sg-metric-bar" role="progressbar"
-                                     aria-valuenow="<?php echo esc_attr( $m['value'] ); ?>"
-                                     aria-valuemin="0" aria-valuemax="100">
-                                    <div class="sg-metric-fill" style="width:0"
-                                         data-width="<?php echo esc_attr( $m['pct'] ); ?>"></div>
+                        <form class="sg-hero-quote-form" id="sgHeroQuoteForm" novalidate>
+                            <?php wp_nonce_field( 'sg_quote_nonce', 'sg_quote_nonce_field' ); ?>
+                            <input type="hidden" name="action" value="sg_quote">
+
+                            <div class="sg-hq-field">
+                                <input type="text" name="sq_name"
+                                       placeholder="<?php esc_attr_e( 'İsim *', 'seogezegeni' ); ?>"
+                                       required aria-required="true">
+                            </div>
+                            <div class="sg-hq-field">
+                                <input type="tel" name="sq_phone"
+                                       placeholder="<?php esc_attr_e( 'Telefon *', 'seogezegeni' ); ?>"
+                                       required aria-required="true">
+                            </div>
+                            <div class="sg-hq-field">
+                                <input type="email" name="sq_email"
+                                       placeholder="<?php esc_attr_e( 'Mail *', 'seogezegeni' ); ?>"
+                                       required aria-required="true">
+                            </div>
+                            <div class="sg-hq-field">
+                                <input type="url" name="sq_website"
+                                       placeholder="<?php esc_attr_e( 'Website', 'seogezegeni' ); ?>">
+                            </div>
+
+                            <div class="sg-hq-field">
+                                <span class="sg-hq-services-label"><?php _e( 'Teklif istenilen hizmetler:', 'seogezegeni' ); ?></span>
+                                <div class="sg-hq-dropdown" id="sgServicesDropdown">
+                                    <button type="button" class="sg-hq-dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+                                        <span class="sg-hq-dropdown-text"><?php _e( 'Hizmet seçin…', 'seogezegeni' ); ?></span>
+                                        <i class="fa-solid fa-chevron-down sg-hq-dropdown-arrow" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="sg-hq-dropdown-panel" role="listbox" aria-multiselectable="true" aria-label="<?php esc_attr_e( 'Hizmetler', 'seogezegeni' ); ?>">
+                                        <?php
+                                        $quote_services = sg_get_quote_services();
+                                        foreach ( $quote_services as $val => $label ) :
+                                            $id = 'sgSvc_' . esc_attr( $val );
+                                        ?>
+                                            <label class="sg-hq-option" for="<?php echo $id; ?>">
+                                                <input type="checkbox" id="<?php echo $id; ?>"
+                                                       name="sq_services[]"
+                                                       value="<?php echo esc_attr( $val ); ?>"
+                                                       class="sg-hq-option-cb">
+                                                <span class="sg-hq-option-check" aria-hidden="true"></span>
+                                                <span><?php echo esc_html( $label ); ?></span>
+                                            </label>
+                                        <?php endforeach; ?>
+                                    </div>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
 
-                        <div class="sg-hero-badge-float" aria-label="<?php esc_attr_e('%320 Trafik Artışı', 'seogezegeni'); ?>">
-                            📈 %320 <?php _e( 'Trafik Artışı', 'seogezegeni' ); ?>
-                        </div>
+                            <button type="submit" class="sg-btn sg-btn-primary" style="width:100%;justify-content:center;margin-top:4px;">
+                                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                                <?php _e( 'Teklif İste', 'seogezegeni' ); ?>
+                            </button>
+                            <div id="sgHeroQuoteMsg" role="status" aria-live="polite"
+                                 style="display:none;margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.85rem;"></div>
+                        </form>
                     </div>
                 </div>
             </div><!-- /hero visual col -->
@@ -142,172 +160,8 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
 </section>
 <!-- / HERO -->
 
-
-<!-- ============================================================
-     2. HAKKIMIZDA
-     ============================================================ -->
-<section class="sg-about section-pad" id="hakkimizda" aria-labelledby="about-heading">
-    <div class="container">
-        <div class="row" style="gap:0;align-items:center;">
-
-            <!-- Left: text -->
-            <div style="flex:0 0 50%;max-width:50%;padding:0 15px 0 0;">
-                <div data-sg-reveal="left">
-                    <?php sg_section_head(
-                        sg_option( 'sg_about_label', __( 'Hakkımızda', 'seogezegeni' ) ),
-                        sg_option( 'sg_about_title', __( 'Sonuçlar Kendisi Konuşuyor', 'seogezegeni' ) ),
-                        '',
-                        false,
-                        true
-                    ); ?>
-
-                    <div class="sg-about-text">
-                        <p>
-                            <?php echo esc_html( sg_option( 'sg_about_desc',
-                                __( 'SEO Gezegeni olarak yalnızca bir ajans değiliz – ölçülebilir büyüme hedeflerinizde gerçek ortağınızız. Özelleştirilmiş stratejiler ve son teknoloji araçlarla başarı hikayeleri yaratıyoruz.', 'seogezegeni' )
-                            ) ); ?>
-                        </p>
-                        <ul class="sg-about-list" style="margin-top:20px;">
-                            <li><?php _e( 'Sektöre özel, ölçülebilir SEO stratejileri', 'seogezegeni' ); ?></li>
-                            <li><?php _e( 'Google sertifikalı uzman kadro', 'seogezegeni' ); ?></li>
-                            <li><?php _e( 'Şeffaf raporlama ve 7/24 destek', 'seogezegeni' ); ?></li>
-                            <li><?php _e( 'Bayraklı/İzmir & Maslak/İstanbul – Türkiye geneli hizmet', 'seogezegeni' ); ?></li>
-                        </ul>
-                    </div>
-
-                    <a href="<?php echo esc_url( sg_option('sg_about_btn_url', home_url('/hakkimizda/')) ); ?>"
-                       class="sg-btn sg-btn-outline"
-                       style="margin-top:32px;display:inline-flex;">
-                        <?php echo esc_html( sg_option('sg_about_btn_text', __('Birlikte Çalışalım', 'seogezegeni')) ); ?>
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Right: stat cards -->
-            <div style="flex:0 0 50%;max-width:50%;padding:0 0 0 15px;">
-                <div class="row" style="gap:0;margin:0;">
-                    <?php
-                    $about_cards = [
-                        [
-                            'num'   => sg_option( 'sg_stat_clients', '180' ) . '+',
-                            'title' => __( 'Mutlu Müşteri', 'seogezegeni' ),
-                            'desc'  => __( 'Türkiye genelinde hizmet verdiğimiz memnun müşteri sayımız.', 'seogezegeni' ),
-                        ],
-                        [
-                            'num'   => sg_option( 'sg_stat_projects', '250' ) . '+',
-                            'title' => __( 'Tamamlanan Proje', 'seogezegeni' ),
-                            'desc'  => __( 'Başarıyla teslim ettiğimiz dijital pazarlama projeleri.', 'seogezegeni' ),
-                        ],
-                        [
-                            'num'   => '%' . '320',
-                            'title' => __( 'Ort. Trafik Artışı', 'seogezegeni' ),
-                            'desc'  => __( 'Müşterilerimiz için elde ettiğimiz ortalama organik trafik büyümesi.', 'seogezegeni' ),
-                        ],
-                        [
-                            'num'   => sg_option( 'sg_stat_years', '8' ),
-                            'title' => __( 'Yıllık Deneyim', 'seogezegeni' ),
-                            'desc'  => __( 'Dijital dünyada sektör bilgisi ve kanıtlanmış uzmanlık.', 'seogezegeni' ),
-                        ],
-                    ];
-                    foreach ( $about_cards as $i => $card ) :
-                        $delay = $i * 100;
-                    ?>
-                        <div style="flex:0 0 50%;max-width:50%;padding:12px;" data-sg-reveal data-delay="<?php echo esc_attr($delay); ?>">
-                            <div class="sg-stat-card">
-                                <div class="num sg-counter-static"><?php echo esc_html( $card['num'] ); ?></div>
-                                <h5><?php echo esc_html( $card['title'] ); ?></h5>
-                                <p><?php echo esc_html( $card['desc'] ); ?></p>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</section>
-<!-- / HAKKIMIZDA -->
-
-
-<!-- ============================================================
-     3. HİZMETLER
-     ============================================================ -->
-<section class="sg-services section-pad alt-section" id="hizmetler" aria-labelledby="services-heading">
-    <div class="container">
-        <?php sg_section_head(
-            __( 'Hizmetlerimiz', 'seogezegeni' ),
-            __( 'Dijital Başarı İçin <span class="text-accent">Tam Çözüm</span>', 'seogezegeni' ),
-            __( 'İşletmenizin dijital büyümesini desteklemek için kapsamlı SEO ve dijital pazarlama hizmetleri sunuyoruz.', 'seogezegeni' ),
-            true
-        ); ?>
-
-        <div class="row" style="gap:0;margin-top:40px;">
-            <?php
-            $services = [
-                [
-                    'icon'  => 'fa-solid fa-magnifying-glass-chart',
-                    'title' => __( 'SEO Hizmetleri', 'seogezegeni' ),
-                    'desc'  => __( 'Teknik SEO, sayfa içi optimizasyon ve link building stratejileriyle Google\'da üst sıralara çıkın. Rakiplerinizi geride bırakın.', 'seogezegeni' ),
-                    'url'   => home_url('/seo/'),
-                ],
-                [
-                    'icon'  => 'fa-brands fa-google',
-                    'title' => __( 'SEM / Google Ads', 'seogezegeni' ),
-                    'desc'  => __( 'Google Ads ve ücretli arama kampanyalarıyla hedef kitlenize anında ulaşın. ROI odaklı reklam yönetimi.', 'seogezegeni' ),
-                    'url'   => home_url('/sem/'),
-                ],
-                [
-                    'icon'  => 'fa-solid fa-share-nodes',
-                    'title' => __( 'Sosyal Medya Yönetimi', 'seogezegeni' ),
-                    'desc'  => __( 'Instagram, Facebook, LinkedIn ve diğer platformlarda markanızı büyütün. İçerik üretimi ve topluluk yönetimi.', 'seogezegeni' ),
-                    'url'   => home_url('/sosyal-medya/'),
-                ],
-                [
-                    'icon'  => 'fa-solid fa-laptop-code',
-                    'title' => __( 'Web Tasarım', 'seogezegeni' ),
-                    'desc'  => __( 'SEO uyumlu, hızlı ve mobil dostu web siteleri tasarlıyoruz. Dönüşüm odaklı kullanıcı deneyimi.', 'seogezegeni' ),
-                    'url'   => home_url('/web-tasarim/'),
-                ],
-                [
-                    'icon'  => 'fa-solid fa-pen-nib',
-                    'title' => __( 'İçerik Pazarlaması', 'seogezegeni' ),
-                    'desc'  => __( 'SEO uyumlu blog yazıları, ürün içerikleri ve dijital içerik stratejisi ile organik trafiğinizi artırın.', 'seogezegeni' ),
-                    'url'   => home_url('/icerik-pazarlama/'),
-                ],
-                [
-                    'icon'  => 'fa-solid fa-bullhorn',
-                    'title' => __( 'Dijital Reklam', 'seogezegeni' ),
-                    'desc'  => __( 'Display, video, yeniden hedefleme ve programatik reklamcılıkla markanızı geniş kitlelere ulaştırın.', 'seogezegeni' ),
-                    'url'   => home_url('/dijital-reklam/'),
-                ],
-            ];
-
-            foreach ( $services as $i => $svc ) :
-                $delay = ( $i % 3 ) * 150;
-            ?>
-                <div style="flex:0 0 33.333%;max-width:33.333%;padding:12px;"
-                     data-sg-reveal
-                     data-delay="<?php echo esc_attr($delay); ?>">
-                    <div class="sg-service-card">
-                        <div class="sg-service-icon" aria-hidden="true">
-                            <i class="<?php echo esc_attr($svc['icon']); ?>"></i>
-                        </div>
-                        <h4><?php echo esc_html($svc['title']); ?></h4>
-                        <p><?php echo esc_html($svc['desc']); ?></p>
-                        <a href="<?php echo esc_url($svc['url']); ?>" class="sg-service-link">
-                            <?php _e('Detaylı Bilgi', 'seogezegeni'); ?>
-                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</section>
-<!-- / HİZMETLER -->
-
+<?php get_template_part( 'template-parts/front-references' ); ?>
+<?php get_template_part( 'template-parts/front-services' ); ?>
 
 <!-- ============================================================
      4. NEDEN SEO GEZEGENİ?
@@ -387,7 +241,7 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
 <!-- ============================================================
      5. PORTFÖY / VAKA ANALİZLERİ
      ============================================================ -->
-<section class="sg-portfolio section-pad alt-section" id="portfolio" aria-labelledby="portfolio-heading">
+<section class="sg-portfolio section-pad alt-section sg-home-legacy-portfolio" id="portfolio" aria-labelledby="portfolio-heading" aria-hidden="true">
     <div class="container">
         <div class="row" style="align-items:center;justify-content:space-between;margin-bottom:40px;">
             <div style="flex:0 0 60%;max-width:60%;padding:0 15px;">
@@ -399,9 +253,9 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
                 ); ?>
             </div>
             <div style="padding:0 15px;text-align:right;">
-                <a href="<?php echo esc_url( home_url('/portfolio/') ); ?>"
+                <a href="<?php echo esc_url( home_url('/referanslar/') ); ?>"
                    class="sg-btn sg-btn-outline" data-sg-reveal="right">
-                    <?php _e( 'Tüm Projeler', 'seogezegeni' ); ?>
+                    <?php _e( 'Tüm Referanslar', 'seogezegeni' ); ?>
                     <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
@@ -512,117 +366,11 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
 
 
 <!-- ============================================================
-     6. MÜŞTERİ YORUMLARI
-     ============================================================ -->
-<section class="sg-testimonials section-pad dark-section" id="yorumlar" aria-labelledby="tes-heading">
-    <div class="container">
-        <div class="row" style="align-items:center;justify-content:space-between;margin-bottom:40px;">
-            <div style="flex:0 0 60%;max-width:60%;padding:0 15px;">
-                <?php sg_section_head(
-                    __( 'Müşteri Yorumları', 'seogezegeni' ),
-                    __( 'Müşterilerimiz Ne Diyor?', 'seogezegeni' ),
-                    '',
-                    false
-                ); ?>
-            </div>
-            <div style="padding:0 15px;" data-sg-reveal="right">
-                <div class="sg-tes-nav" aria-label="<?php esc_attr_e('Yorum slayt kontrolleri', 'seogezegeni'); ?>">
-                    <button id="sgTesPrev" aria-label="<?php esc_attr_e('Önceki yorum', 'seogezegeni'); ?>">
-                        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                    </button>
-                    <button id="sgTesNext" aria-label="<?php esc_attr_e('Sonraki yorum', 'seogezegeni'); ?>">
-                        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="sg-tes-slider-wrap">
-            <div class="sg-tes-track" id="sgTesTrack">
-                <?php
-                $tes_query = new WP_Query([
-                    'post_type'      => 'testimonial',
-                    'posts_per_page' => 8,
-                    'post_status'    => 'publish',
-                    'orderby'        => 'menu_order',
-                    'order'          => 'ASC',
-                ]);
-
-                if ( $tes_query->have_posts() ) :
-                    while ( $tes_query->have_posts() ) : $tes_query->the_post();
-                        $role    = get_post_meta( get_the_ID(), '_sg_tes_role', true );
-                        $company = get_post_meta( get_the_ID(), '_sg_tes_company', true );
-                        $rating  = get_post_meta( get_the_ID(), '_sg_tes_rating', true ) ?: 5;
-                        $initial = mb_substr( get_the_title(), 0, 1, 'UTF-8' );
-                ?>
-                    <div class="sg-tes-card" role="article">
-                        <div class="sg-tes-stars" aria-label="<?php echo esc_attr($rating); ?> yıldız">
-                            <?php echo str_repeat( '★', intval($rating) ); ?>
-                            <?php echo str_repeat( '☆', 5 - intval($rating) ); ?>
-                        </div>
-                        <p class="sg-tes-text"><?php the_content(); ?></p>
-                        <div class="sg-tes-author">
-                            <div class="sg-tes-avatar">
-                                <?php if ( has_post_thumbnail() ) : ?>
-                                    <?php the_post_thumbnail('thumbnail', ['loading' => 'lazy']); ?>
-                                <?php else : ?>
-                                    <?php echo esc_html($initial); ?>
-                                <?php endif; ?>
-                            </div>
-                            <div>
-                                <div class="sg-tes-name"><?php the_title(); ?></div>
-                                <div class="sg-tes-role">
-                                    <?php if ($role) echo esc_html($role); ?>
-                                    <?php if ($role && $company) echo ' · '; ?>
-                                    <?php if ($company) echo esc_html($company); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                    endwhile;
-                    wp_reset_postdata();
-                else :
-                    /* Placeholder testimonials */
-                    $placeholders = [
-                        [ 'name' => 'Ahmet Yılmaz',   'role' => 'E-Ticaret Girişimcisi',    'rating' => 5, 'text' => 'SEO Gezegeni sayesinde web sitemizin organik trafiği 6 ayda %280 arttı. Profesyonel ekip ve şeffaf raporlama için teşekkürler.' ],
-                        [ 'name' => 'Selin Kaya',     'role' => 'Pazarlama Müdürü',          'rating' => 5, 'text' => 'Google Ads kampanyalarımızı yönetmelerinden sonra dönüşüm oranımız %45 yükseldi. Kesinlikle tavsiye ediyorum.' ],
-                        [ 'name' => 'Mehmet Demir',   'role' => 'Restoran İşletmecisi',      'rating' => 5, 'text' => 'Yerel SEO çalışmaları sonucunda "İzmir restoran" aramasında ilk sıraya çıktık. Müşteri sayımız inanılmaz arttı.' ],
-                        [ 'name' => 'Fatma Özçelik',  'role' => 'Butik Mağaza Sahibi',       'rating' => 5, 'text' => 'Sosyal medya yönetimi hizmeti almaya başladıktan sonra Instagram takipçi sayımız 3 ayda 50.000\'e ulaştı.' ],
-                        [ 'name' => 'Burak Şahin',    'role' => 'Yazılım Şirketi CEO\'su',   'rating' => 5, 'text' => 'Web tasarım ve SEO hizmetleri için mükemmel bir ekip. Sonuçlar beklentilerimizin çok üzerinde oldu.' ],
-                        [ 'name' => 'Zeynep Arslan',  'role' => 'Muhasebe Firması Ortağı',   'rating' => 5, 'text' => 'B2B SEO stratejileri ile anahtar kelimelerimizde kısa sürede çok iyi sıralamalar elde ettik. Harika bir iş ortağı.' ],
-                    ];
-                    foreach ( $placeholders as $p ) :
-                        $initial = mb_substr($p['name'], 0, 1, 'UTF-8');
-                ?>
-                    <div class="sg-tes-card" role="article">
-                        <div class="sg-tes-stars" aria-label="<?php echo esc_attr($p['rating']); ?> yıldız">
-                            <?php echo str_repeat('★', $p['rating']); ?>
-                        </div>
-                        <p class="sg-tes-text">"<?php echo esc_html($p['text']); ?>"</p>
-                        <div class="sg-tes-author">
-                            <div class="sg-tes-avatar"><?php echo esc_html($initial); ?></div>
-                            <div>
-                                <div class="sg-tes-name"><?php echo esc_html($p['name']); ?></div>
-                                <div class="sg-tes-role"><?php echo esc_html($p['role']); ?></div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; endif; ?>
-            </div><!-- /sg-tes-track -->
-        </div><!-- /sg-tes-slider-wrap -->
-
-    </div><!-- /.container -->
-</section>
-<!-- / YORUMLAR -->
-
-
-<!-- ============================================================
      7. BLOG BÖLÜMÜ
      ============================================================ -->
-<section class="sg-blog section-pad alt-section" id="blog" aria-labelledby="blog-heading">
+<section class="sg-blog section-pad soft-section" id="blog" aria-labelledby="blog-heading">
     <div class="container">
-        <div class="row" style="align-items:center;justify-content:space-between;margin-bottom:48px;">
+        <div class="row" style="align-items:center;justify-content:space-between;">
             <div style="flex:0 0 60%;max-width:60%;padding:0 15px;">
                 <?php sg_section_head(
                     __( 'Blog', 'seogezegeni' ),
@@ -687,310 +435,9 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
 <!-- / BLOG -->
 
 
-<!-- ============================================================
-     8. CTA BANNER
-     ============================================================ -->
-<section class="sg-cta section-pad dark-section" id="cta" aria-labelledby="cta-heading">
-    <div class="container">
-        <div class="sg-cta-inner" data-sg-reveal>
-
-            <div class="sg-label" style="display:inline-flex;justify-content:center;margin:0 auto 24px;">
-                <span class="sg-label-dot" aria-hidden="true"></span>
-                <?php _e( 'Harekete Geç', 'seogezegeni' ); ?>
-            </div>
-
-            <h2 id="cta-heading">
-                <?php echo wp_kses_post( sg_option( 'sg_cta_title',
-                    __( 'İşletmenizi Büyütmeye <span class="text-accent">Hazır mısınız?</span>', 'seogezegeni' )
-                ) ); ?>
-            </h2>
-
-            <p>
-                <?php echo esc_html( sg_option( 'sg_cta_desc',
-                    __( 'Ücretsiz SEO analizi ile dijital büyüme yolculuğunuzu bugün başlatın. Uzman ekibimiz sizi bekliyor.', 'seogezegeni' )
-                ) ); ?>
-            </p>
-
-            <div class="sg-cta-actions">
-                <a href="<?php echo esc_url( sg_option('sg_cta_btn_url', home_url('/iletisim/')) ); ?>"
-                   class="sg-btn sg-btn-primary">
-                    <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-                    <?php echo esc_html( sg_option('sg_cta_btn_text', __('Ücretsiz Analiz Al', 'seogezegeni')) ); ?>
-                </a>
-                <a href="<?php echo esc_url( sg_option('sg_cta_btn2_url', 'tel:05551626211') ); ?>"
-                   class="sg-btn sg-btn-outline">
-                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
-                    <?php echo esc_html( sg_option('sg_cta_btn2_text', sg_option('sg_phone', '0555 162 62 11')) ); ?>
-                </a>
-            </div>
-
-            <!-- Trust badges -->
-            <div style="margin-top:48px;display:flex;justify-content:center;flex-wrap:wrap;gap:24px;opacity:.6;" aria-label="<?php esc_attr_e('Güven rozetleri', 'seogezegeni'); ?>">
-                <?php
-                $badges = [
-                    'fa-brands fa-google'    => __('Google Partner', 'seogezegeni'),
-                    'fa-brands fa-meta'      => __('Meta Business Partner', 'seogezegeni'),
-                    'fa-solid fa-shield-halved' => __('SSL Güvenli', 'seogezegeni'),
-                    'fa-solid fa-award'      => __('ISO Sertifikalı', 'seogezegeni'),
-                ];
-                foreach ($badges as $icon => $label) : ?>
-                    <div style="display:flex;align-items:center;gap:8px;color:var(--sg-text-secondary);font-size:.85rem;">
-                        <i class="<?php echo esc_attr($icon); ?>" style="color:var(--sg-accent);" aria-hidden="true"></i>
-                        <?php echo esc_html($label); ?>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-        </div><!-- /sg-cta-inner -->
-    </div><!-- /.container -->
-</section>
-<!-- / CTA -->
-
-
-<!-- ============================================================
-     9. İLETİŞİM
-     ============================================================ -->
-<section class="sg-contact section-pad alt-section" id="iletisim" aria-labelledby="contact-heading">
-    <div class="container">
-        <div class="row" style="gap:0;">
-
-            <!-- Left: info + map -->
-            <div style="flex:0 0 42%;max-width:42%;padding:0 15px;">
-                <div data-sg-reveal="left">
-                    <?php sg_section_head(
-                        __( 'İletişim', 'seogezegeni' ),
-                        __( 'Sizinle Çalışmaya Hazırız', 'seogezegeni' ),
-                        __( 'Projenizi konuşmak, SEO analizinizi almak veya sadece merhaba demek için bize ulaşın.', 'seogezegeni' )
-                    ); ?>
-
-                    <div class="sg-contact-info" style="margin-top:32px;">
-                        <?php
-                        $phone = sg_option('sg_phone', '0555 162 62 11');
-                        $email = sg_option('sg_email', 'info@seogezegeni.com');
-                        $izmir = sg_option('sg_address_izmir', 'Bayraklı / İZMİR');
-                        $istanbul = sg_option('sg_address_istanbul', 'Maslak / İSTANBUL');
-                        $hours = sg_option('sg_working_hours', 'Pzt–Cum: 09:00–18:00');
-                        ?>
-
-                        <div class="sg-contact-item">
-                            <div class="sg-contact-icon" aria-hidden="true">
-                                <i class="fa-solid fa-phone"></i>
-                            </div>
-                            <div class="sg-contact-detail">
-                                <strong><?php _e('Telefon', 'seogezegeni'); ?></strong>
-                                <a href="tel:<?php echo esc_attr(preg_replace('/\D/','',$phone)); ?>">
-                                    <?php echo esc_html($phone); ?>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="sg-contact-item">
-                            <div class="sg-contact-icon" aria-hidden="true">
-                                <i class="fa-regular fa-envelope"></i>
-                            </div>
-                            <div class="sg-contact-detail">
-                                <strong><?php _e('E-posta', 'seogezegeni'); ?></strong>
-                                <a href="mailto:<?php echo esc_attr(antispambot($email)); ?>">
-                                    <?php echo esc_html(antispambot($email)); ?>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="sg-contact-item">
-                            <div class="sg-contact-icon" aria-hidden="true">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-                            <div class="sg-contact-detail">
-                                <strong><?php _e('Ofislerimiz', 'seogezegeni'); ?></strong>
-                                <span><?php echo esc_html($izmir); ?></span>
-                                <span><?php echo esc_html($istanbul); ?></span>
-                            </div>
-                        </div>
-
-                        <?php if ($hours) : ?>
-                        <div class="sg-contact-item">
-                            <div class="sg-contact-icon" aria-hidden="true">
-                                <i class="fa-regular fa-clock"></i>
-                            </div>
-                            <div class="sg-contact-detail">
-                                <strong><?php _e('Çalışma Saatleri', 'seogezegeni'); ?></strong>
-                                <span><?php echo esc_html($hours); ?></span>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-                    </div><!-- /sg-contact-info -->
-
-                    <!-- Map embed -->
-                    <?php
-                    $map_url = sg_option('sg_map_embed');
-                    if ($map_url) :
-                    ?>
-                        <div class="sg-map-wrap" style="margin-top:32px;">
-                            <iframe
-                                src="<?php echo esc_url($map_url); ?>"
-                                title="<?php esc_attr_e('SEO Gezegeni Ofis Konumu', 'seogezegeni'); ?>"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    <?php else : ?>
-                        <div class="sg-map-wrap" style="margin-top:32px;">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3121.02!2d27.17!3d38.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzjCsDI3JzAwLjAiTiAyN8KwMTAnMDAuMCJF!5e0!3m2!1str!2str!4v1"
-                                title="<?php esc_attr_e('Bayraklı İzmir harita', 'seogezegeni'); ?>"
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        </div>
-                    <?php endif; ?>
-
-                </div>
-            </div><!-- /contact left -->
-
-            <!-- Right: form -->
-            <div style="flex:0 0 58%;max-width:58%;padding:0 15px;" data-sg-reveal="right">
-                <div class="sg-contact-form-wrap">
-                    <h3 style="color:var(--sg-text-primary);margin-bottom:8px;">
-                        <?php _e( 'Ücretsiz Teklif Alın', 'seogezegeni' ); ?>
-                    </h3>
-                    <p style="font-size:.9rem;margin-bottom:28px;">
-                        <?php _e( 'Formu doldurun, en kısa sürede size dönelim.', 'seogezegeni' ); ?>
-                    </p>
-
-                    <?php
-                    /* Contact Form 7 shortcode – [contact-form-7 id="…"] */
-                    if ( function_exists('wpcf7') ) :
-                        /* Try to find the first CF7 form */
-                        $forms = get_posts(['post_type' => 'wpcf7_contact_form', 'posts_per_page' => 1, 'post_status' => 'publish']);
-                        if ($forms) :
-                            echo do_shortcode('[contact-form-7 id="' . esc_attr($forms[0]->ID) . '" title="' . esc_attr($forms[0]->post_title) . '"]');
-                        else :
-                    ?>
-                        <p style="color:var(--sg-text-secondary);">
-                            <?php _e('Contact Form 7 formu bulunamadı. Lütfen bir form oluşturun ve buraya kısa kodu ekleyin.', 'seogezegeni'); ?>
-                        </p>
-                    <?php endif;
-                    else :
-                    /* Fallback native form */
-                    ?>
-                    <form class="sg-native-contact-form"
-                          id="sgContactForm"
-                          action="<?php echo esc_url( admin_url('admin-ajax.php') ); ?>"
-                          method="post"
-                          novalidate>
-                        <?php wp_nonce_field('sg_contact_nonce', 'sg_contact_nonce_field'); ?>
-                        <input type="hidden" name="action" value="sg_contact">
-
-                        <div class="sg-form-row">
-                            <div class="sg-form-group">
-                                <label for="sg_name"><?php _e('Adınız Soyadınız *', 'seogezegeni'); ?></label>
-                                <input type="text" id="sg_name" name="sg_name"
-                                       placeholder="<?php esc_attr_e('Adınız Soyadınız', 'seogezegeni'); ?>"
-                                       required aria-required="true">
-                            </div>
-                            <div class="sg-form-group">
-                                <label for="sg_company"><?php _e('Şirket Adı', 'seogezegeni'); ?></label>
-                                <input type="text" id="sg_company" name="sg_company"
-                                       placeholder="<?php esc_attr_e('Şirketinizin adı', 'seogezegeni'); ?>">
-                            </div>
-                        </div>
-
-                        <div class="sg-form-row">
-                            <div class="sg-form-group">
-                                <label for="sg_email"><?php _e('E-posta Adresiniz *', 'seogezegeni'); ?></label>
-                                <input type="email" id="sg_email" name="sg_email"
-                                       placeholder="ornek@sirket.com"
-                                       required aria-required="true">
-                            </div>
-                            <div class="sg-form-group">
-                                <label for="sg_tel"><?php _e('Telefon Numaranız', 'seogezegeni'); ?></label>
-                                <input type="tel" id="sg_tel" name="sg_tel"
-                                       placeholder="05xx xxx xx xx">
-                            </div>
-                        </div>
-
-                        <div class="sg-form-group">
-                            <label for="sg_website"><?php _e('Web Siteniz', 'seogezegeni'); ?></label>
-                            <input type="url" id="sg_website" name="sg_website"
-                                   placeholder="https://www.siteniz.com">
-                        </div>
-
-                        <div class="sg-form-group">
-                            <label for="sg_service"><?php _e('İlgilendiğiniz Hizmet', 'seogezegeni'); ?></label>
-                            <select id="sg_service" name="sg_service">
-                                <option value=""><?php _e('Seçiniz...', 'seogezegeni'); ?></option>
-                                <option value="seo"><?php _e('SEO Hizmetleri', 'seogezegeni'); ?></option>
-                                <option value="sem"><?php _e('SEM / Google Ads', 'seogezegeni'); ?></option>
-                                <option value="sosyal"><?php _e('Sosyal Medya Yönetimi', 'seogezegeni'); ?></option>
-                                <option value="web"><?php _e('Web Tasarım', 'seogezegeni'); ?></option>
-                                <option value="icerik"><?php _e('İçerik Pazarlaması', 'seogezegeni'); ?></option>
-                                <option value="reklam"><?php _e('Dijital Reklam', 'seogezegeni'); ?></option>
-                                <option value="diger"><?php _e('Diğer', 'seogezegeni'); ?></option>
-                            </select>
-                        </div>
-
-                        <div class="sg-form-group">
-                            <label for="sg_message"><?php _e('Mesajınız *', 'seogezegeni'); ?></label>
-                            <textarea id="sg_message" name="sg_message"
-                                      placeholder="<?php esc_attr_e('Projeniz ve hedefleriniz hakkında bilgi verin...', 'seogezegeni'); ?>"
-                                      required aria-required="true"></textarea>
-                        </div>
-
-                        <button type="submit" class="sg-btn sg-btn-primary w-full" style="justify-content:center;font-size:1rem;padding:16px;">
-                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                            <?php _e('Mesaj Gönder', 'seogezegeni'); ?>
-                        </button>
-
-                        <div id="sgContactMsg" role="status" aria-live="polite"
-                             style="display:none;margin-top:16px;padding:12px 16px;border-radius:8px;font-size:.9rem;"></div>
-                    </form>
-                    <?php endif; ?>
-
-                </div><!-- /sg-contact-form-wrap -->
-            </div><!-- /contact right -->
-
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</section>
-<!-- / İLETİŞİM -->
+<?php get_template_part( 'template-parts/pre-footer-cta' ); ?>
+<?php get_template_part( 'template-parts/pre-footer-contact' ); ?>
 
 </main><!-- /#sg-main -->
 
-<?php
-/* AJAX: Native contact form handler */
-add_action('wp_ajax_sg_contact',        'sg_handle_contact');
-add_action('wp_ajax_nopriv_sg_contact', 'sg_handle_contact');
-if ( ! function_exists( 'sg_handle_contact' ) ) :
-function sg_handle_contact() {
-    check_ajax_referer('sg_contact_nonce', 'sg_contact_nonce_field');
-
-    $name    = isset($_POST['sg_name'])    ? sanitize_text_field(wp_unslash($_POST['sg_name'])) : '';
-    $email   = isset($_POST['sg_email'])   ? sanitize_email(wp_unslash($_POST['sg_email']))     : '';
-    $tel     = isset($_POST['sg_tel'])     ? sanitize_text_field(wp_unslash($_POST['sg_tel']))  : '';
-    $company = isset($_POST['sg_company']) ? sanitize_text_field(wp_unslash($_POST['sg_company'])) : '';
-    $website = isset($_POST['sg_website']) ? esc_url_raw(wp_unslash($_POST['sg_website']))      : '';
-    $service = isset($_POST['sg_service']) ? sanitize_text_field(wp_unslash($_POST['sg_service'])) : '';
-    $message = isset($_POST['sg_message']) ? sanitize_textarea_field(wp_unslash($_POST['sg_message'])) : '';
-
-    if (!$name || !$email || !$message) {
-        wp_send_json_error(['message' => __('Lütfen zorunlu alanları doldurun.', 'seogezegeni')]);
-    }
-    if (!is_email($email)) {
-        wp_send_json_error(['message' => __('Geçerli bir e-posta adresi giriniz.', 'seogezegeni')]);
-    }
-
-    $to      = get_option('admin_email');
-    $subject = sprintf(__('[SEO Gezegeni] %s – İletişim Formu', 'seogezegeni'), $name);
-    $body    = "Ad Soyad: $name\nE-posta: $email\nTelefon: $tel\nŞirket: $company\nWeb: $website\nHizmet: $service\n\nMesaj:\n$message";
-    $headers = ["Content-Type: text/plain; charset=UTF-8", "From: $name <$email>"];
-
-    if (wp_mail($to, $subject, $body, $headers)) {
-        wp_send_json_success(['message' => __('Mesajınız iletildi. En kısa sürede dönüş yapacağız!', 'seogezegeni')]);
-    } else {
-        wp_send_json_error(['message' => __('Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'seogezegeni')]);
-    }
-}
-endif;
-
-get_footer();
+<?php get_footer();

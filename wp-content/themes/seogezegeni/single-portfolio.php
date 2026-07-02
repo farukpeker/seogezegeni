@@ -235,7 +235,7 @@ while ( have_posts() ) : the_post();
 
                     <!-- All Projects link -->
                     <div style="text-align:center;">
-                        <a href="<?php echo esc_url( get_post_type_archive_link( 'portfolio' ) ); ?>"
+                        <a href="<?php echo esc_url( home_url( '/referanslar/' ) ); ?>"
                            style="color:var(--sg-text-secondary);font-size:.85rem;display:inline-flex;align-items:center;gap:6px;transition:var(--sg-transition);"
                            onmouseenter="this.style.color='var(--sg-accent)';"
                            onmouseleave="this.style.color='var(--sg-text-secondary)';">
@@ -329,6 +329,9 @@ if ( $related->have_posts() ) : ?>
         </div>
     </div>
 <?php endif; ?>
+
+<?php get_template_part( 'template-parts/pre-footer-cta' ); ?>
+<?php get_template_part( 'template-parts/pre-footer-contact' ); ?>
 
 </main>
 

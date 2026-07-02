@@ -27,10 +27,14 @@
             this.testimonialSlider();
             this.portfolioFilter();
             this.auditForm();
+            this.servicesDropdown();
+            this.heroQuoteForm();
             this.contactForm();
             this.smoothScroll();
             this.aosInit();
             this.whatsappFloat();
+            this.scrollTopButton();
+            this.initFancybox();
         },
 
         /* --------------------------------------------------------
@@ -365,6 +369,79 @@
         },
 
         /* --------------------------------------------------------
+           SERVICES DROPDOWN (açılır çoktan seçmeli)
+           -------------------------------------------------------- */
+        servicesDropdown: function () {
+            var $dropdowns = $('.sg-hq-dropdown');
+            if (!$dropdowns.length) return;
+
+            $dropdowns.each(function () {
+                var $dd = $(this);
+                var $btn  = $dd.find('.sg-hq-dropdown-btn');
+                var $text = $dd.find('.sg-hq-dropdown-text');
+                var placeholder = $text.text();
+
+                function updateLabel() {
+                    var selected = $dd.find('.sg-hq-option-cb:checked').map(function () {
+                        return $(this).closest('.sg-hq-option').find('span:last').text();
+                    }).get();
+                    $text.text(selected.length ? selected.join(', ') : placeholder);
+                }
+
+                $btn.on('click', function (e) {
+                    e.stopPropagation();
+                    $dropdowns.not($dd).removeClass('is-open').find('.sg-hq-dropdown-btn').attr('aria-expanded', 'false');
+                    $dd.toggleClass('is-open');
+                    $btn.attr('aria-expanded', $dd.hasClass('is-open'));
+                });
+
+                $dd.find('.sg-hq-option-cb').on('change', function () {
+                    updateLabel();
+                });
+            });
+
+            $(document).on('click.sgDropdown', function (e) {
+                if (!$(e.target).closest('.sg-hq-dropdown').length) {
+                    $dropdowns.removeClass('is-open').find('.sg-hq-dropdown-btn').attr('aria-expanded', 'false');
+                }
+            });
+        },
+
+        /* --------------------------------------------------------
+           HERO QUOTE FORM (AJAX)
+           -------------------------------------------------------- */
+        heroQuoteForm: function () {
+            var $form = $('#sgHeroQuoteForm');
+            var $msg  = $('#sgHeroQuoteMsg');
+            if (!$form.length) return;
+
+            $form.on('submit', function (e) {
+                e.preventDefault();
+                var data = $form.serialize();
+                var $btn = $form.find('[type="submit"]');
+                $btn.prop('disabled', true);
+                $btn.find('i').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin');
+
+                $.post(sgData.ajaxUrl, data)
+                .done(function (res) {
+                    if (res.success) {
+                        showMsg($msg, 'success', res.data.message);
+                        $form[0].reset();
+                    } else {
+                        showMsg($msg, 'error', res.data.message);
+                    }
+                })
+                .fail(function () {
+                    showMsg($msg, 'error', 'Mesaj gönderilemedi. Lütfen tekrar deneyin.');
+                })
+                .always(function () {
+                    $btn.prop('disabled', false);
+                    $btn.find('i').removeClass('fa-spinner fa-spin').addClass('fa-paper-plane');
+                });
+            });
+        },
+
+        /* --------------------------------------------------------
            CONTACT FORM (AJAX – native fallback)
            -------------------------------------------------------- */
         contactForm: function () {
@@ -440,6 +517,34 @@
                 } else {
                     $wa.css({'opacity': '0', 'pointer-events': 'none'});
                 }
+            });
+        },
+
+        /* --------------------------------------------------------
+           SCROLL TOP BUTTON
+           -------------------------------------------------------- */
+        scrollTopButton: function () {
+            var $btn = $('.sg-scroll-top');
+            if (!$btn.length) return;
+
+            function update() {
+                $btn.toggleClass('is-visible', $(window).scrollTop() > 500);
+            }
+
+            update();
+            $(window).on('scroll.scrollTopButton', update);
+
+            $btn.on('click.scrollTopButton', function () {
+                $('html, body').animate({ scrollTop: 0 }, 650, 'swing');
+            });
+        },
+
+        initFancybox: function () {
+            if (typeof Fancybox === 'undefined') return;
+            Fancybox.bind('[data-fancybox]', {
+                animated: true,
+                showClass: 'fancybox-zoomIn',
+                hideClass: 'fancybox-zoomOut',
             });
         }
 

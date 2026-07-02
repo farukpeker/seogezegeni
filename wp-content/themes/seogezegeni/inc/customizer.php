@@ -32,7 +32,7 @@ function seogezegeni_customizer( WP_Customize_Manager $wp_customize ) {
         'sg_address_izmir'   => [ 'default' => 'Bayraklı / İZMİR', 'label' => 'Adres – İzmir' ],
         'sg_address_istanbul' => [ 'default' => 'Maslak / İSTANBUL', 'label' => 'Adres – İstanbul' ],
         'sg_working_hours'   => [ 'default' => 'Pzt–Cum: 09:00–18:00', 'label' => 'Çalışma Saatleri' ],
-        'sg_map_embed'       => [ 'default' => '', 'label' => 'Google Maps Embed URL' ],
+        'sg_map_embed'       => [ 'default' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3124.5637428195546!2d27.182291599999996!3d38.4515446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b963fc0467457f%3A0xbac51dac81878446!2sSEO%20GEZEGEN%C4%B0%20-%20Dijital%20Pazarlama%20Ajans%C4%B1%20%7C%20%C4%B0zmir!5e0!3m2!1str!2str!4v1782479633402!5m2!1str!2str', 'label' => 'Google Maps Embed URL' ],
     ];
 
     foreach ( $contact_settings as $key => $args ) {
@@ -64,6 +64,7 @@ function seogezegeni_customizer( WP_Customize_Manager $wp_customize ) {
         'sg_linkedin'  => 'LinkedIn URL',
         'sg_twitter'   => 'Twitter / X URL',
         'sg_youtube'   => 'YouTube URL',
+        'sg_pinterest' => 'Pinterest URL',
         'sg_whatsapp'  => 'WhatsApp Numarası (örn: 905551626211)',
     ];
     foreach ( $social as $key => $label ) {
@@ -82,6 +83,33 @@ function seogezegeni_customizer( WP_Customize_Manager $wp_customize ) {
     /* ============================================================
        BÖLÜM 3: Hero Alanı
        ============================================================ */
+    $wp_customize->add_section( 'sg_footer_badges_section', [
+        'title'    => __( 'Footer Rozetleri', 'seogezegeni' ),
+        'panel'    => 'sg_panel',
+        'priority' => 25,
+    ]);
+
+    $footer_badges = [
+        'sg_google_partner_url'   => [ 'default' => 'https://www.google.com/partners/agency?id=9685918675', 'label' => 'Google Partner URL' ],
+        'sg_google_partner_badge' => [ 'default' => 'https://www.gstatic.com/partners/badge/images/2022/PremierBadgeClickable.svg', 'label' => 'Google Partner Rozet Görsel URL' ],
+        'sg_dmca_url'             => [ 'default' => 'https://www.dmca.com/Protection/Status.aspx', 'label' => 'DMCA URL' ],
+        'sg_dmca_badge'           => [ 'default' => '', 'label' => 'DMCA Rozet Görsel URL' ],
+        'sg_credit_card_url'      => [ 'default' => home_url( '/kredi-karti-ile-odeme/' ), 'label' => 'Kredi Kartı ile Ödeme URL' ],
+    ];
+
+    foreach ( $footer_badges as $key => $args ) {
+        $wp_customize->add_setting( $key, [
+            'default'           => $args['default'],
+            'sanitize_callback' => 'esc_url_raw',
+            'transport'         => 'refresh',
+        ]);
+        $wp_customize->add_control( $key, [
+            'label'   => __( $args['label'], 'seogezegeni' ),
+            'section' => 'sg_footer_badges_section',
+            'type'    => 'url',
+        ]);
+    }
+
     $wp_customize->add_section( 'sg_hero_section', [
         'title'    => __( 'Ana Sayfa – Hero Alanı', 'seogezegeni' ),
         'panel'    => 'sg_panel',
@@ -132,11 +160,11 @@ function seogezegeni_customizer( WP_Customize_Manager $wp_customize ) {
     ]);
 
     $stats = [
-        'sg_stat_projects' => [ 'default' => '250', 'label' => 'Tamamlanan Proje Sayısı' ],
-        'sg_stat_clients'  => [ 'default' => '180', 'label' => 'Mutlu Müşteri Sayısı' ],
-        'sg_stat_years'    => [ 'default' => '8',   'label' => 'Yıllık Deneyim' ],
+        'sg_stat_projects' => [ 'default' => '1000', 'label' => 'Tamamlanan Proje Sayısı' ],
+        'sg_stat_clients'  => [ 'default' => '20',   'label' => 'Ekip Üyesi Sayısı' ],
+        'sg_stat_years'    => [ 'default' => '15',   'label' => 'Yıllık Deneyim' ],
         'sg_stat_projects_label' => [ 'default' => 'Tamamlanan Proje', 'label' => 'Proje Etiketi' ],
-        'sg_stat_clients_label'  => [ 'default' => 'Mutlu Müşteri',    'label' => 'Müşteri Etiketi' ],
+        'sg_stat_clients_label'  => [ 'default' => 'Ekip Üyesi',       'label' => 'Ekip Etiketi' ],
         'sg_stat_years_label'    => [ 'default' => 'Yıllık Deneyim',   'label' => 'Yıl Etiketi' ],
     ];
     foreach ( $stats as $key => $args ) {
@@ -222,7 +250,7 @@ function seogezegeni_customizer( WP_Customize_Manager $wp_customize ) {
         'sg_about_title'    => [ 'default' => 'Sonuçlar Kendisi Konuşuyor', 'label' => 'Başlık' ],
         'sg_about_desc'     => [ 'default' => 'SEO Gezegeni olarak yalnızca bir ajans değiliz – ölçülebilir büyüme hedeflerinizde gerçek ortağınızız. Özelleştirilmiş stratejiler ve son teknoloji araçlarla başarı hikayeleri yaratıyoruz.', 'label' => 'Açıklama' ],
         'sg_about_btn_text' => [ 'default' => 'Birlikte Çalışalım', 'label' => 'Buton Metni' ],
-        'sg_about_btn_url'  => [ 'default' => '/hakkimizda/',       'label' => 'Buton URL' ],
+        'sg_about_btn_url'  => [ 'default' => '/biz-kimiz/',        'label' => 'Buton URL' ],
     ];
     foreach ( $about_settings as $key => $args ) {
         $wp_customize->add_setting( $key, [
