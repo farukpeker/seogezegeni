@@ -1,4 +1,40 @@
 
+# BEGIN Security Hardening
+# Dizin listelemeyi kapat
+Options -Indexes
+
+# wp-config.php dosyasına doğrudan erişimi engelle
+<Files wp-config.php>
+Require all denied
+</Files>
+
+# xmlrpc.php - brute-force/DDoS amplifikasyon vektörü, kullanılmıyorsa kapat
+<Files xmlrpc.php>
+Require all denied
+</Files>
+
+# .htaccess, .htpasswd, log ve yedek dosyalara erişimi engelle
+<FilesMatch "^(\.htaccess|\.htpasswd|.*\.log|.*\.sql|.*\.bak)$">
+Require all denied
+</FilesMatch>
+
+# wp-content/uploads içinde PHP çalıştırmayı engelle (webshell önlemi)
+<FilesMatch "\.php$">
+<IfModule mod_authz_core.c>
+<If "%{REQUEST_URI} =~ m#^/wp-content/uploads/#">
+Require all denied
+</If>
+</IfModule>
+</FilesMatch>
+
+# Güvenlik başlıkları
+<IfModule mod_headers.c>
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "SAMEORIGIN"
+Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+# END Security Hardening
+
 # BEGIN WordPress
 # "BEGIN WordPress" ve "END WordPress" arasındaki yönergeler (satırlar)
 # dinamik olarak oluşturulmuştur ve yalnızca WordPress süzgeçleri ile düzenlenmelidir.

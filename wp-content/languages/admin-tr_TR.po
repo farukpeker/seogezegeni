@@ -37,63 +37,63 @@ msgctxt "default GMT offset or timezone string"
 msgid "0"
 msgstr "3"
 
-#: wp-admin/about.php:150
+#: wp-admin/about.php:221
 msgid "WordPress continues to polish accessibility across WordPress Core and Gutenberg, advancing the goals to meet accessibility standards. WordPress 7.0 includes fixes across the platform, improving media management, usability for voice control, and improvements to color contrast with the new admin color scheme. The editor ships with new blocks and improvements to editor navigation and interaction."
 msgstr "WordPress, WordPress Çekirdeği ve Gutenberg genelinde erişilebilirliği geliştirmeye devam ederek erişilebilirlik standartlarını karşılama hedeflerini ilerletiyor. WordPress 7.0, platform genelinde düzeltmeler içeriyor; medya yönetimini ve sesli kontrolün kullanılabilirliğini iyileştiriyor ve yeni yönetici renk şemasıyla renk kontrastında iyileştirmeler getiriyor. Düzenleyici, yeni bloklar ile birlikte sunuluyor ve düzenleyici gezinme ve etkileşiminde iyileştirmeler içeriyor."
 
-#: wp-admin/about.php:141
+#: wp-admin/about.php:212
 msgid "WordPress 7.0 improves the accuracy of image loading prioritization, preventing hidden images in navigation overlays or interactive blocks from degrading the loading of critical resources. On-demand block stylesheet loading in classic themes is more reliable, and the ability is added for scripts to depend on script modules to reduce render-blocking."
 msgstr "WordPress 7.0, görsel yükleme önceliğinin belirlenmesinde doğruluğu artırarak, gezinme katmanlarında veya etkileşimli bloklarda bulunan gizli görsellerin kritik kaynakların yüklenmesini olumsuz etkilemesini önler. Klasik temalarda blok stil sayfalarının isteğe bağlı olarak yüklenmesi daha güvenilir hale getirilmiş ve render işlemini engelleyen unsurları azaltmak amacıyla komut dosyalarının komut dosyası modüllerine bağlanabilme özelliği eklenmiştir."
 
-#: wp-admin/about.php:125
+#: wp-admin/about.php:196
 msgid "Drop a pattern onto your page and it behaves like one block, so you don’t have to hunt through nested blocks for the element you want to change. Swap the text and images, adjust styles from the inspector, and keep moving. For any advanced edits, a single click to \"edit pattern\" gives you access to all available tools."
 msgstr "Sayfanıza bir model eklediğinizde bu, tek bir blok gibi davranır; böylece değiştirmek istediğiniz öğeyi iç içe geçmiş bloklar arasında aramak zorunda kalmazsınız. Metinleri ve görselleri değiştirin, denetleyiciden stilleri ayarlayın ve çalışmaya devam edin. Daha gelişmiş düzenlemeler için, \"modeli düzenle\" seçeneğine tek bir tıklama yaparak mevcut tüm araçlara erişebilirsiniz."
 
-#: wp-admin/about.php:124
+#: wp-admin/about.php:195
 msgid "Patterns as single blocks."
 msgstr "Modeller tekil bloklar halinde."
 
-#: wp-admin/about.php:122
+#: wp-admin/about.php:193
 msgid "A simpler way to build with patterns"
 msgstr "Modellerle tasarım yapmanın daha basit bir yolu"
 
-#: wp-admin/about.php:105
+#: wp-admin/about.php:176
 msgid "Review your post&#8217;s revision history with a timeline slider and see exactly what changed in the document with visual markers, block by block. Find the version you want and restore it in one click."
 msgstr "Zaman çizelgesi kaydırma çubuğu ile yazınızın sürüm geçmişini inceleyin ve görsel işaretçiler sayesinde belgede blok blok nelerin değiştiğini tam olarak görün. İstediğiniz sürümü bulun ve tek bir tıklamayla geri yükleyin."
 
-#: wp-admin/about.php:104
+#: wp-admin/about.php:175
 msgid "Scrub through every version of your page."
 msgstr "Sayfanızın tüm sürümlerini tek tek inceleyin."
 
-#: wp-admin/about.php:102
+#: wp-admin/about.php:173
 msgid "Visual revisions"
 msgstr "Görsel değişiklikler"
 
-#: wp-admin/about.php:95
+#: wp-admin/about.php:166
 msgid "The Connectors screen introduces a single hub for managing a range of external service integrations, including AI providers. Opt in by connecting your preferred AI provider, then put it to work across your site. The optional AI plugin adds a growing set of tools directly into the editor: create titles and excerpts, generate and edit images, and suggest alt text. Any plugin that needs to connect to an outside service can tap into this standardized connection management system, making it easy for users and developers alike."
 msgstr "Bağlayıcılar ekranı, yapay zeka sağlayıcıları da dahil olmak üzere bir dizi harici hizmet entegrasyonunu yönetmek için tek bir merkez sunar. Tercih ettiğiniz yapay zeka sağlayıcısını bağlayarak dahil olun ve ardından onu siteniz genelinde çalıştırın. İsteğe bağlı yapay zeka eklentisi, doğrudan düzenleyiciye büyüyen bir araç seti ekler: başlıklar ve özetler oluşturun, görseller oluşturun ve düzenleyin ve alternatif metin önerileri alın. Dış bir hizmete bağlanması gereken herhangi bir eklenti, bu standartlaştırılmış bağlantı yönetim sisteminden yararlanabilir; bu da hem kullanıcılar hem de geliştiriciler için işleri kolaylaştırır."
 
-#: wp-admin/about.php:94
+#: wp-admin/about.php:165
 msgid "A centralized hub for your connections."
 msgstr "Bağlantılarınız için merkezi bir platform."
 
-#: wp-admin/about.php:92
+#: wp-admin/about.php:163
 msgid "AI foundations"
 msgstr "Yapay zeka temelleri"
 
-#: wp-admin/about.php:75
+#: wp-admin/about.php:146
 msgid "Build the menu overlay you want visitors to see. Go beyond a simple list of links: add columns, increase the font size, and align everything to your liking. Start from a pre-built template, or design your own from scratch."
 msgstr "Ziyaretçilerin görmesini istediğiniz menü katmanını oluşturun. Basit bir bağlantı listesinin ötesine geçin: sütunlar ekleyin, yazı tipi boyutunu artırın ve her şeyi istediğiniz gibi hizalayın. Hazır şablonlardan biriyle başlayın ya da sıfırdan kendi tasarımınızı oluşturun."
 
-#: wp-admin/about.php:74
+#: wp-admin/about.php:145
 msgid "A dedicated canvas for your menu."
 msgstr "Menünüz için adanmış bir tuval."
 
-#: wp-admin/about.php:72
+#: wp-admin/about.php:143
 msgid "Design your navigation overlay"
 msgstr "Gezinme katmanınızı tasarlayın"
 
-#: wp-admin/about.php:66
+#: wp-admin/about.php:137
 msgid "WordPress 7.0 introduces the foundation for AI across the platform, letting you connect your preferred provider and put it to work across your site. Edit more simply by dropping in layouts and swapping content without diving into blocks. The navigation overlay now taps into the full potential of blocks, and reviewing historical changes is easier with a visual comparison."
 msgstr "WordPress 7.0, platform genelinde yapay zeka kullanımının temelini oluşturarak, tercih ettiğiniz sağlayıcıyı bütünleştirmenize ve bunu sitenizin her yerinde kullanmanıza olanak tanır. Bloklara girmenize gerek kalmadan, modelleri sürükleyip bırakarak ve içerikleri değiştirerek daha kolay düzenlemeler yapabilirsiniz. Gezinme katmanı artık blokların tüm potansiyelinden yararlanıyor ve görsel karşılaştırma sayesinde geçmişteki değişiklikleri gözden geçirmek daha kolay hale geldi."
 
@@ -625,12 +625,12 @@ msgid "Skip to Editor"
 msgstr "Düzenleyiciye geç"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:245
+#: wp-admin/about.php:316
 msgid "WordPress %s Field Guide"
 msgstr "WordPress %s alan rehberi"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:218
+#: wp-admin/about.php:289
 msgid "WordPress %s Release Notes"
 msgstr "WordPress %s sürüm notları"
 
@@ -789,7 +789,7 @@ msgstr "Bir eklenti geliştiricisiyseniz, <a href=\"https://developer.wordpress.
 msgid "If you are a plugin author, you can learn more about <a href=\"https://developer.wordpress.org/plugins/privacy/adding-the-personal-data-eraser-to-your-plugin/\">how to add the Personal Data Eraser to a plugin</a>."
 msgstr "Bir eklenti geliştiricisiyseniz, <a href=\"https://developer.wordpress.org/plugins/privacy/adding-the-personal-data-eraser-to-your-plugin/\">Kişisel veri silicisini bir eklentiye nasıl ekleyeceğiniz</a> ile ilgili ayrıntılı bilgi alabilirsiniz."
 
-#: wp-admin/about.php:171
+#: wp-admin/about.php:242
 msgid "See everything new"
 msgstr "Yeni her şeyi görün"
 
@@ -799,11 +799,11 @@ msgid "https://wordpress.org/download/releases/%s/"
 msgstr "https://wordpress.org/download/releases/%s/"
 
 #. translators: %s: Version number.
-#: wp-admin/about.php:163
+#: wp-admin/about.php:234
 msgid "For a comprehensive overview of all the new features and enhancements in WordPress %s, please visit the feature-showcase website."
 msgstr "WordPress %s sürümündeki tüm yeni özellik ve geliştirmelerin kapsamlı özeti için özellik vitrini sitesine bakabilirsiniz."
 
-#: wp-admin/about.php:157
+#: wp-admin/about.php:228
 msgid "And much more"
 msgstr "Ve çok daha fazlası"
 
@@ -1009,16 +1009,16 @@ msgid "When using Bulk Edit, you can change the metadata (categories, author, et
 msgstr "Toplu düzenleme kullanılırken, seçilmiş tüm yazıların üst verilerini (kategoriler, yazar gibi) bir seferde değiştirebilirsiniz. Bir yazıyı gruptan kaldırmak için, görüntülenen toplu düzenleme alanında, adının yanındaki %s<span class=\"screen-reader-text\">Kaldır</span> düğmesine basmanız yeterlidir."
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:228
+#: wp-admin/about.php:299
 msgid "Read the WordPress %s Release Notes for information on installation, enhancements, fixed issues, release contributors, learning resources, and the list of file changes."
 msgstr "Kurulum bilgileri, iyileştirmeler, düzeltilen sorunlar, sürüme katkıda bulunanlar, öğrenme kaynakları ve dosya değişiklikleri listesi gibi bilgiler için WordPress %s dağıtım notlarını okuyun."
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:255
+#: wp-admin/about.php:326
 msgid "Explore the WordPress %s Field Guide. Learn about the changes in this release with detailed developer notes to help you build with WordPress."
 msgstr "WordPress %s saha rehberini keşfedin. WordPress ile derleme yapmanıza yardımcı olacak ayrıntılı geliştirici notları ve bu sürümdeki değişiklikler ile ilgili bilgi alın."
 
-#: wp-admin/includes/user.php:724 wp-admin/includes/user.php:747
+#: wp-admin/includes/user.php:729 wp-admin/includes/user.php:752
 msgid "Invalid URL format."
 msgstr "Adresi biçimi geçersiz."
 
@@ -1497,7 +1497,7 @@ msgid "Be the future of WordPress"
 msgstr "WordPress’in geleceği olun"
 
 #. translators: 1: Learn WordPress link, 2: Workshops link.
-#: wp-admin/about.php:196
+#: wp-admin/about.php:267
 msgid "<a href=\"%1$s\">Learn WordPress</a> is a free resource for new and experienced WordPress users. Learn is stocked with how-to videos on using various features in WordPress, <a href=\"%2$s\">interactive workshops</a> for exploring topics in-depth, and lesson plans for diving deep into specific areas of WordPress."
 msgstr "<a href=\"%1$s\">Learn WordPress</a>, yeni ve deneyimli WordPress kullanıcıları için ücretsiz bir kaynaktır. Learn, çeşitli WordPress özelliklerinin kullanılması ile ilgili nasıl yapılır videoları, konuları derinlemesine keşfetmek için <a href=\"%2$s\">etkileşimli çalıştaylar</a> ve belirli WordPress alanlarına derinlemesine dalmak için ders planları ile doludur."
 
@@ -1643,12 +1643,12 @@ msgid "<a href=\"https://wordpress.org/documentation/article/customizer/\">Docum
 msgstr "<a href=\"https://wordpress.org/documentation/article/customizer/\">Özelleştirici yardımı</a>"
 
 #. translators: The localized WordPress download URL.
-#: wp-admin/about.php:336
+#: wp-admin/about.php:407
 msgid "https://wordpress.org/download/"
 msgstr "https://wordpress.org/download/"
 
 #. translators: %s: The major version of WordPress for this branch.
-#: wp-admin/about.php:333
+#: wp-admin/about.php:404
 msgid "This is the final release of WordPress %s"
 msgstr "Bu son WordPress %s sürümüdür"
 
@@ -1968,12 +1968,12 @@ msgid "Reach out to WordPress Core developers to ensure you'll never have this p
 msgstr "Bu sorunu bir daha asla yaşamayacağınızdan emin olmak için WordPress Core geliştiricilerine ulaşın."
 
 #. translators: 1: WordPress version number, 2: Link to update WordPress
-#: wp-admin/about.php:330
+#: wp-admin/about.php:401
 msgid "Important! Your version of WordPress (%1$s) will stop receiving security updates in the near future. To keep your site secure, please <a href=\"%2$s\">update to the latest version of WordPress</a>."
 msgstr "Önemli! WordPress sürümünüz (%1$s) yakın zamanda güvenlik güncellemelerini almayı durduracak. Sitenizi güvende tutmak için lütfen <a href=\"%2$s\">son WordPress sürümüne güncelleyin</a>."
 
 #. translators: 1: WordPress version number, 2: Link to update WordPress
-#: wp-admin/about.php:327
+#: wp-admin/about.php:398
 msgid "Important! Your version of WordPress (%1$s) is no longer supported, you will not receive any security updates for your website. To keep your site secure, please <a href=\"%2$s\">update to the latest version of WordPress</a>."
 msgstr "Önemli! WordPress sürümünüz (%1$s) artık desteklenmiyor. Artık siteniz için herhangi bir güvenlik güncellemesi alamayacaksınız. Sitenizi güvende tutmak için lütfen <a href=\"%2$s\">son WordPress sürümüne güncelleyin</a>."
 
@@ -1983,7 +1983,7 @@ msgid "https://make.wordpress.org/core/wordpress-%s-field-guide/"
 msgstr "https://make.wordpress.org/core/wordpress-%s-field-guide/"
 
 #. translators: %s: Version number.
-#: wp-admin/about.php:187
+#: wp-admin/about.php:258
 msgid "Learn more about WordPress %s"
 msgstr "WordPress %s ile ilgili ayrıntılı bilgi alın"
 
@@ -2105,7 +2105,7 @@ msgstr "Bir girişimde bulunuldu, ancak siteniz otomatik olarak güncellenemedi.
 
 #: wp-admin/includes/class-core-upgrader.php:166
 #: wp-admin/includes/class-wp-upgrader.php:206
-#: wp-admin/includes/update-core.php:1158
+#: wp-admin/includes/update-core.php:1163
 msgid "The update cannot be installed because some files could not be copied. This is usually due to inconsistent file permissions."
 msgstr "Bazı dosyalar kopyalanamadığı için güncelleme kurulamadı. Bu durum genellikle tutarsız dosya izinlerinden kaynaklanır."
 
@@ -2305,7 +2305,7 @@ msgstr "Başlangıç ekranı, sitenizde her oturum açtığınızda geleceğiniz
 msgid "Welcome to your WordPress Dashboard!"
 msgstr "WordPress Başlangıç ekranınıza hoş geldiniz!"
 
-#: wp-admin/includes/user.php:680
+#: wp-admin/includes/user.php:685
 msgid "The application ID must be a UUID."
 msgstr "Uygulama kimliği bir UUID olmalıdır."
 
@@ -2882,7 +2882,7 @@ msgstr "Uygulama parolası ekle"
 msgid "Required to create an Application Password, but not to update the user."
 msgstr "Bir uygulama parolası oluşturmak için gerekir. Ancak kullanıcıyı güncellemek için gerekmez."
 
-#: wp-admin/about.php:271
+#: wp-admin/about.php:342
 msgid "Go to Updates"
 msgstr "Güncellemelere git"
 
@@ -3097,7 +3097,7 @@ msgstr "İşaret kutuları ile bazı ekran bileşenleri görüntülenebilir ya d
 msgid "Screen elements"
 msgstr "Ekran bileşenleri"
 
-#: wp-admin/includes/user.php:761
+#: wp-admin/includes/user.php:766
 msgid "The URL must be served over a secure connection."
 msgstr "Site adresi güvenli bir bağlantı üzerinden sunulmalıdır."
 
@@ -3677,7 +3677,7 @@ msgstr "Genişletilmiş görünüm"
 msgid "Compact view"
 msgstr "Toparlanmış görünüm"
 
-#: wp-admin/includes/user.php:183
+#: wp-admin/includes/user.php:188
 msgid "<strong>Error:</strong> Passwords do not match. Please enter the same password in both password fields."
 msgstr "<strong>Hata:</strong> Parola ile onayı aynı değil. Lütfen iki parola alanına da aynı parolayı yazın."
 
@@ -4135,7 +4135,7 @@ msgid "The seventh parameter passed to %s should be numeric representing menu po
 msgstr "%s için gönderilen yedinci değişken menü konumunu gösteren sayı olmalı."
 
 #. translators: 1: WordPress version number, 2: The PHP extension name needed.
-#: wp-admin/includes/update-core.php:1264
+#: wp-admin/includes/update-core.php:1269
 msgid "The update cannot be installed because WordPress %1$s requires the %2$s PHP extension."
 msgstr "WordPress %1$s, %2$s PHP eklentisine gerek duyduğundan güncelleme kurulamadı."
 
@@ -4784,7 +4784,7 @@ msgstr "https://make.wordpress.org/hosting/handbook/handbook/server-environment/
 msgid "The WordPress Hosting Team maintains a list of those modules, both recommended and required, in <a href=\"%1$s\" %2$s>the team handbook%3$s</a>."
 msgstr "WordPress Barındırma Ekibi, <a href=\"%1$s\" %2$s>ekip el kitabında%3$s</a> önerilen ve gerekli olan o modüllerin listesini tutuyor."
 
-#: wp-admin/about.php:140 wp-admin/includes/class-wp-site-health.php:259
+#: wp-admin/about.php:211 wp-admin/includes/class-wp-site-health.php:259
 #: wp-admin/includes/class-wp-site-health.php:737
 #: wp-admin/includes/class-wp-site-health.php:908
 #: wp-admin/includes/class-wp-site-health.php:1147
@@ -6031,7 +6031,8 @@ msgstr "Bu eklenti, WordPress ve PHP sürümlerinizle çalışmaz."
 
 #. translators: %s: WordPress version number.
 #. translators: %s: WordPress version.
-#: wp-admin/about.php:21 wp-admin/includes/update.php:321
+#: wp-admin/about.php:21 wp-admin/about.php:80 wp-admin/about.php:100
+#: wp-admin/about.php:125 wp-admin/includes/update.php:321
 #: wp-admin/index.php:119 wp-admin/install.php:242 wp-admin/update-core.php:94
 #: wp-admin/upgrade.php:96
 msgid "https://wordpress.org/documentation/wordpress-version/version-%s/"
@@ -8303,7 +8304,7 @@ msgid "(Currently set to: %s)"
 msgstr "(Geçerli ayar: %s)"
 
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:301
+#: wp-admin/about.php:372
 msgid "<strong>Version %s</strong> addressed one security issue."
 msgstr "<strong>%s sürümü</strong> bir güvenlik açığını gideriyor."
 
@@ -8316,15 +8317,15 @@ msgstr "https://gravatar.com/"
 msgid "Profile Picture"
 msgstr "Profil görseli"
 
-#: wp-admin/about.php:298
+#: wp-admin/about.php:65 wp-admin/about.php:369
 msgid "Maintenance and Security Releases"
 msgstr "Bakım ve güvenlik dağıtımları"
 
-#: wp-admin/about.php:295
+#: wp-admin/about.php:366
 msgid "Security Releases"
 msgstr "Güvenlik dağıtımları"
 
-#: wp-admin/about.php:292
+#: wp-admin/about.php:363
 msgid "Maintenance Releases"
 msgstr "Bakım dağıtımları"
 
@@ -8872,7 +8873,7 @@ msgstr "Ne yazık ki, temaları düzenlemenize izin verilmiyor."
 msgid "The active theme does not support a flexible sized header image."
 msgstr "Etkin tema esnek boyutlandırılan üst bilgi görsellerini desteklemiyor."
 
-#: wp-admin/includes/user.php:542
+#: wp-admin/includes/user.php:547
 msgid "You are using the auto-generated password for your account. Would you like to change it?"
 msgstr "Hesabınız için otomatik oluşturulmuş parolayı kullanıyorsunuz. Değiştirmek ister misiniz?"
 
@@ -9997,8 +9998,8 @@ msgstr "Siteniz %1$s WordPress %2$s sürümüne güncellenirken ciddi bir sorun 
 msgid "WordPress %s is also now available."
 msgstr "WordPress %s yayınlanmış."
 
-#: wp-admin/includes/update-core.php:1354
-#: wp-admin/includes/update-core.php:1390
+#: wp-admin/includes/update-core.php:1359
+#: wp-admin/includes/update-core.php:1395
 msgid "The update cannot be installed because your site is unable to copy some files. This is usually due to inconsistent file permissions."
 msgstr "Bazı dosyalar kopyalanamadığı için güncelleme yapılamadı. Bu durum genellikle tutarsız dosya izinlerinden kaynaklanır."
 
@@ -10113,7 +10114,7 @@ msgstr "Çevirileri güncelle"
 msgid "Background updates"
 msgstr "Arka plan güncellemeleri"
 
-#: wp-admin/includes/update-core.php:1457
+#: wp-admin/includes/update-core.php:1462
 msgid "There is not enough free disk space to complete the update."
 msgstr "Bu güncellemeyi yapabilmek için yeterli boş disk alanı yok."
 
@@ -10191,11 +10192,11 @@ msgstr "Yazdığınız kullanıcı adında geçersiz karakterler var."
 msgid "Please provide a valid username."
 msgstr "Lütfen geçerli bir kullanıcı adı yazın."
 
-#: wp-admin/includes/update-core.php:1371
+#: wp-admin/includes/update-core.php:1376
 msgid "Copying the required files&#8230;"
 msgstr "Gerekli dosyalar kopyalanıyor&#8230;"
 
-#: wp-admin/includes/update-core.php:1278
+#: wp-admin/includes/update-core.php:1283
 msgid "Preparing to install the latest version&#8230;"
 msgstr "Son sürüm kurulmaya hazırlanıyor&#8230;"
 
@@ -10879,7 +10880,7 @@ msgid "Search engine visibility"
 msgstr "Arama motoru görünürlüğü"
 
 #. translators: 1: WordPress version, 2: URL to About screen.
-#: wp-admin/includes/update-core.php:1759 wp-admin/update-core.php:923
+#: wp-admin/includes/update-core.php:1764 wp-admin/update-core.php:923
 msgid "Welcome to WordPress %1$s. You will be redirected to the About WordPress screen. If not, click <a href=\"%2$s\">here</a>."
 msgstr "WordPress %1$s sürümüne hoş geldiniz. WordPress hakkında sayfasına yönlendirileceksiniz. Bunu istemiyorsanız, <a href=\"%2$s\">buraya</a> tıklayın."
 
@@ -11118,11 +11119,11 @@ msgstr "(zorunlu)"
 msgid "Edit Link"
 msgstr "Bağlantıyı düzenle"
 
-#: wp-admin/includes/user.php:213
+#: wp-admin/includes/user.php:218
 msgid "<strong>Error:</strong> This email is already registered. Please choose another one."
 msgstr "<strong>Hata:</strong> Bu e-posta adresi ile bir hesap zaten var. Lütfen başka bir adres seçin."
 
-#: wp-admin/includes/user.php:157
+#: wp-admin/includes/user.php:162
 msgid "<strong>Error:</strong> Please enter a nickname."
 msgstr "<strong>Hata:</strong> Lütfen bir takma ad yazın."
 
@@ -11589,14 +11590,16 @@ msgstr "Bu siteye davet etmek istediğiniz ağ üzerinde bulunan bir kullanıcı
 msgid "Show Toolbar when viewing site"
 msgstr "Site görüntülenirken araç çubuğu görüntülensin"
 
+#. translators: %s: HelpHub URL.
 #. translators: %s: Documentation URL.
-#: wp-admin/about.php:324
+#: wp-admin/about.php:77 wp-admin/about.php:97 wp-admin/about.php:122
+#: wp-admin/about.php:395
 msgid "For more information, see <a href=\"%s\">the release notes</a>."
 msgstr "Ayrıntılı bilgi almak için <a href=\"%s\">dağıtım notlarına</a> bakın."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. More
 #. than one security issue.
-#: wp-admin/about.php:318
+#: wp-admin/about.php:389
 msgid "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed some security issues and fixed %2$s bugs."
 msgstr[0] "<strong>%1$s sürümü</strong> ile bazı güvenlik açıkları kapatıldı ve %2$s hata düzeltildi."
@@ -11604,33 +11607,34 @@ msgstr[1] "<strong>%1$s sürümü</strong> ile bazı güvenlik açıkları kapat
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs. Singular
 #. security issue.
-#: wp-admin/about.php:312
+#: wp-admin/about.php:383
 msgid "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed a security issue and fixed %2$s bugs."
 msgstr[0] "<strong>%1$s sürümü</strong> ile bir güvenlik açığı kapatıldı ve %2$s hata düzeltildi."
 msgstr[1] "<strong>%1$s sürümü</strong> ile bir güvenlik açığı kapatıldı ve %2$s hata düzeltildi."
 
 #. translators: 1: WordPress version number, 2: Plural number of bugs.
-#: wp-admin/about.php:306
+#: wp-admin/about.php:110 wp-admin/about.php:377
 msgid "<strong>Version %1$s</strong> addressed %2$s bug."
 msgid_plural "<strong>Version %1$s</strong> addressed %2$s bugs."
 msgstr[0] "<strong>%1$s sürümü</strong> ile %2$s hata düzeltildi."
 msgstr[1] "<strong>%1$s sürümü</strong> ile %2$s hata düzeltildi."
 
+#. translators: %s: WordPress version.
 #. translators: %s: WordPress version number.
-#: wp-admin/about.php:303
+#: wp-admin/about.php:70 wp-admin/about.php:90 wp-admin/about.php:374
 msgid "<strong>Version %s</strong> addressed some security issues."
 msgstr "<strong>%s sürümü</strong> ile bazı güvenlik açıkları giderildi."
 
-#: wp-admin/about.php:297
+#: wp-admin/about.php:368
 msgid "Maintenance and Security Release"
 msgstr "Bakım ve güvenlik dağıtımı"
 
-#: wp-admin/about.php:294
+#: wp-admin/about.php:365
 msgid "Security Release"
 msgstr "Güvenlik dağıtımı"
 
-#: wp-admin/about.php:291
+#: wp-admin/about.php:362
 msgid "Maintenance Release"
 msgstr "Bakım dağıtımı"
 
@@ -11644,7 +11648,7 @@ msgid "This screen allows you to choose your permalink structure. You can choose
 msgstr "Bu ekranda varsayılan kalıcı bağlantı yapısını seçilebilir. Genel ayarlardan birini kullanabilir ya da kendi özel adres yapınızı oluşturabilirsiniz."
 
 #. translators: 1: WordPress version, 2: URL to About screen.
-#: wp-admin/includes/update-core.php:1767 wp-admin/update-core.php:931
+#: wp-admin/includes/update-core.php:1772 wp-admin/update-core.php:931
 msgid "Welcome to WordPress %1$s. <a href=\"%2$s\">Learn more</a>."
 msgstr "WordPress %1$s&#8217;e hoş geldiniz. <a href=\"%2$s\">Ayrıntılı bilgi almak için</a>."
 
@@ -11903,15 +11907,15 @@ msgstr "<strong>Düzenle</strong> sizi bu yazının düzenleme ekranına götür
 msgid "Because this is a multisite installation, you may add accounts that already exist on the Network by specifying a username or email, and defining a role. For more options, such as specifying a password, you have to be a Network Administrator and use the hover link under an existing user&#8217;s name to Edit the user profile under Network Admin > All Users."
 msgstr "Çoklu site kurulumu olduğu için ağda var olan diğer kullanıcıları kullanıcı adı ya da e-posta adresi ile ekleyebilir ve rollerini atayabilirsiniz. Parola belirlemek gibi diğer seçenekler için ağ yöneticisi olmalı ve Ağ yönetimi > Tüm kullanıcılar bölümünden erişeceğiniz kullanıcının bağlantılarını kullanmalısınız."
 
-#: wp-admin/about.php:65
+#: wp-admin/about.php:136
 msgid "Welcome to WordPress 7.0"
 msgstr "WordPress 7.0 sürümüne hoş geldiniz"
 
-#: wp-admin/about.php:278
+#: wp-admin/about.php:349
 msgid "Go to Dashboard &rarr; Home"
 msgstr "Başlangıç &rarr; Giriş bölümüne git"
 
-#: wp-admin/about.php:271
+#: wp-admin/about.php:342
 msgid "Go to Dashboard &rarr; Updates"
 msgstr "Başlangıç &rarr; Güncellemeler ekranına git"
 
@@ -12223,7 +12227,7 @@ msgid "Attempt to notify any blogs linked to from the post"
 msgstr "Yazıda bağlantı verilen blogların bilgilendirilmesi denensin"
 
 #. translators: 1: Site title, 2: Site URL, 3: User role.
-#: wp-admin/includes/user.php:620
+#: wp-admin/includes/user.php:625
 msgid ""
 "Hi,\n"
 "You've been invited to join '%1$s' at\n"
@@ -13371,11 +13375,11 @@ msgstr "Bu sayfadan kullanıcıların silinmesine izin verilmiyor."
 msgid "%s updated successfully."
 msgstr "%s güncellendi."
 
-#: wp-admin/includes/user.php:552
+#: wp-admin/includes/user.php:557
 msgid "No thanks, do not remind me again"
 msgstr "Hayır teşekkürler, bunu bana bir daha hatırlatma"
 
-#: wp-admin/includes/user.php:547
+#: wp-admin/includes/user.php:552
 msgid "Yes, take me to my profile page"
 msgstr "Evet, beni profil sayfama götür"
 
@@ -13545,7 +13549,7 @@ msgstr "Site ağınız için bir ad yazmalısınız."
 msgid "You must provide a domain name."
 msgstr "Bir etki alanı adı yazmalısınız."
 
-#: wp-admin/includes/user.php:541
+#: wp-admin/includes/user.php:546
 msgid "Notice:"
 msgstr "Bildirim:"
 
@@ -13573,7 +13577,7 @@ msgid "User already exists. Password inherited."
 msgstr "Kullanıcı zaten var. Parola devralındı."
 
 #: wp-admin/includes/class-wp-automatic-updater.php:529
-#: wp-admin/includes/update-core.php:1753 wp-admin/update-core.php:919
+#: wp-admin/includes/update-core.php:1758 wp-admin/update-core.php:919
 msgid "WordPress updated successfully."
 msgstr "WordPress güncellendi."
 
@@ -13602,7 +13606,7 @@ msgstr "WordPress güncellemeleri"
 msgid "Edit menu item"
 msgstr "Menü ögesini düzenle"
 
-#: wp-admin/about.php:278
+#: wp-admin/about.php:349
 msgid "Go to Dashboard"
 msgstr "Başlangıca git"
 
@@ -13749,7 +13753,7 @@ msgstr "Bileşen ayarları formu görüntülenirken sorun çıktı."
 msgid "Error while saving."
 msgstr "Kaydedilirken sorun çıktı."
 
-#: wp-admin/widgets-form.php:374 wp-admin/js/inline-edit-post.js:525
+#: wp-admin/widgets-form.php:374 wp-admin/js/inline-edit-post.js:530
 #: wp-admin/js/inline-edit-tax.js:227
 msgid "Changes saved."
 msgstr "Değişiklikler kaydedildi."
@@ -13897,11 +13901,11 @@ msgstr "Kişisel ayarlar"
 msgid "User updated."
 msgstr "Kullanıcı güncellendi."
 
-#: wp-admin/includes/user.php:597
+#: wp-admin/includes/user.php:602
 msgid "Always use https when visiting the admin"
 msgstr "Yönetim bölümüne her zaman https ile erişilsin"
 
-#: wp-admin/includes/user.php:596
+#: wp-admin/includes/user.php:601
 msgid "Use https"
 msgstr "https kullanılsın"
 
@@ -14647,15 +14651,15 @@ msgstr "Kullanıcı(lar) zaten var."
 msgid "WordPress &rsaquo; Installation"
 msgstr "WordPress &rsaquo; Kurulum"
 
-#: wp-admin/includes/user.php:207
+#: wp-admin/includes/user.php:212
 msgid "<strong>Error:</strong> Please enter an email address."
 msgstr "<strong>Hata:</strong> Lütfen bir e-posta adresi yazın."
 
-#: wp-admin/includes/user.php:178
+#: wp-admin/includes/user.php:183
 msgid "<strong>Error:</strong> Passwords may not contain the character \"\\\"."
 msgstr "<strong>Hata:</strong> Parolada \"\\\" karakteri bulunmamalı."
 
-#: wp-admin/includes/user.php:173
+#: wp-admin/includes/user.php:178
 msgid "<strong>Error:</strong> Please enter a password."
 msgstr "<strong>Hata:</strong> Lütfen bir parola yazın."
 
@@ -14710,34 +14714,34 @@ msgstr "%s sürümüne güncelle"
 msgid "You are using a development version (%1$s). Cool! Please <a href=\"%2$s\">stay updated</a>."
 msgstr "Şu anda bir geliştirme sürümü (%1$s) kullanıyorsunuz. Harika! Lütfen <a href=\"%2$s\">güncel sürümü kullanın</a>."
 
-#: wp-admin/includes/update-core.php:1626
+#: wp-admin/includes/update-core.php:1631
 msgid "Upgrading database&#8230;"
 msgstr "Veri tabanı güncelleniyor&#8230;"
 
-#: wp-admin/includes/update-core.php:1142
+#: wp-admin/includes/update-core.php:1147
 msgid "The update could not be unpacked"
 msgstr "Güncelleme paketi açılamadı"
 
-#: wp-admin/includes/update-core.php:1124
+#: wp-admin/includes/update-core.php:1129
 msgid "Verifying the unpacked files&#8230;"
 msgstr "Açılan paketteki dosyalar doğrulanıyor&#8230;"
 
 #. translators: 1: WordPress version number, 2: Minimum required MySQL version
 #. number, 3: Current MySQL version number.
-#: wp-admin/includes/update-core.php:1244
+#: wp-admin/includes/update-core.php:1249
 msgid "The update cannot be installed because WordPress %1$s requires MySQL version %2$s or higher. You are running version %3$s."
 msgstr "WordPress %1$s için MySQL %2$s sürümü ya da üzeri gerektiğinden bu güncelleme yapılamaz. Şu anda %3$s sürümünü kullanıyorsunuz."
 
 #. translators: 1: WordPress version number, 2: Minimum required PHP version
 #. number, 3: Current PHP version number.
-#: wp-admin/includes/update-core.php:1233
+#: wp-admin/includes/update-core.php:1238
 msgid "The update cannot be installed because WordPress %1$s requires PHP version %2$s or higher. You are running version %3$s."
 msgstr "WordPress %1$s için PHP %2$s sürümü ya da üzeri gerektiğinden bu güncelleme yapılamaz. Şu anda %3$s sürümünü kullanıyorsunuz."
 
 #. translators: 1: WordPress version number, 2: Minimum required PHP version
 #. number, 3: Minimum required MySQL version number, 4: Current PHP version
 #. number, 5: Current MySQL version number.
-#: wp-admin/includes/update-core.php:1220
+#: wp-admin/includes/update-core.php:1225
 msgid "The update cannot be installed because WordPress %1$s requires PHP version %2$s or higher and MySQL version %3$s or higher. You are running PHP version %4$s and MySQL version %5$s."
 msgstr "WordPress %1$s için PHP %2$s sürümü ya da üzeri ve MySQL %3$s sürümü ya da üzeri gerektiğinden bu güncelleme yapılamaz. Şu anda PHP %4$s sürümünü ve MySQL %5$s sürümünü kullanıyorsunuz."
 
@@ -15583,7 +15587,7 @@ msgid "Empty archive."
 msgstr "Arşiv boş."
 
 #: wp-admin/includes/file.php:1825 wp-admin/includes/file.php:1984
-#: wp-admin/includes/file.php:2042 wp-admin/includes/update-core.php:1564
+#: wp-admin/includes/file.php:2042 wp-admin/includes/update-core.php:1569
 msgid "Could not copy file."
 msgstr "Dosya kopyalanamadı."
 
@@ -15888,12 +15892,12 @@ msgid "The plugin is at the latest version."
 msgstr "Eklentinin sürümü güncel."
 
 #: wp-admin/includes/class-wp-upgrader.php:210
-#: wp-admin/includes/update-core.php:1511
+#: wp-admin/includes/update-core.php:1516
 msgid "Disabling Maintenance mode&#8230;"
 msgstr "Bakım modundan çıkılıyor&#8230;"
 
 #: wp-admin/includes/class-wp-upgrader.php:209
-#: wp-admin/includes/update-core.php:1362
+#: wp-admin/includes/update-core.php:1367
 msgid "Enabling Maintenance mode&#8230;"
 msgstr "Bakım moduna giriliyor&#8230;"
 
