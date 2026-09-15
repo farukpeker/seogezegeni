@@ -51,25 +51,32 @@ $work_areas = [
         'icon'  => 'fa-solid fa-chart-pie',
         'title' => __( '360° DİJİTAL PAZARLAMA', 'seogezegeni' ),
         'desc'  => __( 'Markanızın tüm dijital kanallarını tek strateji altında büyüme hedeflerinize göre planlayın.', 'seogezegeni' ),
-        'url'   => home_url( '/dijital-reklam/' ),
+        'url'   => home_url( '/360-dijital-pazarlama/' ),
     ],
     [
         'icon'  => 'fa-solid fa-share-nodes',
         'title' => __( 'SOSYAL MEDYA YÖNETİMİ', 'seogezegeni' ),
         'desc'  => __( 'İçerik üretimi, topluluk yönetimi ve düzenli raporlamayla sosyal medya varlığınızı güçlendirin.', 'seogezegeni' ),
-        'url'   => home_url( '/sosyal-medya/' ),
+        'url'   => home_url( '/sosyal-medya-yonetimi/' ),
     ],
     [
         'icon'  => 'fa-brands fa-google',
         'title' => __( 'GOOGLE & META REKLAMLARI', 'seogezegeni' ),
         'desc'  => __( 'Google, Instagram ve Facebook reklamlarında dönüşüm odaklı kampanya kurguları oluşturun.', 'seogezegeni' ),
-        'url'   => home_url( '/sem/' ),
+        'url'   => home_url( '/google-meta-reklamlari/' ),
     ],
     [
         'icon'  => 'fa-solid fa-laptop-code',
         'title' => __( 'WEB TASARIM ve YAZILIM', 'seogezegeni' ),
         'desc'  => __( 'SEO uyumlu, hızlı, mobil dostu ve dönüşüm odaklı web siteleri ile yazılım çözümleri geliştirin.', 'seogezegeni' ),
-        'url'   => home_url( '/web-tasarim/' ),
+        'url'   => home_url( '/web-tasarim-ve-yazilim/' ),
+    ],
+    [
+        'icon'  => 'fa-solid fa-paper-plane',
+        'title' => __( 'Teklif Alın', 'seogezegeni' ),
+        'desc'  => __( 'Hedeflerinize uygun dijital büyüme planını birlikte çıkaralım. Ekibimiz kısa sürede sizinle iletişime geçsin.', 'seogezegeni' ),
+        'url'   => home_url( '/iletisim/' ),
+        'cta'   => true,
     ],
 ];
 
@@ -257,18 +264,22 @@ $instagram_posts = [
             ?>
 
             <div class="sg-about-area-grid sg-about-service-grid">
-                <?php foreach ( $work_areas as $index => $area ) : ?>
-                    <article class="sg-service-card" data-sg-reveal data-delay="<?php echo esc_attr( ( $index % 3 ) * 100 ); ?>">
-                        <div class="sg-service-icon" aria-hidden="true">
-                            <i class="<?php echo esc_attr( $area['icon'] ); ?>"></i>
-                        </div>
-                        <h3><?php echo esc_html( $area['title'] ); ?></h3>
-                        <p><?php echo esc_html( $area['desc'] ); ?></p>
-                        <a href="<?php echo esc_url( $area['url'] ); ?>" class="sg-service-link">
-                            <?php esc_html_e( 'Detaylı Bilgi', 'seogezegeni' ); ?>
-                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                <?php foreach ( $work_areas as $index => $area ) :
+                    $is_cta = ! empty( $area['cta'] );
+                ?>
+                    <div data-sg-reveal data-delay="<?php echo esc_attr( ( $index % 3 ) * 100 ); ?>">
+                        <a href="<?php echo esc_url( $area['url'] ); ?>" class="sg-service-card<?php echo $is_cta ? ' sg-service-card-cta' : ''; ?>">
+                            <div class="sg-service-icon" aria-hidden="true">
+                                <i class="<?php echo esc_attr( $area['icon'] ); ?>"></i>
+                            </div>
+                            <h3><?php echo esc_html( $area['title'] ); ?></h3>
+                            <p><?php echo esc_html( $area['desc'] ); ?></p>
+                            <span class="sg-service-link">
+                                <?php echo $is_cta ? esc_html__( 'Teklif İste', 'seogezegeni' ) : esc_html__( 'Detaylı Bilgi', 'seogezegeni' ); ?>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            </span>
                         </a>
-                    </article>
+                    </div>
                 <?php endforeach; ?>
             </div>
         </div>

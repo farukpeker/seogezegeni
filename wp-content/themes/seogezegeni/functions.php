@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 /* ============================================================
    CONSTANTS
    ============================================================ */
-define( 'SG_VER', '1.0.14' );
+define( 'SG_VER', '1.0.28' );
 define( 'SG_DIR',  get_template_directory() );
 define( 'SG_URI',  get_template_directory_uri() );
 

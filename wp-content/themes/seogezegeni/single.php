@@ -235,10 +235,10 @@ get_header();
                                 <?php
                                 $services = [
                                     [home_url('/seo/'),            'fa-magnifying-glass-chart', __('SEO Hizmetleri', 'seogezegeni')],
-                                    [home_url('/sem/'),            'fa-bullseye',               __('SEM / Google Ads', 'seogezegeni')],
-                                    [home_url('/sosyal-medya/'),   'fa-thumbs-up',              __('Sosyal Medya', 'seogezegeni')],
-                                    [home_url('/web-tasarim/'),    'fa-code',                   __('Web Tasarım', 'seogezegeni')],
-                                    [home_url('/dijital-reklam/'), 'fa-chart-line',             __('Dijital Reklam', 'seogezegeni')],
+                                    [home_url('/google-meta-reklamlari/'), 'fa-bullseye',       __('SEM / Google Ads', 'seogezegeni')],
+                                    [home_url('/sosyal-medya-yonetimi/'), 'fa-thumbs-up',       __('Sosyal Medya', 'seogezegeni')],
+                                    [home_url('/web-tasarim-ve-yazilim/'), 'fa-code',            __('Web Tasarım', 'seogezegeni')],
+                                    [home_url('/360-dijital-pazarlama/'), 'fa-chart-line',      __('Dijital Reklam', 'seogezegeni')],
                                 ];
                                 foreach ($services as $svc) :
                                 ?>

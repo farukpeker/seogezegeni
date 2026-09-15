@@ -28,52 +28,53 @@ defined( 'ABSPATH' ) || exit;
                     'icon'  => 'fa-solid fa-chart-pie',
                     'title' => __( '360° DİJİTAL PAZARLAMA', 'seogezegeni' ),
                     'desc'  => __( 'Markanızın tüm dijital kanallarını tek strateji altında büyüme hedeflerinize göre planlayın.', 'seogezegeni' ),
-                    'url'   => home_url('/dijital-reklam/'),
+                    'url'   => home_url('/360-dijital-pazarlama/'),
                 ],
                 [
                     'icon'  => 'fa-solid fa-share-nodes',
                     'title' => __( 'SOSYAL MEDYA YÖNETİMİ', 'seogezegeni' ),
                     'desc'  => __( 'İçerik üretimi, topluluk yönetimi ve düzenli raporlamayla sosyal medya varlığınızı güçlendirin.', 'seogezegeni' ),
-                    'url'   => home_url('/sosyal-medya/'),
+                    'url'   => home_url('/sosyal-medya-yonetimi/'),
                 ],
                 [
                     'icon'  => 'fa-brands fa-google',
                     'title' => __( 'GOOGLE & META REKLAMLARI', 'seogezegeni' ),
                     'desc'  => __( 'Google, Instagram ve Facebook reklamlarında dönüşüm odaklı kampanya kurguları oluşturun.', 'seogezegeni' ),
-                    'url'   => home_url('/sem/'),
+                    'url'   => home_url('/google-meta-reklamlari/'),
                 ],
                 [
                     'icon'  => 'fa-solid fa-laptop-code',
                     'title' => __( 'WEB TASARIM ve YAZILIM', 'seogezegeni' ),
                     'desc'  => __( 'SEO uyumlu, hızlı, mobil dostu ve dönüşüm odaklı web siteleri ile yazılım çözümleri geliştirin.', 'seogezegeni' ),
-                    'url'   => home_url('/web-tasarim/'),
+                    'url'   => home_url('/web-tasarim-ve-yazilim/'),
                 ],
                 [
                     'icon'  => 'fa-solid fa-paper-plane',
                     'title' => __( 'Teklif Alın', 'seogezegeni' ),
                     'desc'  => __( 'Hedeflerinize uygun dijital büyüme planını birlikte çıkaralım. Ekibimiz kısa sürede sizinle iletişime geçsin.', 'seogezegeni' ),
-                    'url'   => '#sgHeroQuoteForm',
+                    'url'   => home_url('/iletisim/'),
                     'cta'   => true,
                 ],
             ];
 
             foreach ( $services as $i => $svc ) :
                 $delay = ( $i % 3 ) * 150;
+                $is_cta = ! empty( $svc['cta'] );
             ?>
                 <div style="flex:0 0 33.333%;max-width:33.333%;padding:12px;"
                      data-sg-reveal
                      data-delay="<?php echo esc_attr($delay); ?>">
-                    <div class="sg-service-card<?php echo ! empty( $svc['cta'] ) ? ' sg-service-card-cta' : ''; ?>">
+                    <a href="<?php echo esc_url($svc['url']); ?>" class="sg-service-card<?php echo $is_cta ? ' sg-service-card-cta' : ''; ?>">
                         <div class="sg-service-icon" aria-hidden="true">
                             <i class="<?php echo esc_attr($svc['icon']); ?>"></i>
                         </div>
                         <h4><?php echo esc_html($svc['title']); ?></h4>
                         <p><?php echo esc_html($svc['desc']); ?></p>
-                        <a href="<?php echo esc_url($svc['url']); ?>" class="sg-service-link">
-                            <?php echo ! empty( $svc['cta'] ) ? esc_html__( 'Teklif İste', 'seogezegeni' ) : esc_html__( 'Detaylı Bilgi', 'seogezegeni' ); ?>
+                        <span class="sg-service-link">
+                            <?php echo $is_cta ? esc_html__( 'Teklif İste', 'seogezegeni' ) : esc_html__( 'Detaylı Bilgi', 'seogezegeni' ); ?>
                             <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                        </span>
+                    </a>
                 </div>
             <?php endforeach; ?>
 

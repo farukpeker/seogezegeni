@@ -94,7 +94,7 @@ function seogezegeni_customizer( WP_Customize_Manager $wp_customize ) {
         'sg_google_partner_badge' => [ 'default' => 'https://www.gstatic.com/partners/badge/images/2022/PremierBadgeClickable.svg', 'label' => 'Google Partner Rozet Görsel URL' ],
         'sg_dmca_url'             => [ 'default' => 'https://www.dmca.com/Protection/Status.aspx', 'label' => 'DMCA URL' ],
         'sg_dmca_badge'           => [ 'default' => '', 'label' => 'DMCA Rozet Görsel URL' ],
-        'sg_credit_card_url'      => [ 'default' => home_url( '/kredi-karti-ile-odeme/' ), 'label' => 'Kredi Kartı ile Ödeme URL' ],
+        'sg_credit_card_url'      => [ 'default' => 'https://pos.param.com.tr/Tahsilat/Default.aspx?k=f960adbb-aa1e-4073-b21d-baf3ae8b658e', 'label' => 'Kredi Kartı ile Ödeme URL' ],
     ];
 
     foreach ( $footer_badges as $key => $args ) {

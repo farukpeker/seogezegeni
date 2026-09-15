@@ -124,7 +124,7 @@
             <div style="flex:0 0 58%;max-width:58%;padding:0 15px;" data-sg-reveal="right">
                 <div class="sg-contact-form-wrap">
                     <h3 style="color:var(--sg-text-primary);margin-bottom:8px;">
-                        <?php _e( 'Ücretsiz Teklif Alın', 'seogezegeni' ); ?>
+                        <?php _e( 'Teklif Alın', 'seogezegeni' ); ?>
                     </h3>
                     <p style="font-size:.9rem;margin-bottom:28px;">
                         <?php _e( 'Formu doldurun, en kısa sürede size dönelim.', 'seogezegeni' ); ?>

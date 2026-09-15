@@ -91,7 +91,7 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
                     <div class="sg-hero-quote-card">
                         <p class="sg-hero-card-title">
                             <i class="fa-solid fa-file-invoice-dollar" style="color:var(--sg-accent);margin-right:6px;" aria-hidden="true"></i>
-                            <?php _e( 'Ücretsiz Teklif Alın', 'seogezegeni' ); ?>
+                            <?php _e( 'Teklif Alın', 'seogezegeni' ); ?>
                         </p>
 
                         <form class="sg-hero-quote-form" id="sgHeroQuoteForm" novalidate>
