@@ -1559,7 +1559,7 @@ html.sg-theme-light .sg-footer { background: #ffffff; }
 .sg-section-head { margin-bottom: 60px; }
 .sg-section-head.center { text-align: center; }
 .sg-section-head h2 { margin-bottom: 16px; }
-.sg-section-head p  { max-width: 600px; }
+.sg-section-head p  { }
 .sg-section-head.center p { margin: 0 auto; }
 
 /* ============================================================

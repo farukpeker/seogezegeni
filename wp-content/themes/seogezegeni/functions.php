@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 /* ============================================================
    CONSTANTS
    ============================================================ */
-define( 'SG_VER', '1.0.28' );
+define( 'SG_VER', '1.0.98' );
 define( 'SG_DIR',  get_template_directory() );
 define( 'SG_URI',  get_template_directory_uri() );
 
@@ -272,6 +272,11 @@ add_filter( 'render_block', 'seogezegeni_search_block_placeholder', 10, 2 );
    ============================================================ */
 require SG_DIR . '/inc/customizer.php';
 require SG_DIR . '/inc/custom-post-types.php';
+require SG_DIR . '/inc/seo-page.php';
+require SG_DIR . '/inc/dijital-page.php';
+require SG_DIR . '/inc/gm-page.php';
+require SG_DIR . '/inc/sm-page.php';
+require SG_DIR . '/inc/wb-page.php';
 
 /* ============================================================
    OUTPUT BUFFERING

@@ -14,65 +14,7 @@ if ( have_posts() ) {
     the_post();
 }
 
-$seo_stats = [
-    [ 'value' => '360°', 'label' => __( 'Bütüncül SEO yaklaşımı', 'seogezegeni' ) ],
-    [ 'value' => '10+',  'label' => __( 'Temel optimizasyon alanı', 'seogezegeni' ) ],
-    [ 'value' => '5',    'label' => __( 'Süreç adımıyla net yol haritası', 'seogezegeni' ) ],
-];
-
-$service_components = [
-    [ 'fa-solid fa-sitemap', __( 'Teknik SEO', 'seogezegeni' ), __( 'Tarama, indekslenebilirlik, site hızı, Core Web Vitals, yönlendirmeler, canonical, robots.txt, schema ve log analizleri birlikte değerlendirilir.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-file-lines', __( 'On-Page SEO', 'seogezegeni' ), __( 'Arama niyetine uygun içerik planı, H1-H6 yapısı, title ve meta description, URL yapısı, görsel ALT etiketleri ve iç bağlantılar optimize edilir.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-link', __( 'Off-Page SEO', 'seogezegeni' ), __( 'Otoriter backlink çalışmaları, dijital PR, marka bahsetmeleri, sektör referansları ve itibar sinyalleri doğal bir otorite stratejisiyle planlanır.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-brain', __( 'Semantic SEO', 'seogezegeni' ), __( 'Yalnızca anahtar kelimeler değil; konu ilişkileri, alt başlıklar, kullanıcı soruları ve konu kapsamı birlikte ele alınır.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-database', __( 'Entity SEO', 'seogezegeni' ), __( 'Marka, kurum, kişi, ürün ve kavram ilişkileri yapılandırılmış veri, konu kümeleri ve güvenilir referanslarla güçlendirilir.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-location-dot', __( 'Yerel SEO', 'seogezegeni' ), __( 'Google Business Profile, NAP tutarlılığı, lokasyon bazlı sayfalar, harita optimizasyonu ve yerel yorum sinyalleri yönetilir.', 'seogezegeni' ) ],
-];
-
-$process_steps = [
-    [ __( 'Kapsamlı Ön Analiz', 'seogezegeni' ), __( 'Web sitenizin teknik durumu, organik görünürlüğü, içerik yapısı ve rakipleri detaylı olarak analiz edilir.', 'seogezegeni' ) ],
-    [ __( 'Strateji Oluşturma', 'seogezegeni' ), __( 'Hedef kitleniz, sektör rekabeti ve büyüme hedeflerinize uygun SEO yol haritası hazırlanır.', 'seogezegeni' ) ],
-    [ __( 'Teknik İyileştirmeler', 'seogezegeni' ), __( 'Performansı etkileyen teknik sorunlar öncelik sırasına göre optimize edilir.', 'seogezegeni' ) ],
-    [ __( 'İçerik ve Bilgi Mimarisi', 'seogezegeni' ), __( 'Arama niyetlerini karşılayan, konu otoritesini güçlendiren ve kullanıcı deneyimini geliştiren içerik planı oluşturulur.', 'seogezegeni' ) ],
-    [ __( 'Sürekli Takip ve Geliştirme', 'seogezegeni' ), __( 'SEO dinamik bir süreç olduğu için performans düzenli analiz edilir, yeni fırsatlar belirlenir ve strateji güncellenir.', 'seogezegeni' ) ],
-];
-
-$seo_types = [
-    [ 'fa-solid fa-building', __( 'Kurumsal SEO', 'seogezegeni' ), __( 'Binlerce sayfadan oluşabilen büyük yapılarda bilgi mimarisi, teknik performans, içerik kümeleri ve sayfa otoritesi birlikte yönetilir.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-map-location-dot', __( 'İzmir SEO Hizmeti', 'seogezegeni' ), __( 'Bölgesel arama alışkanlıkları, yerel rekabet ve Google Haritalar görünürlüğü dikkate alınarak özel stratejiler geliştirilir.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-globe', __( 'İngilizce SEO', 'seogezegeni' ), __( 'Çok dilli site mimarisi, hreflang, ülke bazlı anahtar kelime analizi ve uluslararası otorite çalışmaları planlanır.', 'seogezegeni' ) ],
-    [ 'fa-brands fa-wordpress', __( 'WordPress SEO', 'seogezegeni' ), __( 'Tema performansı, eklenti optimizasyonu, görseller, schema, URL yapısı, cache ve güvenlik detayları birlikte ele alınır.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-cart-shopping', __( 'E-Ticaret SEO', 'seogezegeni' ), __( 'Kategori, ürün, filtreleme, stok yönetimi, schema, tarama bütçesi ve dönüşüm odaklı organik büyüme kurgulanır.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-scale-balanced', __( 'Sektörel SEO', 'seogezegeni' ), __( 'Hukuk, sağlık, turizm, B2B, üretim ve hizmet sektörleri için arama niyeti ve güven sinyalleri farklı stratejilerle yönetilir.', 'seogezegeni' ) ],
-];
-
-$mistakes = [
-    __( 'Anahtar kelime doldurma', 'seogezegeni' ),
-    __( 'Teknik SEO sorunlarını göz ardı etme', 'seogezegeni' ),
-    __( 'Kopya içerik kullanımı', 'seogezegeni' ),
-    __( 'İç bağlantıları ihmal etme', 'seogezegeni' ),
-    __( 'Sadece backlink çalışmalarına odaklanma', 'seogezegeni' ),
-    __( 'Kullanıcı deneyimini ikinci plana atma', 'seogezegeni' ),
-    __( 'SEO’yu kısa vadeli bir kampanya gibi görmek', 'seogezegeni' ),
-];
-
-$metrics = [
-    [ 'fa-solid fa-chart-line', __( 'Organik Trafik', 'seogezegeni' ), __( 'Arama motorlarından gelen kullanıcı sayısındaki değişim düzenli olarak analiz edilir.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-key', __( 'Anahtar Kelime Görünürlüğü', 'seogezegeni' ), __( 'Hedeflenen sorgulardaki sıralamalar ve yeni anahtar kelime kazanımları takip edilir.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-bullseye', __( 'Organik Dönüşüm Oranı', 'seogezegeni' ), __( 'Ziyaretçilerin teklif, satış veya iletişim gibi hedeflere ne ölçüde dönüştüğü incelenir.', 'seogezegeni' ) ],
-    [ 'fa-solid fa-gauge-high', __( 'Teknik Performans', 'seogezegeni' ), __( 'Core Web Vitals, indeksleme, tarama hataları ve teknik metrikler kontrol edilir.', 'seogezegeni' ) ],
-];
-
-$faqs = [
-    [ __( 'SEO nedir?', 'seogezegeni' ), __( 'SEO, web sitelerinin Google ve diğer arama motorlarında organik olarak daha görünür hale gelmesini sağlayan teknik, içerik ve otorite çalışmalarının bütünüdür.', 'seogezegeni' ) ],
-    [ __( 'SEO neden önemlidir?', 'seogezegeni' ), __( 'Kullanıcıların büyük bölümü ürün ve hizmet araştırmalarına arama motorlarında başlar. SEO doğru kitleye reklam bütçesine bağlı kalmadan ulaşmanıza yardımcı olur.', 'seogezegeni' ) ],
-    [ __( 'SEO çalışmaları ne kadar sürede sonuç verir?', 'seogezegeni' ), __( 'Süre; sektör rekabeti, sitenin mevcut durumu ve uygulanacak stratejiye göre değişir. İlk gelişmeler birkaç ay içinde görülebilir, sürdürülebilir başarı uzun vadeli çalışmayla elde edilir.', 'seogezegeni' ) ],
-    [ __( 'SEO ile Google Ads arasındaki fark nedir?', 'seogezegeni' ), __( 'Google Ads ücretli reklam modelidir ve bütçe devam ettiği sürece görünürlük sağlar. SEO ise organik sıralamalara odaklanır ve uzun vadede kalıcı görünürlük oluşturmayı hedefler.', 'seogezegeni' ) ],
-    [ __( 'SEO çalışmaları garanti edilebilir mi?', 'seogezegeni' ), __( 'Hiçbir profesyonel SEO ajansı Google’da belirli bir sıralamayı garanti edemez. Doğru strateji, teknik optimizasyon ve kaliteli içerik sürdürülebilir görünürlük sağlar.', 'seogezegeni' ) ],
-    [ __( 'Teknik SEO olmadan içerik yeterli olur mu?', 'seogezegeni' ), __( 'Hayır. Teknik sorunlar arama motorlarının sayfaları doğru değerlendirmesini zorlaştırabilir. En iyi sonuç teknik SEO ve içerik optimizasyonunun birlikte yürütülmesiyle elde edilir.', 'seogezegeni' ) ],
-    [ __( 'Yerel SEO kimler için uygundur?', 'seogezegeni' ), __( 'Belirli bir şehir veya bölgede hizmet veren işletmeler için yerel SEO önemli avantaj sağlar. Google Haritalar görünürlüğü ve bölgesel içerikler müşteri kazanımında kritik rol oynar.', 'seogezegeni' ) ],
-    [ __( 'Yapay zeka SEO’yu bitirecek mi?', 'seogezegeni' ), __( 'Hayır. Yapay zeka ve AI Overviews, kaliteli ve güvenilir içerik üreten web siteleri için yeni görünürlük fırsatları oluşturur.', 'seogezegeni' ) ],
-];
+extract( sg_seo_content( get_the_ID() ) );
 ?>
 
 <main id="sg-main" class="sg-seo-page" role="main">
@@ -126,7 +68,31 @@ $faqs = [
         <div class="container"><?php seogezegeni_breadcrumb(); ?></div>
     </div>
 
-    <section class="sg-seo-intro section-pad light-section">
+    <nav class="sg-seo-toc" aria-label="<?php esc_attr_e( 'Sayfa içi menü', 'seogezegeni' ); ?>">
+        <div class="container">
+            <ul>
+                <?php
+                $toc = [
+                    'seo-nedir'      => __( 'SEO Nedir?', 'seogezegeni' ),
+                    'seo-hizmetleri' => __( 'Hizmetler', 'seogezegeni' ),
+                    'seo-sureci'     => __( 'Süreç', 'seogezegeni' ),
+                    'yapay-zeka'     => __( 'Yapay Zeka', 'seogezegeni' ),
+                    'danismanlik'    => __( 'Danışmanlık', 'seogezegeni' ),
+                    'uzmanlik'       => __( 'Uzmanlık Alanları', 'seogezegeni' ),
+                    'sektorler'      => __( 'Sektörler', 'seogezegeni' ),
+                    'olcum'          => __( 'Ölçüm', 'seogezegeni' ),
+                    'sss'            => __( 'SSS', 'seogezegeni' ),
+                ];
+                foreach ( $toc as $anchor => $label ) :
+                ?>
+                    <li><a href="#<?php echo esc_attr( $anchor ); ?>"><?php echo esc_html( $label ); ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- SEO Ajansı ile Profesyonel SEO Hizmeti + SEO Nedir? -->
+    <section id="seo-nedir" class="sg-seo-intro section-pad light-section">
         <div class="container">
             <div class="sg-seo-split">
                 <div data-sg-reveal="left">
@@ -140,9 +106,7 @@ $faqs = [
                     );
                     ?>
                     <div class="sg-seo-richtext">
-                        <p><?php esc_html_e( 'SEO, web sitelerinin Google ve diğer arama motorlarında organik görünürlüğünü artırmak amacıyla yürütülen teknik, içeriksel ve stratejik optimizasyon çalışmalarının tamamını ifade eder. Temel hedef, kullanıcıların yaptığı aramalarda doğru sayfayı doğru zamanda karşılarına çıkararak hem arama motorlarının hem de kullanıcıların beklentilerini karşılamaktır.', 'seogezegeni' ); ?></p>
-                        <p><?php esc_html_e( 'Günümüzde SEO yalnızca anahtar kelime yoğunluğu veya bağlantı sayısından ibaret değildir. Kullanıcı deneyimi, içerik kalitesi, uzmanlık, güvenilirlik, teknik performans, yapay zeka destekli arama sonuçları ve marka otoritesi birlikte değerlendirilir.', 'seogezegeni' ); ?></p>
-                        <p><?php esc_html_e( 'SEO Gezegeni olarak işletmelerin sadece belirli anahtar kelimelerde sıralama kazanmasına odaklanmıyoruz. Amacımız; sürdürülebilir organik büyüme, doğru hedef kitleye ulaşma ve arama trafiğini ticari değere dönüştüren bir sistem kurmaktır.', 'seogezegeni' ); ?></p>
+                        <?php sg_seo_p( array_slice( $seo_text['intro_a'], 0, 2 ) ); ?>
                     </div>
                 </div>
                 <aside class="sg-seo-stat-panel" data-sg-reveal="right">
@@ -154,29 +118,29 @@ $faqs = [
                     <?php endforeach; ?>
                 </aside>
             </div>
+            <div class="sg-seo-richtext sg-seo-intro-rest" data-sg-reveal>
+                <?php sg_seo_p( array_slice( $seo_text['intro_a'], 2 ) ); ?>
+
+                <h3><?php esc_html_e( 'SEO Nedir?', 'seogezegeni' ); ?></h3>
+                <?php sg_seo_p( $seo_text['intro_b'] ); ?>
+            </div>
         </div>
     </section>
 
+    <!-- SEO Neden İşletmeler İçin Vazgeçilmezdir? -->
     <section class="sg-seo-benefits section-pad soft-section">
         <div class="container">
             <?php
             sg_section_head(
                 __( 'Neden SEO?', 'seogezegeni' ),
                 __( 'SEO Neden İşletmeler İçin <span class="text-accent">Vazgeçilmezdir?</span>', 'seogezegeni' ),
-                __( 'Organik görünürlük, marka güveni ve uzun vadeli dijital büyüme için SEO en kritik kanallardan biridir.', 'seogezegeni' ),
+                __( 'Dijital dünyada rekabet artarken kullanıcıların büyük çoğunluğu satın alma kararlarını arama motorlarında yaptıkları araştırmalar sonucunda veriyor. Arama sonuçlarında görünür olmayan bir web sitesi, potansiyel müşterilerinin önemli bir bölümünü daha ilk aşamada kaybedebilir.', 'seogezegeni' ),
                 true
             );
             ?>
+            <?php sg_seo_p( $seo_text['benefits_lead'], 'class="sg-seo-lead"' ); ?>
             <div class="sg-seo-benefit-grid">
                 <?php
-                $benefits = [
-                    [ 'fa-solid fa-arrow-trend-up', __( 'Organik görünürlüğü artırır.', 'seogezegeni' ) ],
-                    [ 'fa-solid fa-users-viewfinder', __( 'Hedef kitleye doğru zamanda ulaşmanızı sağlar.', 'seogezegeni' ) ],
-                    [ 'fa-solid fa-shield-halved', __( 'Marka güvenilirliğini güçlendirir.', 'seogezegeni' ) ],
-                    [ 'fa-solid fa-coins', __( 'Reklam maliyetlerini uzun vadede azaltır.', 'seogezegeni' ) ],
-                    [ 'fa-solid fa-award', __( 'Daha yüksek dönüşüm oranlarına katkı sağlar.', 'seogezegeni' ) ],
-                    [ 'fa-solid fa-chess-knight', __( 'Rakiplere karşı sürdürülebilir avantaj oluşturur.', 'seogezegeni' ) ],
-                ];
                 foreach ( $benefits as $index => $benefit ) :
                 ?>
                     <article class="sg-seo-mini-card" data-sg-reveal data-delay="<?php echo esc_attr( ( $index % 3 ) * 120 ); ?>">
@@ -185,44 +149,245 @@ $faqs = [
                     </article>
                 <?php endforeach; ?>
             </div>
+            <?php sg_seo_p( $seo_text['benefits_foot'], 'class="sg-seo-lead text-center" style="margin-top:38px;"' ); ?>
         </div>
     </section>
 
-    <section class="sg-seo-components section-pad dark-section">
+    <!-- SEO Hizmeti Nedir? -->
+    <section class="sg-seo-hizmet section-pad light-section">
+        <div class="container">
+            <div class="sg-seo-split">
+                <div data-sg-reveal="left">
+                    <?php
+                    sg_section_head(
+                        __( 'SEO Hizmeti', 'seogezegeni' ),
+                        __( 'SEO Hizmeti <span class="text-accent">Nedir?</span>', 'seogezegeni' ),
+                        '',
+                        false,
+                        true
+                    );
+                    ?>
+                    <div class="sg-seo-richtext">
+                        <?php sg_seo_p( array_slice( $seo_text['hizmet'], 0, 2 ) ); ?>
+                    </div>
+                </div>
+                <div class="sg-seo-fill" data-sg-reveal="right">
+                    <?php sg_seo_p( $seo_text['hizmet_lead'], 'class="sg-seo-lead"' ); ?>
+                    <div class="sg-seo-ai-list is-grid-2">
+                        <?php foreach ( $hizmet_bilesenleri as $item ) : ?>
+                            <div><i class="fa-solid fa-check" aria-hidden="true"></i><?php echo esc_html( $item ); ?></div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <?php if ( count( $seo_text['hizmet'] ) > 2 ) : ?>
+                <div class="sg-seo-richtext sg-seo-intro-rest" data-sg-reveal>
+                    <?php sg_seo_p( array_slice( $seo_text['hizmet'], 2 ) ); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <!-- Profesyonel SEO Hizmetleri Nelerdir? -->
+    <section id="seo-hizmetleri" class="sg-seo-components section-pad dark-section">
         <div class="container">
             <?php
             sg_section_head(
-                __( 'SEO Hizmeti', 'seogezegeni' ),
+                __( 'Kapsamlı Hizmetler', 'seogezegeni' ),
                 __( 'Profesyonel SEO Hizmetleri <span class="text-accent">Neleri Kapsar?</span>', 'seogezegeni' ),
-                __( 'Başarılı bir SEO çalışması teknik altyapı, içerik stratejisi, kullanıcı deneyimi, otorite ve düzenli raporlamanın birlikte yönetilmesiyle oluşur.', 'seogezegeni' ),
+                __( 'Başarılı bir SEO çalışması tek bir optimizasyon yöntemine dayanmaz. Teknik altyapının doğru yapılandırılması, kullanıcı odaklı içeriklerin hazırlanması, site otoritesinin güçlendirilmesi ve performansın sürekli analiz edilmesi gerekir. Her başlığa tıklayarak detaylarını inceleyebilirsiniz.', 'seogezegeni' ),
                 true
             );
             ?>
-            <div class="sg-seo-component-grid">
-                <?php foreach ( $service_components as $index => $component ) : ?>
-                    <article class="sg-seo-component-card" data-sg-reveal data-delay="<?php echo esc_attr( ( $index % 3 ) * 120 ); ?>">
-                        <span class="sg-seo-component-icon" aria-hidden="true"><i class="<?php echo esc_attr( $component[0] ); ?>"></i></span>
-                        <h3><?php echo esc_html( $component[1] ); ?></h3>
-                        <p><?php echo esc_html( $component[2] ); ?></p>
-                    </article>
+            <div class="sg-seo-detail-grid is-stack">
+                <?php foreach ( $service_details as $i => $service ) : ?>
+                    <details class="sg-seo-detail-item" data-sg-reveal<?php echo 0 === $i ? ' open' : ''; ?>>
+                        <summary>
+                            <i class="sg-detail-icon <?php echo esc_attr( $service['icon'] ); ?>" aria-hidden="true"></i>
+                            <span class="sg-detail-title"><?php echo esc_html( $service['title'] ); ?></span>
+                            <i class="fa-solid fa-plus sg-detail-toggle" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sg-seo-detail-body<?php echo ! empty( $service['list'] ) ? ' has-side' : ''; ?>">
+                            <div class="sg-seo-detail-text">
+                                <?php foreach ( $service['paras'] as $para ) : ?>
+                                    <p><?php echo esc_html( $para ); ?></p>
+                                <?php endforeach; ?>
+                                <p><?php echo esc_html( $service['closing'] ); ?></p>
+                            </div>
+                            <?php if ( ! empty( $service['list'] ) ) : ?>
+                                <div class="sg-seo-detail-side">
+                                    <p><strong><?php echo esc_html( $service['list_intro'] ); ?></strong></p>
+                                    <div class="sg-seo-ai-list is-grid-2">
+                                        <?php foreach ( $service['list'] as $item ) : ?>
+                                            <div><i class="fa-solid fa-check" aria-hidden="true"></i><?php echo esc_html( $item ); ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </details>
                 <?php endforeach; ?>
             </div>
         </div>
     </section>
 
+    <!-- Google SEO Süreci Nasıl Yönetilir? -->
     <section id="seo-sureci" class="sg-seo-process section-pad light-section">
         <div class="container">
             <?php
             sg_section_head(
                 __( 'SEO Süreci', 'seogezegeni' ),
                 __( 'Google SEO Süreci <span class="text-accent">Nasıl Yönetilir?</span>', 'seogezegeni' ),
-                __( 'SEO tamamlanıp bırakılan bir proje değildir. Analiz, uygulama, ölçüm ve sürekli geliştirme döngüsüyle yönetilmelidir.', 'seogezegeni' ),
+                __( 'Google\'da üst sıralarda yer almak, tek bir optimizasyon çalışmasıyla elde edilebilecek bir başarı değildir. Arama sonuçlarında kalıcı görünürlük sağlayabilmek için teknik altyapı, içerik kalitesi, kullanıcı deneyimi ve otorite çalışmalarının düzenli olarak analiz edilmesi gerekir. Profesyonel bir SEO süreci genellikle şu aşamalardan oluşur:', 'seogezegeni' ),
+                true,
+                true
+            );
+            ?>
+            <div class="sg-seo-ai-list is-grid-3" style="margin-top:46px;">
+                <?php foreach ( $google_sureci as $adim ) : ?>
+                    <div><i class="fa-solid fa-check" aria-hidden="true"></i><?php echo esc_html( $adim ); ?></div>
+                <?php endforeach; ?>
+            </div>
+            <?php sg_seo_p( $seo_text['surec_foot'], 'class="sg-seo-lead" style="margin-top:32px;text-align:center;"' ); ?>
+        </div>
+    </section>
+
+    <!-- Google Algoritmaları -->
+    <section class="sg-seo-algoritma section-pad soft-section">
+        <div class="container">
+            <?php
+            sg_section_head(
+                __( 'Algoritmalar', 'seogezegeni' ),
+                __( 'Google Algoritmaları SEO\'yu <span class="text-accent">Nasıl Etkiler?</span>', 'seogezegeni' ),
+                '',
+                true
+            );
+            ?>
+            <div class="sg-seo-richtext">
+                <?php sg_seo_p( $seo_text['algoritma'] ); ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO'da Yapay Zeka ve AI Overviews Dönemi -->
+    <section id="yapay-zeka" class="sg-seo-ai section-pad dark-section">
+        <div class="container">
+            <div class="sg-seo-ai-grid">
+                <div class="sg-seo-ai-card" data-sg-reveal="left">
+                    <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                    <h2><?php esc_html_e( 'SEO\'da Yapay Zeka ve AI Overviews Dönemi', 'seogezegeni' ); ?></h2>
+                    <?php sg_seo_p( $seo_text['ai_intro'] ); ?>
+                </div>
+                <div class="sg-seo-ai-list" data-sg-reveal="right">
+                    <?php
+                    foreach ( $ai_points as $point ) :
+                    ?>
+                        <div><i class="fa-solid fa-check" aria-hidden="true"></i><?php echo esc_html( $point ); ?></div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php sg_seo_p( $seo_text['ai_foot'], 'class="sg-seo-lead" style="margin-top:38px;text-align:center;"' ); ?>
+        </div>
+    </section>
+
+    <!-- Profesyonel SEO Danışmanlığı + Uzmanla Çalışmanın Avantajları -->
+    <section id="danismanlik" class="sg-seo-danismanlik section-pad light-section">
+        <div class="container">
+            <div class="sg-seo-split">
+                <div data-sg-reveal="left">
+                    <?php
+                    sg_section_head(
+                        __( 'SEO Danışmanlığı', 'seogezegeni' ),
+                        __( 'Profesyonel SEO Danışmanlığı <span class="text-accent">Nedir ve Neden Önemlidir?</span>', 'seogezegeni' ),
+                        '',
+                        false,
+                        true
+                    );
+                    ?>
+                    <div class="sg-seo-richtext">
+                        <?php sg_seo_p( $seo_text['danis'] ); ?>
+                    </div>
+                </div>
+                <div class="sg-seo-success-card sg-seo-advantage-card" data-sg-reveal="right">
+                    <h3><?php esc_html_e( 'SEO Uzmanı ile Çalışmanın Avantajları', 'seogezegeni' ); ?></h3>
+                    <?php sg_seo_p( $seo_text['uzman_intro'] ); ?>
+                    <div class="sg-seo-ai-list">
+                        <?php foreach ( $uzman_avantajlari as $item ) : ?>
+                            <div><i class="fa-solid fa-check" aria-hidden="true"></i><?php echo esc_html( $item ); ?></div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php sg_seo_p( $seo_text['uzman_foot'], 'style="margin-top:18px;"' ); ?>
+                </div>
+            </div>
+
+            <div class="sg-seo-work" data-sg-reveal>
+                <?php sg_seo_p( $seo_text['danis_lead'], 'class="sg-seo-work-title"' ); ?>
+                <div class="sg-seo-work-grid">
+                    <?php foreach ( $danismanlik_calismalari as $item ) : ?>
+                        <div><span><?php echo esc_html( $item ); ?></span></div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Türleri / Uzmanlık Alanları -->
+    <section id="uzmanlik" class="sg-seo-types section-pad dark-section">
+        <div class="container">
+            <?php
+            sg_section_head(
+                __( 'Uzmanlık Alanları', 'seogezegeni' ),
+                __( 'İşletmenize Özel <span class="text-accent">SEO Uzmanlık Alanları</span>', 'seogezegeni' ),
+                __( 'Kurumsal, yerel, uluslararası, WordPress ve e-ticaret projelerinin her biri farklı dinamiklere sahiptir. Detayları görmek için başlıklara tıklayın.', 'seogezegeni' ),
+                true
+            );
+            ?>
+            <div class="sg-seo-detail-grid is-stack">
+                <?php foreach ( $seo_types as $i => $type ) : ?>
+                    <details class="sg-seo-detail-item" data-sg-reveal<?php echo 0 === $i ? ' open' : ''; ?>>
+                        <summary>
+                            <i class="sg-detail-icon <?php echo esc_attr( $type['icon'] ); ?>" aria-hidden="true"></i>
+                            <span class="sg-detail-title"><?php echo esc_html( $type['title'] ); ?></span>
+                            <i class="fa-solid fa-plus sg-detail-toggle" aria-hidden="true"></i>
+                        </summary>
+                        <div class="sg-seo-detail-body<?php echo ! empty( $type['list'] ) ? ' has-side' : ''; ?>">
+                            <div class="sg-seo-detail-text">
+                                <?php foreach ( $type['paras'] as $para ) : ?>
+                                    <p><?php echo esc_html( $para ); ?></p>
+                                <?php endforeach; ?>
+                                <p><?php echo esc_html( $type['closing'] ); ?></p>
+                            </div>
+                            <?php if ( ! empty( $type['list'] ) ) : ?>
+                                <div class="sg-seo-detail-side">
+                                    <p><strong><?php echo esc_html( $type['list_intro'] ); ?></strong></p>
+                                    <div class="sg-seo-ai-list is-grid-2">
+                                        <?php foreach ( $type['list'] as $item ) : ?>
+                                            <div><i class="fa-solid fa-check" aria-hidden="true"></i><?php echo esc_html( $item ); ?></div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </details>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO Çalışması Nasıl Planlanır? -->
+    <section class="sg-seo-planlama section-pad light-section">
+        <div class="container">
+            <?php
+            sg_section_head(
+                __( 'Metodoloji', 'seogezegeni' ),
+                __( 'SEO Çalışması Nasıl <span class="text-accent">Planlanır?</span>', 'seogezegeni' ),
+                __( 'SEO başarısı rastgele yapılan optimizasyonlarla elde edilmez. Başarılı projelerin ortak noktası, veriye dayalı planlama ve sürdürülebilir geliştirme süreçleridir. SEO Gezegeni\'nde her proje aşağıdaki aşamalar doğrultusunda ilerler.', 'seogezegeni' ),
                 true,
                 true
             );
             ?>
             <div class="sg-seo-timeline">
-                <?php foreach ( $process_steps as $index => $step ) : ?>
+                <?php foreach ( $planlama_adimlari as $index => $step ) : ?>
                     <article class="sg-seo-step" data-sg-reveal>
                         <span><?php echo esc_html( sprintf( '%02d', $index + 1 ) ); ?></span>
                         <div>
@@ -235,92 +400,92 @@ $faqs = [
         </div>
     </section>
 
-    <section class="sg-seo-ai section-pad soft-section">
+    <!-- Sektörel SEO Stratejileri -->
+    <section id="sektorler" class="sg-seo-sektorel section-pad soft-section">
         <div class="container">
-            <div class="sg-seo-ai-grid">
-                <div class="sg-seo-ai-card" data-sg-reveal="left">
-                    <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
-                    <h2><?php esc_html_e( 'SEO’da Yapay Zeka ve AI Overviews Dönemi', 'seogezegeni' ); ?></h2>
-                    <p><?php esc_html_e( 'Arama motorları artık yalnızca klasik arama sonuçlarını değil, yapay zeka destekli özetleri de kullanıcıya göstermektedir. Bu nedenle içeriklerin uzmanlık, güvenilirlik, konu kapsamı, teknik kalite ve semantik bütünlük açısından güçlü olması gerekir.', 'seogezegeni' ); ?></p>
-                </div>
-                <div class="sg-seo-ai-list" data-sg-reveal="right">
+            <?php
+            sg_section_head(
+                __( 'Sektörel Stratejiler', 'seogezegeni' ),
+                __( 'Sektöre Özel <span class="text-accent">SEO Stratejileri</span>', 'seogezegeni' ),
+                __( 'Her sektörün rekabet yapısı, kullanıcı davranışları ve satın alma süreci birbirinden farklıdır. SEO Gezegeni olarak her projeye standart paketler yerine işletmenin faaliyet alanını, hedef kitlesini ve rekabet seviyesini analiz ederek özel bir yol haritası oluşturuyoruz.', 'seogezegeni' ),
+                true
+            );
+            ?>
+            <div class="sg-seo-acc" data-sg-acc>
+                <?php foreach ( $sektorel_stratejiler as $i => $sektor ) : ?>
                     <?php
-                    $ai_points = [
-                        __( 'Kullanıcının sorusuna doğrudan cevap verme', 'seogezegeni' ),
-                        __( 'Konuyu yüzeysel değil kapsamlı ele alma', 'seogezegeni' ),
-                        __( 'Güvenilir kaynaklara ve uzmanlık sinyallerine dayanma', 'seogezegeni' ),
-                        __( 'Teknik olarak erişilebilir ve hızlı olma', 'seogezegeni' ),
-                        __( 'Semantik bütünlük oluşturma', 'seogezegeni' ),
-                    ];
-                    foreach ( $ai_points as $point ) :
+                    $row_start = (int) floor( $i / 2 ) * 10;
+                    $col       = $i % 2;
                     ?>
-                        <div><i class="fa-solid fa-check" aria-hidden="true"></i><?php echo esc_html( $point ); ?></div>
+                    <button type="button" class="sg-seo-acc-item" id="sg-acc-btn-<?php echo (int) $i; ?>" aria-expanded="false" aria-controls="sg-acc-panel-<?php echo (int) $i; ?>" style="--od:<?php echo esc_attr( $row_start + $col ); ?>;--om:<?php echo esc_attr( $i * 2 ); ?>;" data-sg-reveal>
+                        <i class="sg-detail-icon <?php echo esc_attr( $sektor['icon'] ); ?>" aria-hidden="true"></i>
+                        <span class="sg-detail-title"><?php echo esc_html( $sektor['title'] ); ?></span>
+                        <i class="fa-solid fa-plus sg-detail-toggle" aria-hidden="true"></i>
+                    </button>
+                    <div class="sg-seo-acc-panel" id="sg-acc-panel-<?php echo (int) $i; ?>" role="region" aria-labelledby="sg-acc-btn-<?php echo (int) $i; ?>" style="--od:<?php echo esc_attr( $row_start + 5 ); ?>;--om:<?php echo esc_attr( $i * 2 + 1 ); ?>;">
+                        <p><?php echo esc_html( $sektor['text'] ); ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO'da Sık Yapılan Hatalar + Başarı Faktörleri -->
+    <section class="sg-seo-errors section-pad dark-section">
+        <div class="container">
+            <?php
+            sg_section_head(
+                __( 'SEO Hataları', 'seogezegeni' ),
+                __( 'SEO\'da Sık Yapılan <span class="text-accent">Hatalar</span>', 'seogezegeni' ),
+                __( 'SEO çalışmalarında yapılan bazı hatalar yalnızca sıralama kaybına değil, uzun vadeli organik görünürlüğün zayıflamasına da neden olabilir. En sık karşılaşılan hatalar şunlardır:', 'seogezegeni' ),
+                true
+            );
+            ?>
+            <div class="sg-seo-acc is-warn" data-sg-acc>
+                <?php foreach ( $mistakes as $i => $mistake ) : ?>
+                    <?php
+                    $row_start = (int) floor( $i / 2 ) * 10;
+                    $col       = $i % 2;
+                    ?>
+                    <button type="button" class="sg-seo-acc-item" id="sg-mis-btn-<?php echo (int) $i; ?>" aria-expanded="false" aria-controls="sg-mis-panel-<?php echo (int) $i; ?>" style="--od:<?php echo esc_attr( $row_start + $col ); ?>;--om:<?php echo esc_attr( $i * 2 ); ?>;" data-sg-reveal>
+                        <i class="sg-detail-icon fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                        <span class="sg-detail-title"><?php echo esc_html( $mistake[0] ); ?></span>
+                        <i class="fa-solid fa-plus sg-detail-toggle" aria-hidden="true"></i>
+                    </button>
+                    <div class="sg-seo-acc-panel" id="sg-mis-panel-<?php echo (int) $i; ?>" role="region" aria-labelledby="sg-mis-btn-<?php echo (int) $i; ?>" style="--od:<?php echo esc_attr( $row_start + 5 ); ?>;--om:<?php echo esc_attr( $i * 2 + 1 ); ?>;">
+                        <p><?php echo esc_html( $mistake[1] ); ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <div class="sg-seo-factors" data-sg-reveal>
+                <div class="sg-seo-factors-copy">
+                    <h3><?php esc_html_e( 'SEO Başarısını Belirleyen Faktörler', 'seogezegeni' ); ?></h3>
+                    <?php sg_seo_p( $seo_text['success_intro'] ); ?>
+                    <?php sg_seo_p( $seo_text['success_foot'] ); ?>
+                    <a href="<?php echo esc_url( home_url( '/iletisim/' ) ); ?>" class="sg-service-link">
+                        <?php esc_html_e( 'SEO planı iste', 'seogezegeni' ); ?>
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <div class="sg-seo-factors-list">
+                    <?php foreach ( $success_factors as $item ) : ?>
+                        <div><i class="fa-solid fa-check" aria-hidden="true"></i><?php echo esc_html( $item ); ?></div>
                     <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="sg-seo-types section-pad dark-section">
-        <div class="container">
-            <?php
-            sg_section_head(
-                __( 'Strateji Alanları', 'seogezegeni' ),
-                __( 'Sektöre ve Hedefe Göre <span class="text-accent">SEO Stratejileri</span>', 'seogezegeni' ),
-                __( 'Her sektörün rekabet yapısı, kullanıcı davranışları ve satın alma süreci farklıdır. Bu yüzden SEO stratejisi işletmenin gerçek ihtiyacına göre şekillendirilmelidir.', 'seogezegeni' ),
-                true
-            );
-            ?>
-            <div class="sg-seo-type-grid">
-                <?php foreach ( $seo_types as $index => $type ) : ?>
-                    <article class="sg-seo-type-card" data-sg-reveal data-delay="<?php echo esc_attr( ( $index % 3 ) * 120 ); ?>">
-                        <i class="<?php echo esc_attr( $type[0] ); ?>" aria-hidden="true"></i>
-                        <h3><?php echo esc_html( $type[1] ); ?></h3>
-                        <p><?php echo esc_html( $type[2] ); ?></p>
-                    </article>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-
-    <section class="sg-seo-errors section-pad light-section">
-        <div class="container">
-            <div class="sg-seo-split">
-                <div data-sg-reveal="left">
-                    <?php
-                    sg_section_head(
-                        __( 'SEO Hataları', 'seogezegeni' ),
-                        __( 'SEO’da Sık Yapılan <span class="text-accent">Hatalar</span>', 'seogezegeni' ),
-                        __( 'Yanlış uygulamalar yalnızca sıralama kaybına değil, uzun vadeli organik görünürlüğün zayıflamasına da neden olabilir.', 'seogezegeni' ),
-                        false,
-                        true
-                    );
-                    ?>
-                    <div class="sg-seo-error-list">
-                        <?php foreach ( $mistakes as $mistake ) : ?>
-                            <div><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><?php echo esc_html( $mistake ); ?></div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <div class="sg-seo-success-card" data-sg-reveal="right">
-                    <h3><?php esc_html_e( 'SEO Başarısını Belirleyen Faktörler', 'seogezegeni' ); ?></h3>
-                    <p><?php esc_html_e( 'Başarı tek bir optimizasyon çalışmasına bağlı değildir. Güçlü teknik altyapı, hızlı ve mobil uyumlu web sitesi, kaliteli içerikler, doğru bilgi mimarisi, güvenilir backlink profili ve düzenli analiz birlikte sonuç üretir.', 'seogezegeni' ); ?></p>
-                    <a href="<?php echo esc_url( home_url( '/iletisim/' ) ); ?>" class="sg-service-link">
-                        <?php esc_html_e( 'SEO planı iste', 'seogezegeni' ); ?>
-                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="sg-seo-measure section-pad soft-section">
+    <!-- SEO Performansı Nasıl Ölçülür? -->
+    <section id="olcum" class="sg-seo-measure section-pad light-section">
         <div class="container">
             <?php
             sg_section_head(
                 __( 'Performans', 'seogezegeni' ),
                 __( 'SEO Performansı <span class="text-accent">Nasıl Ölçülür?</span>', 'seogezegeni' ),
-                __( 'SEO raporlamasını yalnızca sıralama tablolarından ibaret görmüyoruz. Organik büyümeyi etkileyen tüm verileri birlikte değerlendiriyoruz.', 'seogezegeni' ),
+                __( 'SEO çalışmalarının başarısı yalnızca belirli anahtar kelimelerde üst sıralara çıkmakla ölçülmez. Gerçek başarı, organik görünürlüğün işletmenin ticari hedeflerine katkı sağlamasıyla değerlendirilir. Profesyonel projelerde takip edilen başlıca performans göstergeleri:', 'seogezegeni' ),
+                true,
                 true
             );
             ?>
@@ -333,16 +498,73 @@ $faqs = [
                     </article>
                 <?php endforeach; ?>
             </div>
+            <?php sg_seo_p( $seo_text['metrics_foot'], 'class="sg-seo-lead" style="margin-top:32px;text-align:center;"' ); ?>
         </div>
     </section>
 
-    <section class="sg-seo-faq section-pad dark-section">
+    <!-- SEO Gezegeni ile Çalıştığınızda Sizi Neler Bekler? -->
+    <section class="sg-seo-journey section-pad soft-section">
+        <div class="container">
+            <?php
+            sg_section_head(
+                __( 'Çalışma Süreci', 'seogezegeni' ),
+                __( 'SEO Gezegeni ile Çalıştığınızda <span class="text-accent">Sizi Neler Bekler?</span>', 'seogezegeni' ),
+                __( 'Başarılı bir SEO projesi, doğru analizlerle başlayan ve sürekli gelişen bir iş ortaklığıdır. Çalışma sürecimizi yalnızca optimizasyon yapan bir hizmet modeli olarak değil, işletmenizin dijital büyümesini destekleyen stratejik bir danışmanlık süreci olarak planlıyoruz.', 'seogezegeni' ),
+                true
+            );
+            ?>
+            <div class="sg-seo-timeline is-stepper">
+                <?php foreach ( $process_steps as $index => $step ) : ?>
+                    <article class="sg-seo-step" data-sg-reveal>
+                        <span><?php echo esc_html( sprintf( '%02d', $index + 1 ) ); ?></span>
+                        <div>
+                            <h3><?php echo esc_html( $step[0] ); ?></h3>
+                            <p><?php echo esc_html( $step[1] ); ?></p>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+            <?php sg_seo_p( $seo_text['journey_foot'], 'class="sg-seo-lead" style="margin-top:32px;text-align:center;"' ); ?>
+        </div>
+    </section>
+
+    <!-- Neden SEO Gezegeni? -->
+    <section class="sg-seo-neden section-pad dark-section">
+        <div class="container">
+            <div class="sg-seo-split sg-seo-neden-split">
+                <div data-sg-reveal="left">
+                    <?php
+                    sg_section_head(
+                        __( 'Neden Biz?', 'seogezegeni' ),
+                        __( 'Neden <span class="text-accent">SEO Gezegeni?</span>', 'seogezegeni' ),
+                        __( '<strong>SEO</strong> çalışmalarında kullanılan yöntemler kadar, bu yöntemlerin hangi stratejiyle uygulandığı da önemlidir. Her işletmenin hedef kitlesi, rekabet ortamı ve büyüme planı farklı olduğu için tek tip SEO paketleri uzun vadede beklenen başarıyı sağlamayabilir. SEO Gezegeni olarak her projeye şu prensiplerle yaklaşıyoruz:', 'seogezegeni' ),
+                        false
+                    );
+                    ?>
+                    <?php sg_seo_p( $seo_text['neden_foot'], 'class="sg-seo-lead"' ); ?>
+                    <a href="<?php echo esc_url( home_url( '/iletisim/' ) ); ?>" class="sg-btn sg-btn-primary" style="margin-top:26px;">
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        <?php esc_html_e( 'Ücretsiz SEO Analizi Al', 'seogezegeni' ); ?>
+                    </a>
+                </div>
+                <ol class="sg-seo-neden-list" data-sg-reveal="right">
+                    <?php foreach ( $neden_seo_gezegeni as $item ) : ?>
+                        <li><span><?php echo esc_html( $item ); ?></span></li>
+                    <?php endforeach; ?>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sık Sorulan Sorular -->
+    <section id="sss" class="sg-seo-faq section-pad light-section">
         <div class="container">
             <?php
             sg_section_head(
                 __( 'Sık Sorulan Sorular', 'seogezegeni' ),
                 __( 'SEO Hakkında <span class="text-accent">Merak Edilenler</span>', 'seogezegeni' ),
                 '',
+                true,
                 true
             );
             ?>
@@ -357,24 +579,38 @@ $faqs = [
         </div>
     </section>
 
-    <section class="sg-seo-final-cta section-pad light-section">
+    <!-- Kapanış -->
+    <section class="sg-seo-final-cta section-pad soft-section">
         <div class="container">
             <div class="sg-seo-cta-panel" data-sg-reveal>
-                <span class="sg-hero-badge">
-                    <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-                    <?php esc_html_e( 'Sürdürülebilir Organik Büyüme', 'seogezegeni' ); ?>
-                </span>
-                <h2><?php esc_html_e( 'Dijital Büyümenizi Doğru SEO Stratejisiyle Planlayın', 'seogezegeni' ); ?></h2>
-                <p><?php esc_html_e( 'İşletmenizin faaliyet gösterdiği sektöre, rekabet seviyesine ve hedeflerine uygun bir SEO yol haritası oluşturmak istiyorsanız, SEO Gezegeni olarak size özel analizler ve sürdürülebilir çözümler sunmaya hazırız.', 'seogezegeni' ); ?></p>
-                <a href="<?php echo esc_url( home_url( '/iletisim/' ) ); ?>" class="sg-btn sg-btn-primary">
-                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                    <?php esc_html_e( 'Bizimle İletişime Geçin', 'seogezegeni' ); ?>
-                </a>
+                <div class="sg-seo-cta-main">
+                    <span class="sg-hero-badge">
+                        <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+                        <?php esc_html_e( 'Sürdürülebilir Organik Büyüme', 'seogezegeni' ); ?>
+                    </span>
+                    <h2><?php esc_html_e( 'Dijital Büyümenizi Doğru SEO Stratejisiyle Planlayın', 'seogezegeni' ); ?></h2>
+                    <?php sg_seo_p( array_slice( $seo_text['cta'], 0, 1 ) ); ?>
+                </div>
+                <div class="sg-seo-cta-side">
+                    <?php sg_seo_p( array_slice( $seo_text['cta'], 1 ) ); ?>
+                    <div class="sg-seo-cta-actions">
+                        <a href="<?php echo esc_url( home_url( '/iletisim/' ) ); ?>" class="sg-btn sg-btn-primary">
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                            <?php esc_html_e( 'Bizimle İletişime Geçin', 'seogezegeni' ); ?>
+                        </a>
+                        <a href="#seo-sureci" class="sg-seo-cta-link">
+                            <?php esc_html_e( 'Süreci İncele', 'seogezegeni' ); ?>
+                            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
 </main>
+
+<?php sg_seo_faq_schema( $faqs ); ?>
 
 <?php
 get_template_part( 'template-parts/pre-footer-contact' );

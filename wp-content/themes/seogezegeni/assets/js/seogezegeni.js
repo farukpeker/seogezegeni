@@ -624,4 +624,187 @@
         }
     }
 
+
+    /* ============================================================
+       SEO SAYFASI: uzun metin kısaltma + sayfa içi menü vurgusu
+       ============================================================ */
+    $(function () {
+        $('.sg-seo-richtext.is-collapsible').each(function () {
+            var $box = $(this);
+            $box.addClass('is-clamped');
+            if ($box[0].scrollHeight <= $box[0].clientHeight + 40) {
+                $box.removeClass('is-clamped');
+                return;
+            }
+            var $btn = $('<button type="button" class="sg-seo-more" aria-expanded="false"><span>Devamını oku</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>');
+            $btn.on('click', function () {
+                var open = $box.hasClass('is-clamped');
+                $box.toggleClass('is-clamped', !open);
+                $btn.attr('aria-expanded', open ? 'true' : 'false').find('span').text(open ? 'Daha az göster' : 'Devamını oku');
+            });
+            $box.after($btn);
+        });
+
+        var $links = $('.sg-seo-toc a');
+        if ($links.length && 'IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (!en.isIntersecting) return;
+                    $links.removeClass('is-active').filter('[href="#' + en.target.id + '"]').addClass('is-active');
+                });
+            }, { rootMargin: '-30% 0px -60% 0px' });
+            $links.each(function () {
+                var t = document.getElementById(this.getAttribute('href').slice(1));
+                if (t) io.observe(t);
+            });
+        }
+    });
+
+
+    /* SEO sayfası: akordiyonlarda aynı anda tek öğe açık kalır */
+    $(function () {
+        var grids = document.querySelectorAll('.sg-seo-detail-grid');
+        Array.prototype.forEach.call(grids, function (grid) {
+            grid.addEventListener('toggle', function (e) {
+                var item = e.target;
+                if (!item.open || !item.classList.contains('sg-seo-detail-item')) return;
+                var wasAbove = false;
+                Array.prototype.forEach.call(grid.querySelectorAll('.sg-seo-detail-item[open]'), function (other) {
+                    if (other !== item) {
+                        if (other.compareDocumentPosition(item) & Node.DOCUMENT_POSITION_FOLLOWING) wasAbove = true;
+                        other.open = false;
+                    }
+                });
+                // Üstteki öğe kapanınca sayfa kaymasın: açılan başlığı görünür tut.
+                if (wasAbove) {
+                    var top = item.getBoundingClientRect().top;
+                    if (top < 140) window.scrollBy({ top: top - 150, behavior: 'smooth' });
+                }
+            }, true);
+        });
+    });
+
+
+    /* SEO sayfası: özel akordiyon (eşit kutular, panel satırın altında açılır) */
+    $(function () {
+        $('[data-sg-acc]').each(function () {
+            var $acc = $(this);
+            $acc.on('click', '.sg-seo-acc-item', function () {
+                var $btn   = $(this);
+                var $panel = $('#' + $btn.attr('aria-controls'));
+                var open   = $btn.attr('aria-expanded') === 'true';
+
+                $acc.find('.sg-seo-acc-item').attr('aria-expanded', 'false');
+                $acc.find('.sg-seo-acc-panel').removeClass('is-open');
+
+                if (!open) {
+                    $btn.attr('aria-expanded', 'true');
+                    $panel.addClass('is-open');
+                }
+            });
+        });
+    });
+
+
+    /* SSS: ilk N soru görünür, "Tüm soruları göster" ile tamamı açılır */
+    $(function () {
+        $('.sg-seo-faq-grid[data-faq-limit]').each(function () {
+            var $grid = $(this);
+            var limit = parseInt($grid.data('faq-limit'), 10) || 10;
+            var total = $grid.children('.sg-seo-faq-item').length;
+            if (total <= limit) return;
+            $grid.addClass('is-collapsed');
+            var $btn = $('<button type="button" class="sg-seo-faq-more" aria-expanded="false"></button>');
+            function label(open) { $btn.text(open ? 'Daha az göster' : 'Tüm soruları göster (' + total + ')'); }
+            label(false);
+            $btn.on('click', function () {
+                var open = $grid.hasClass('is-collapsed');
+                $grid.toggleClass('is-collapsed', !open);
+                $btn.attr('aria-expanded', open ? 'true' : 'false');
+                label(open);
+            });
+            $grid.after($btn);
+        });
+    });
+
+
+    /* Sekmeli hizmet paneli (ok tuşları destekli) */
+    $(function () {
+        $('[data-sg-tabs]').each(function () {
+            var $root = $(this);
+            var $tabs = $root.find('[role="tab"]');
+            function select($tab, focus) {
+                $tabs.removeClass('is-active').attr({ 'aria-selected': 'false', tabindex: '-1' });
+                $root.find('[role="tabpanel"]').removeClass('is-active');
+                $tab.addClass('is-active').attr({ 'aria-selected': 'true', tabindex: '0' });
+                $('#' + $tab.attr('aria-controls')).addClass('is-active');
+                if (focus) $tab.trigger('focus');
+            }
+            $tabs.on('click', function () { select($(this), false); });
+            $tabs.on('keydown', function (e) {
+                var i = $tabs.index(this), n = $tabs.length, k = e.key;
+                if (k === 'ArrowDown' || k === 'ArrowRight') i = (i + 1) % n;
+                else if (k === 'ArrowUp' || k === 'ArrowLeft') i = (i - 1 + n) % n;
+                else if (k === 'Home') i = 0;
+                else if (k === 'End') i = n - 1;
+                else return;
+                e.preventDefault();
+                select($tabs.eq(i), true);
+            });
+        });
+    });
+
+})(jQuery);
+
+
+/* Tek sütunlu akordiyon: kart satırı, içerik hemen altında açılır */
+(function ($) {
+    $(function () {
+        $('[data-sg-stack]').each(function () {
+            var $wrap = $(this);
+            $wrap.on('click', '.sg-sa-head', function () {
+                var $item = $(this).closest('.sg-sa-item');
+                var open  = $item.hasClass('is-open');
+                $wrap.find('.sg-sa-item').removeClass('is-open').find('.sg-sa-head').attr('aria-expanded', 'false');
+                if (!open) {
+                    $item.addClass('is-open').find('.sg-sa-head').attr('aria-expanded', 'true');
+                }
+            });
+        });
+    });
+})(jQuery);
+
+/* Mobil: sekme listesi açılır menü olarak gösterilir */
+(function ($) {
+    $(function () {
+        $('[data-sg-tabs]').each(function () {
+            var $tabs = $(this);
+            var $list = $tabs.find('.sg-dp-tablist').first();
+            if (!$list.length) return;
+            var $sel = $('<button type="button" class="sg-dp-tabsel" aria-expanded="false"><span class="sg-dp-tabsel-label"></span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>');
+            $list.before($sel);
+            function sync() {
+                var $active = $list.find('.sg-dp-tab.is-active').first();
+                $sel.find('.sg-dp-tabsel-label').html($active.find('span').first().html() || '');
+            }
+            sync();
+            $sel.on('click', function (e) {
+                e.stopPropagation();
+                var open = !$tabs.hasClass('is-menu-open');
+                $tabs.toggleClass('is-menu-open', open);
+                $sel.attr('aria-expanded', open ? 'true' : 'false');
+            });
+            $list.on('click', '.sg-dp-tab', function () {
+                setTimeout(sync, 0);
+                $tabs.removeClass('is-menu-open');
+                $sel.attr('aria-expanded', 'false');
+            });
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest($tabs).length) {
+                    $tabs.removeClass('is-menu-open');
+                    $sel.attr('aria-expanded', 'false');
+                }
+            });
+        });
+    });
 })(jQuery);
