@@ -403,7 +403,7 @@ if ( ! function_exists( 'sg_handle_contact' ) ) {
             wp_send_json_error( [ 'message' => __( 'Geçerli bir e-posta adresi giriniz.', 'seogezegeni' ) ] );
         }
 
-        $to      = get_option( 'admin_email' );
+        $to      = sg_form_recipient();
         $subject = sprintf( __( '[SEO Gezegeni] %s - İletişim Formu', 'seogezegeni' ), $name );
         $body    = sprintf(
             "Ad Soyad: %s\nE-posta: %s\nTelefon: %s\nŞirket: %s\nWeb: %s\nHizmet: %s\n\nMesaj:\n%s",
@@ -540,6 +540,12 @@ add_action( 'template_redirect', 'sg_redirect_portfolio_single_to_archive' );
 /* ============================================================
    AJAX: HERO TEKLIF FORM HANDLER
    ============================================================ */
+/** Form maillerinin alıcısı (Özelleştir > İletişim Bilgileri); boşsa yönetici e-postası. */
+function sg_form_recipient() {
+    $to = sanitize_email( (string) get_theme_mod( 'sg_form_recipient', '' ) );
+    return is_email( $to ) ? $to : get_option( 'admin_email' );
+}
+
 if ( ! function_exists( 'sg_get_quote_services' ) ) :
 function sg_get_quote_services() {
     return [
@@ -579,7 +585,7 @@ function sg_handle_quote_ajax() {
         }
     }
     $services_str = ! empty( $service_labels ) ? implode( ', ', $service_labels ) : '—';
-    $to      = get_option( 'admin_email' );
+    $to      = sg_form_recipient();
     $subject = sprintf( __( '[SEO Gezegeni] Yeni Teklif Talebi – %s', 'seogezegeni' ), $name );
     $body    = "İsim: $name\nTelefon: $phone\nE-posta: $email\nWebsite: $website\nHizmetler: $services_str";
     $headers = [ 'Content-Type: text/plain; charset=UTF-8', "Reply-To: $name <$email>" ];

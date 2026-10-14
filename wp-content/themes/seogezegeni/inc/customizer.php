@@ -48,6 +48,19 @@ function seogezegeni_customizer( WP_Customize_Manager $wp_customize ) {
         ]);
     }
 
+    /* Form bildirimlerinin gideceği adres */
+    $wp_customize->add_setting( 'sg_form_recipient', [
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_email',
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'sg_form_recipient', [
+        'label'       => __( 'Form Mailleri Gönderilecek Adres', 'seogezegeni' ),
+        'description' => __( 'Sitedeki tüm formlar bu adrese gelir. Boş bırakılırsa WordPress yönetici e-postası kullanılır. Gönderim, WP Mail SMTP ayarlarınız üzerinden yapılır.', 'seogezegeni' ),
+        'section'     => 'sg_contact_section',
+        'type'        => 'email',
+    ]);
+
 
     /* ============================================================
        BÖLÜM 2: Sosyal Medya
