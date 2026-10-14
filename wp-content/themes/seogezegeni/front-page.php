@@ -97,6 +97,7 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
                         <form class="sg-hero-quote-form" id="sgHeroQuoteForm" novalidate>
                             <?php wp_nonce_field( 'sg_quote_nonce', 'sg_quote_nonce_field' ); ?>
                             <input type="hidden" name="action" value="sg_quote">
+                            <?php sg_spam_fields(); ?>
 
                             <div class="sg-hq-field">
                                 <input type="text" name="sq_name"
@@ -146,7 +147,7 @@ $sg_hero_video_id  = sg_youtube_video_id_from_url( $sg_hero_video_url );
 
                             <button type="submit" class="sg-btn sg-btn-primary" style="width:100%;justify-content:center;margin-top:4px;">
                                 <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                                <?php _e( 'Teklif İste', 'seogezegeni' ); ?>
+                                <span class="sg-btn-label"><?php _e( 'Teklif İste', 'seogezegeni' ); ?></span>
                             </button>
                             <div id="sgHeroQuoteMsg" role="status" aria-live="polite"
                                  style="display:none;margin-top:10px;padding:10px 14px;border-radius:8px;font-size:.85rem;"></div>

@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 /* ============================================================
    CONSTANTS
    ============================================================ */
-define( 'SG_VER', '1.0.100' );
+define( 'SG_VER', '1.0.101' );
 define( 'SG_DIR',  get_template_directory() );
 define( 'SG_URI',  get_template_directory_uri() );
 
@@ -79,12 +79,15 @@ function seogezegeni_assets() {
     );
 
     /* ---- Bootstrap ---- */
-    wp_enqueue_style(
-        'sg-bootstrap',
-        SG_URI . '/assets/css/bootstrap.min.css',
-        [],
-        '5.3.0'
-    );
+    $sg_has_bootstrap_css = file_exists( SG_DIR . '/assets/css/bootstrap.min.css' );
+    if ( $sg_has_bootstrap_css ) {
+        wp_enqueue_style(
+            'sg-bootstrap',
+            SG_URI . '/assets/css/bootstrap.min.css',
+            [],
+            '5.3.0'
+        );
+    }
 
     /* ---- AOS (Animate on Scroll) ---- */
     wp_enqueue_style(
@@ -98,7 +101,7 @@ function seogezegeni_assets() {
     wp_enqueue_style(
         'seogezegeni-style',
         get_stylesheet_uri(),
-        [ 'sg-google-fonts', 'sg-fontawesome', 'sg-bootstrap', 'sg-aos' ],
+        array_filter( [ 'sg-google-fonts', 'sg-fontawesome', $sg_has_bootstrap_css ? 'sg-bootstrap' : '', 'sg-aos' ] ),
         SG_VER
     );
 
@@ -107,7 +110,7 @@ function seogezegeni_assets() {
         'sg-theme-css',
         SG_URI . '/assets/css/seogezegeni.css',
         [ 'seogezegeni-style' ],
-        SG_VER
+        SG_VER . '.' . filemtime( SG_DIR . '/assets/css/seogezegeni.css' )
     );
 
     /* ---- Swiper Slider ---- */
@@ -117,8 +120,10 @@ function seogezegeni_assets() {
     wp_enqueue_style( 'sg-fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.css', [], '5' );
 
     /* ---- Scripts ---- */
-    wp_enqueue_script( 'sg-bootstrap-js',
-        SG_URI . '/assets/js/bootstrap.bundle.min.js', [ 'jquery' ], '5.3.0', true );
+    if ( file_exists( SG_DIR . '/assets/js/bootstrap.bundle.min.js' ) ) {
+        wp_enqueue_script( 'sg-bootstrap-js',
+            SG_URI . '/assets/js/bootstrap.bundle.min.js', [ 'jquery' ], '5.3.0', true );
+    }
 
     wp_enqueue_script( 'sg-aos-js',
         'https://unpkg.com/aos@2.3.4/dist/aos.js', [], '2.3.4', true );
@@ -135,7 +140,7 @@ function seogezegeni_assets() {
     wp_enqueue_script( 'sg-main',
         SG_URI . '/assets/js/seogezegeni.js',
         [ 'jquery', 'sg-aos-js', 'sg-swiper-js', 'sg-fancybox-js', 'sg-sweetalert' ],
-        SG_VER,
+        SG_VER . '.' . filemtime( SG_DIR . '/assets/js/seogezegeni.js' ),
         true
     );
 
@@ -376,6 +381,62 @@ function sg_stats_sc( $atts ) {
 add_shortcode( 'sg_stats', 'sg_stats_sc' );
 
 /* ============================================================
+   FORM SPAM KORUMASI (honeypot + süre + içerik + IP limiti)
+   ============================================================ */
+function sg_spam_fields() {
+    $ts = time();
+    printf(
+        '<div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true"><label>%1$s<input type="text" name="sg_hp" value="" tabindex="-1" autocomplete="off"></label></div>' .
+        '<input type="hidden" name="sg_ts" value="%2$d"><input type="hidden" name="sg_tk" value="%3$s">',
+        esc_html__( 'Bu alanı boş bırakın', 'seogezegeni' ),
+        $ts,
+        esc_attr( wp_hash( 'sg_form_' . $ts ) )
+    );
+}
+
+/**
+ * Gönderim spam ise true döner. $texts: kullanıcının yazdığı serbest metin alanları.
+ */
+function sg_is_spam_submission( array $texts ) {
+    // 1) Honeypot: botlar doldurur, insanlar görmez.
+    if ( ! empty( $_POST['sg_hp'] ) ) {
+        return true;
+    }
+
+    // 2) Süre kontrolü: imzalı zaman damgası yok ya da form 3 sn'den hızlı gönderildiyse bot.
+    $ts = isset( $_POST['sg_ts'] ) ? (int) $_POST['sg_ts'] : 0;
+    $tk = isset( $_POST['sg_tk'] ) ? sanitize_text_field( wp_unslash( $_POST['sg_tk'] ) ) : '';
+    if ( ! $ts || ! hash_equals( wp_hash( 'sg_form_' . $ts ), $tk ) || ( time() - $ts ) < 3 ) {
+        return true;
+    }
+
+    $all = implode( "\n", $texts );
+
+    // 3) Türkçe site: Kiril / CJK / Arapça ağırlıklı içerik.
+    $letters = preg_match_all( '/\p{L}/u', $all );
+    $foreign = preg_match_all( '/[\p{Cyrillic}\p{Han}\p{Hiragana}\p{Katakana}\p{Hangul}\p{Arabic}]/u', $all );
+    if ( $letters && ( $foreign / $letters ) > 0.2 ) {
+        return true;
+    }
+
+    // 4) Mesajda 2'den fazla link.
+    if ( preg_match_all( '#https?://|www\.#i', $all ) > 2 ) {
+        return true;
+    }
+
+    // 5) Aynı IP'den saatte en fazla 5 gönderim.
+    $ip  = isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '';
+    $key = 'sg_form_rl_' . md5( $ip );
+    $cnt = (int) get_transient( $key );
+    if ( $cnt >= 5 ) {
+        return true;
+    }
+    set_transient( $key, $cnt + 1, HOUR_IN_SECONDS );
+
+    return false;
+}
+
+/* ============================================================
    AJAX: Native contact form handler
    ============================================================ */
 if ( ! function_exists( 'sg_handle_contact' ) ) {
@@ -397,6 +458,10 @@ if ( ! function_exists( 'sg_handle_contact' ) ) {
 
         if ( ! $name || ! $email || ! $message ) {
             wp_send_json_error( [ 'message' => __( 'Lütfen zorunlu alanları doldurun.', 'seogezegeni' ) ] );
+        }
+
+        if ( sg_is_spam_submission( [ $name, $company, $message ] ) ) {
+            wp_send_json_error( [ 'message' => __( 'Mesajınız gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'seogezegeni' ) ] );
         }
 
         if ( ! is_email( $email ) ) {
@@ -575,6 +640,9 @@ function sg_handle_quote_ajax() {
     }
     if ( ! is_email( $email ) ) {
         wp_send_json_error( [ 'message' => __( 'Geçerli bir e-posta adresi giriniz.', 'seogezegeni' ) ] );
+    }
+    if ( sg_is_spam_submission( [ $name ] ) ) {
+        wp_send_json_error( [ 'message' => __( 'Talebiniz gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'seogezegeni' ) ] );
     }
 
     $service_options = sg_get_quote_services();

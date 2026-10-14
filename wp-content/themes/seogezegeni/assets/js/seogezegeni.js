@@ -476,6 +476,8 @@
                 var $btn = $form.find('[type="submit"]');
                 $btn.prop('disabled', true);
                 $btn.find('i').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin');
+                var $label = $btn.find('.sg-btn-label');
+                $label.data('orig', $label.text()).text('Gönderiliyor...');
 
                 $.post(sgData.ajaxUrl, data)
                 .done(function (res) {
@@ -498,6 +500,8 @@
                 .always(function () {
                     $btn.prop('disabled', false);
                     $btn.find('i').removeClass('fa-spinner fa-spin').addClass('fa-paper-plane');
+                    var $label = $btn.find('.sg-btn-label');
+                    if ($label.data('orig')) $label.text($label.data('orig'));
                 });
             });
         },
@@ -521,6 +525,8 @@
                 var $btn = $form.find('[type="submit"]');
                 $btn.prop('disabled', true);
                 $btn.find('i').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin');
+                var $label = $btn.find('.sg-btn-label');
+                $label.data('orig', $label.text()).text('Gönderiliyor...');
 
                 $.post(sgData.ajaxUrl, data)
                 .done(function (res) {
@@ -542,6 +548,8 @@
                 .always(function () {
                     $btn.prop('disabled', false);
                     $btn.find('i').removeClass('fa-spinner fa-spin').addClass('fa-paper-plane');
+                    var $label = $btn.find('.sg-btn-label');
+                    if ($label.data('orig')) $label.text($label.data('orig'));
                 });
             });
         },

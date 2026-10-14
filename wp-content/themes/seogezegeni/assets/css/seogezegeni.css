@@ -1677,7 +1677,7 @@ html.sg-theme-light .sg-service-card-cta .sg-service-icon,
 .sg-form-services-dropdown.is-open .sg-hq-dropdown-btn {
     border-color: var(--sg-accent);
     color: var(--sg-text-primary);
-    background: #fff;
+    background: var(--sg-bg-secondary);
 }
 
 .sg-form-services-dropdown .sg-hq-dropdown-arrow {
@@ -1685,9 +1685,9 @@ html.sg-theme-light .sg-service-card-cta .sg-service-icon,
 }
 
 .sg-form-services-dropdown .sg-hq-dropdown-panel {
-    background: #fff;
+    background: var(--sg-bg-secondary);
     border-color: var(--sg-border-light);
-    box-shadow: 0 16px 36px rgba(0,0,0,.12);
+    box-shadow: 0 16px 36px rgba(0,0,0,.35);
 }
 
 .sg-form-services-dropdown.is-open .sg-hq-dropdown-panel {
@@ -1695,7 +1695,7 @@ html.sg-theme-light .sg-service-card-cta .sg-service-icon,
 }
 
 .sg-form-services-dropdown .sg-hq-option {
-    color: var(--sg-text-secondary);
+    color: var(--sg-text-primary);
     font-weight: 600;
     padding: 6px 12px !important;
     min-height: 0 !important;
@@ -1709,8 +1709,8 @@ html.sg-theme-light .sg-service-card-cta .sg-service-icon,
 }
 
 .sg-form-services-dropdown .sg-hq-option-check {
-    border-color: rgba(23,31,38,.28);
-    background: #fff;
+    border-color: var(--sg-text-secondary);
+    background: transparent;
 }
 
 .sg-form-services-dropdown .sg-hq-option:has(.sg-hq-option-cb:checked) {

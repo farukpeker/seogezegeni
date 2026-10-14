@@ -152,6 +152,7 @@ $channels = [
                         <form class="sg-native-contact-form" id="sgContactForm" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post" novalidate>
                             <?php wp_nonce_field( 'sg_contact_nonce', 'sg_contact_nonce_field' ); ?>
                             <input type="hidden" name="action" value="sg_contact">
+                            <?php sg_spam_fields(); ?>
 
                             <div class="sg-form-row">
                                 <div class="sg-form-group">
@@ -212,7 +213,7 @@ $channels = [
 
                             <button type="submit" class="sg-btn sg-btn-primary w-full">
                                 <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-                                <?php esc_html_e( 'Mesaj Gönder', 'seogezegeni' ); ?>
+                                <span class="sg-btn-label"><?php esc_html_e( 'Mesaj Gönder', 'seogezegeni' ); ?></span>
                             </button>
 
                             <div id="sgContactMsg" role="status" aria-live="polite"></div>
