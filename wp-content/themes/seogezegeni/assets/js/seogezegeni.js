@@ -480,6 +480,11 @@
                 $.post(sgData.ajaxUrl, data)
                 .done(function (res) {
                     if (res.success) {
+                        var go = res.data.redirect || sgData.thanksUrl;
+                        if (go) {
+                            window.location.href = go;
+                            return;
+                        }
                         notifySent($msg, res);
                         $form[0].reset();
                     } else {

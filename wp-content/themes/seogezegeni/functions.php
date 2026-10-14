@@ -585,7 +585,10 @@ function sg_handle_quote_ajax() {
     $headers = [ 'Content-Type: text/plain; charset=UTF-8', "Reply-To: $name <$email>" ];
 
     if ( wp_mail( $to, $subject, $body, $headers ) ) {
-        wp_send_json_success( [ 'message' => __( 'Talebiniz alındı! En kısa sürede size dönüş yapacağız.', 'seogezegeni' ) ] );
+        wp_send_json_success( [
+            'message'  => __( 'Talebiniz alındı! En kısa sürede size dönüş yapacağız.', 'seogezegeni' ),
+            'redirect' => sg_thanks_url(),
+        ] );
     } else {
         wp_send_json_error( [ 'message' => __( 'Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'seogezegeni' ) ] );
     }
