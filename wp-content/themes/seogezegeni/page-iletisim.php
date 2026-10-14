@@ -19,31 +19,12 @@ $contact_forms  = function_exists( 'wpcf7' ) ? get_posts( [
     'post_status'    => 'publish',
 ] ) : [];
 
-$offices = [
-    [
-        'city'    => __( 'İzmir Ofis', 'seogezegeni' ),
-        'icon'    => 'fa-solid fa-location-dot',
-        'phone'   => '0232 344 22 72',
-        'mobile'  => $mobile_phone,
-        'email'   => $email,
-        'address' => __( 'Mansuroğlu Mah. 1593/1 Sk. No:10, İnce Plaza, K:7, D:72, 35535, Bayraklı/İzmir', 'seogezegeni' ),
-        'map'     => 'https://www.google.com/maps/search/?api=1&query=Mansuroglu%20Mah.%201593%2F1%20Sk.%20No%3A10%20Ince%20Plaza%20Bayrakli%20Izmir',
-    ],
-    [
-        'city'    => __( 'İstanbul Ofis', 'seogezegeni' ),
-        'icon'    => 'fa-solid fa-building',
-        'phone'   => '0212 909 13 08',
-        'mobile'  => '0850 302 04 94',
-        'email'   => $email,
-        'address' => __( 'Maslak 42 Kolektif House - Maslak Mah. AOS 55. Sk. 42 Maslak Sit. B Blok, No: 4/542, Sarıyer/İstanbul', 'seogezegeni' ),
-        'map'     => 'https://www.google.com/maps/search/?api=1&query=Maslak%2042%20Kolektif%20House%20Sariyer%20Istanbul',
-    ],
-];
+extract( sg_contact_content( get_the_ID() ) );
 
 $channels = [
     [ 'fa-solid fa-phone', __( 'Telefon', 'seogezegeni' ), $mobile_phone, 'tel:' . preg_replace( '/\D/', '', $mobile_phone ) ],
     [ 'fa-regular fa-envelope', __( 'E-posta', 'seogezegeni' ), $email, 'mailto:' . antispambot( $email ) ],
-    [ 'fa-brands fa-whatsapp', __( 'WhatsApp', 'seogezegeni' ), __( 'Teklif ve analiz talepleri', 'seogezegeni' ), 'https://api.whatsapp.com/send?phone=905551626211' ],
+    [ 'fa-brands fa-whatsapp', __( 'WhatsApp', 'seogezegeni' ), $wa_text, 'https://api.whatsapp.com/send?phone=' . preg_replace( '/\D/', '', $wa_phone ) ],
 ];
 ?>
 
@@ -56,14 +37,14 @@ $channels = [
                     <div class="sg-contact-hero-copy" data-sg-reveal="left">
                         <span class="sg-hero-badge">
                             <i class="fa-regular fa-paper-plane" aria-hidden="true"></i>
-                            <?php esc_html_e( 'Çekinmeden Bize Ulaşabilirsiniz', 'seogezegeni' ); ?>
+                            <?php echo esc_html( $hero_badge ); ?>
                         </span>
                         <h1 id="contact-page-heading">
-                            <?php esc_html_e( 'İletişim', 'seogezegeni' ); ?>
-                            <span><?php esc_html_e( 'İzmir ve İstanbul Ofislerimiz', 'seogezegeni' ); ?></span>
+                            <?php echo esc_html( $hero_title ); ?>
+                            <span><?php echo esc_html( $hero_accent ); ?></span>
                         </h1>
                         <p>
-                            <?php esc_html_e( 'Sorularınızı sormak veya teklif almak için iletişim formuna yazabilir, mail atabilir ya da doğrudan bizi telefondan arayabilirsiniz.', 'seogezegeni' ); ?>
+                            <?php echo esc_html( $hero_text ); ?>
                         </p>
                     </div>
 
@@ -91,14 +72,16 @@ $channels = [
             <?php
             sg_section_head(
                 __( 'Ofislerimiz', 'seogezegeni' ),
-                __( 'Size En Yakın <span class="text-accent">SEO Gezegeni Ofisi</span>', 'seogezegeni' ),
-                __( 'İzmir ve İstanbul ofislerimizden dijital pazarlama ihtiyaçlarınız için destek sağlıyoruz.', 'seogezegeni' ),
+                sg_pf_heading( $h_offices ),
+                $offices_lead,
                 true
             );
             ?>
 
             <div class="sg-contact-office-grid">
-                <?php foreach ( $offices as $index => $office ) : ?>
+                <?php foreach ( $offices as $index => $office ) :
+                    $office_email = ! empty( $office['email'] ) ? $office['email'] : $email;
+                ?>
                     <article class="sg-contact-office-card" data-sg-reveal data-delay="<?php echo esc_attr( $index * 120 ); ?>">
                         <div class="sg-contact-office-head">
                             <div class="sg-contact-office-icon" aria-hidden="true">
@@ -116,9 +99,9 @@ $channels = [
                                 <i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i>
                                 <?php echo esc_html( $office['mobile'] ); ?>
                             </a>
-                            <a href="mailto:<?php echo esc_attr( antispambot( $office['email'] ) ); ?>">
+                            <a href="mailto:<?php echo esc_attr( antispambot( $office_email ) ); ?>">
                                 <i class="fa-regular fa-envelope" aria-hidden="true"></i>
-                                <?php echo esc_html( antispambot( $office['email'] ) ); ?>
+                                <?php echo esc_html( antispambot( $office_email ) ); ?>
                             </a>
                             <p>
                                 <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
@@ -143,8 +126,8 @@ $channels = [
                     <?php
                     sg_section_head(
                         __( 'Bizimle İletişime Geçin', 'seogezegeni' ),
-                        __( 'Bize Yazın, En Kısa Sürede <span class="text-accent">Dönüş Yapalım</span>', 'seogezegeni' ),
-                        __( 'Ücretsiz analiz yapmak veya teklif vermek bizim işimizin bir parçasıdır. Projenizi ve hedeflerinizi bizimle paylaşın.', 'seogezegeni' )
+                        sg_pf_heading( $h_form ),
+                        $form_lead
                     );
                     $map_url = sg_option( 'sg_map_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3124.5637428195546!2d27.182291599999996!3d38.4515446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b963fc0467457f%3A0xbac51dac81878446!2sSEO%20GEZEGEN%C4%B0%20-%20Dijital%20Pazarlama%20Ajans%C4%B1%20%7C%20%C4%B0zmir!5e0!3m2!1str!2str!4v1782479633402!5m2!1str!2str' );
                     ?>
@@ -160,8 +143,8 @@ $channels = [
                 </div>
 
                 <div class="sg-contact-form-wrap" data-sg-reveal="right">
-                    <h2 id="contact-form-heading"><?php esc_html_e( 'Teklif ve Analiz Formu', 'seogezegeni' ); ?></h2>
-                    <p><?php esc_html_e( 'Formu doldurun, en kısa sürede sizinle iletişime geçelim.', 'seogezegeni' ); ?></p>
+                    <h2 id="contact-form-heading"><?php echo esc_html( $form_title ); ?></h2>
+                    <p><?php echo esc_html( $form_text ); ?></p>
 
                     <?php if ( $contact_forms ) : ?>
                         <?php echo do_shortcode( '[contact-form-7 id="' . esc_attr( $contact_forms[0]->ID ) . '" title="' . esc_attr( $contact_forms[0]->post_title ) . '"]' ); ?>

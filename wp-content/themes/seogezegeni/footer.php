@@ -45,13 +45,6 @@
                                 'label' => __( 'DMCA Protected', 'seogezegeni' ),
                                 'class' => 'sg-footer-badge-small',
                             ],
-                            [
-                                'url'   => sg_option( 'sg_credit_card_url', home_url( '/kredi-karti-ile-odeme/' ) ),
-                                'image' => '',
-                                'icon'  => 'fa-regular fa-credit-card',
-                                'label' => __( 'Kredi Kartı ile Ödeme', 'seogezegeni' ),
-                                'class' => 'sg-footer-badge-small',
-                            ],
                         ];
                         ?>
                         <div class="sg-footer-badges" aria-label="<?php esc_attr_e( 'Footer rozetleri', 'seogezegeni' ); ?>">
@@ -119,7 +112,6 @@
                                 home_url('/google-meta-reklamlari/') => __('SEM / Google Ads', 'seogezegeni'),
                                 home_url('/sosyal-medya-yonetimi/') => __('Sosyal Medya Yönetimi', 'seogezegeni'),
                                 home_url('/web-tasarim-ve-yazilim/') => __('Web Tasarım',       'seogezegeni'),
-                                home_url('/icerik-pazarlama/') => __('İçerik Pazarlaması',    'seogezegeni'),
                                 home_url('/360-dijital-pazarlama/') => __('Dijital Reklam',    'seogezegeni'),
                             ];
                             foreach ($services as $url => $label) {
@@ -249,9 +241,6 @@
                 <nav class="sg-footer-legal" aria-label="<?php esc_attr_e( 'Yasal bağlantılar', 'seogezegeni' ); ?>">
                     <a href="<?php echo esc_url( home_url('/gizlilik-ve-kullanim-kosullari/') ); ?>">
                         <?php _e( 'Gizlilik ve Kullanım Koşulları', 'seogezegeni' ); ?>
-                    </a>
-                    <a href="<?php echo esc_url( sg_option( 'sg_credit_card_url', home_url( '/kredi-karti-ile-odeme/' ) ) ); ?>" target="_blank" rel="noopener noreferrer">
-                        <?php _e( 'Kredi Kartı ile Ödeme', 'seogezegeni' ); ?>
                     </a>
                     <a href="<?php echo esc_url( home_url('/cerez-politikasi/') ); ?>">
                         <?php _e( 'Çerez Politikası', 'seogezegeni' ); ?>

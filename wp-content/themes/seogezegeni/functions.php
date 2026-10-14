@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 /* ============================================================
    CONSTANTS
    ============================================================ */
-define( 'SG_VER', '1.0.98' );
+define( 'SG_VER', '1.0.100' );
 define( 'SG_DIR',  get_template_directory() );
 define( 'SG_URI',  get_template_directory_uri() );
 
@@ -129,9 +129,12 @@ function seogezegeni_assets() {
     wp_enqueue_script( 'sg-fancybox-js',
         'https://cdn.jsdelivr.net/npm/@fancyapps/ui@5/dist/fancybox/fancybox.umd.js', [], '5', true );
 
+    wp_enqueue_script( 'sg-sweetalert',
+        'https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js', [], '11.14.5', true );
+
     wp_enqueue_script( 'sg-main',
         SG_URI . '/assets/js/seogezegeni.js',
-        [ 'jquery', 'sg-aos-js', 'sg-swiper-js', 'sg-fancybox-js' ],
+        [ 'jquery', 'sg-aos-js', 'sg-swiper-js', 'sg-fancybox-js', 'sg-sweetalert' ],
         SG_VER,
         true
     );
@@ -141,6 +144,7 @@ function seogezegeni_assets() {
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
         'nonce'   => wp_create_nonce( 'sg_nonce' ),
         'homeUrl' => home_url(),
+        'thanksUrl' => sg_thanks_url(),
     ]);
 
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -277,6 +281,9 @@ require SG_DIR . '/inc/dijital-page.php';
 require SG_DIR . '/inc/gm-page.php';
 require SG_DIR . '/inc/sm-page.php';
 require SG_DIR . '/inc/wb-page.php';
+require SG_DIR . '/inc/about-page.php';
+require SG_DIR . '/inc/contact-page.php';
+require SG_DIR . '/inc/thanks-page.php';
 
 /* ============================================================
    OUTPUT BUFFERING
@@ -414,7 +421,10 @@ if ( ! function_exists( 'sg_handle_contact' ) ) {
         ];
 
         if ( wp_mail( $to, $subject, $body, $headers ) ) {
-            wp_send_json_success( [ 'message' => __( 'Mesajınız iletildi. En kısa sürede dönüş yapacağız!', 'seogezegeni' ) ] );
+            wp_send_json_success( [
+                'message'  => __( 'Mesajınız iletildi. En kısa sürede dönüş yapacağız!', 'seogezegeni' ),
+                'redirect' => sg_thanks_url(),
+            ] );
         }
 
         wp_send_json_error( [ 'message' => __( 'Mesaj gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'seogezegeni' ) ] );
@@ -572,7 +582,7 @@ function sg_handle_quote_ajax() {
     $to      = get_option( 'admin_email' );
     $subject = sprintf( __( '[SEO Gezegeni] Yeni Teklif Talebi – %s', 'seogezegeni' ), $name );
     $body    = "İsim: $name\nTelefon: $phone\nE-posta: $email\nWebsite: $website\nHizmetler: $services_str";
-    $headers = [ 'Content-Type: text/plain; charset=UTF-8', "From: $name <$email>" ];
+    $headers = [ 'Content-Type: text/plain; charset=UTF-8', "Reply-To: $name <$email>" ];
 
     if ( wp_mail( $to, $subject, $body, $headers ) ) {
         wp_send_json_success( [ 'message' => __( 'Talebiniz alındı! En kısa sürede size dönüş yapacağız.', 'seogezegeni' ) ] );

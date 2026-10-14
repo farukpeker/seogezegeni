@@ -35,6 +35,52 @@ Header set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 # END Security Hardening
 
+# BEGIN SEO Gezegeni 301 Redirects
+Redirect 301 /dijital-pazarlama/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /internet-reklamlari/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /e-ticaret-reklamlari/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /programatik-reklamcilik/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /donusum-orani-optimizasyonu/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /online-itibar-yonetimi/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /sms-pazarlama/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /toplu-mail-gonderimi-mailing/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /yandex-direct-reklamlari/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /twitter-reklamlari/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /linkedin-reklamlari/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /icerik-pazarlama-stratejisi/ https://seogezegeni.com/360-dijital-pazarlama/
+Redirect 301 /sosyal-medya-pazarlamasi/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /facebook-reklamlari/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /instagram-reklamlari/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /google-reklamlari/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /adwords-reklamlari/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /google-ads-danismanligi/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /youtube-reklamlari/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /gmail-reklamlari/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /reklam-banner-tasarimi/ https://seogezegeni.com/google-meta-reklamlari/
+Redirect 301 /ingilizce-seo/ https://seogezegeni.com/seo/
+Redirect 301 /lokal-seo/ https://seogezegeni.com/seo/
+Redirect 301 /kurumsal-seo/ https://seogezegeni.com/seo/
+Redirect 301 /e-ticaret-sitesi-seo/ https://seogezegeni.com/seo/
+Redirect 301 /wordpress-seo/ https://seogezegeni.com/seo/
+Redirect 301 /google-analytics-raporlama/ https://seogezegeni.com/seo/
+Redirect 301 /seo-egitimi-ve-kursu/ https://seogezegeni.com/seo/
+Redirect 301 /seo-paketleri/ https://seogezegeni.com/seo/
+Redirect 301 /seo-puaninizi-kontrol-edin/ https://seogezegeni.com/seo/
+Redirect 301 /ucretsiz-seo-analizi/ https://seogezegeni.com/seo/
+Redirect 301 /sosyal-medya-stratejisi-ve-yonetimi/ https://seogezegeni.com/sosyal-medya-yonetimi/
+Redirect 301 /facebook-hesap-yonetimi/ https://seogezegeni.com/sosyal-medya-yonetimi/
+Redirect 301 /instagram-hesap-yonetimi/ https://seogezegeni.com/sosyal-medya-yonetimi/
+Redirect 301 /sosyal-medya-tasarimi/ https://seogezegeni.com/sosyal-medya-yonetimi/
+Redirect 301 /web-tasarim/ https://seogezegeni.com/web-tasarim-ve-yazilim/
+Redirect 301 /kurumsal-web-tasarim/ https://seogezegeni.com/web-tasarim-ve-yazilim/
+Redirect 301 /seo-uyumlu-web-tasarim/ https://seogezegeni.com/web-tasarim-ve-yazilim/
+Redirect 301 /mobil-uyumlu-responsive-web-tasarim/ https://seogezegeni.com/web-tasarim-ve-yazilim/
+Redirect 301 /landing-pages-tasarim/ https://seogezegeni.com/web-tasarim-ve-yazilim/
+Redirect 301 /e-ticaret-sitesi-kurulumu/ https://seogezegeni.com/web-tasarim-ve-yazilim/
+Redirect 301 /wordpress-site-kurma/ https://seogezegeni.com/web-tasarim-ve-yazilim/
+Redirect 301 /hakkimizda/ https://seogezegeni.com/biz-kimiz/
+# END SEO Gezegeni 301 Redirects
+
 # BEGIN WordPress
 # "BEGIN WordPress" ve "END WordPress" arasındaki yönergeler (satırlar)
 # dinamik olarak oluşturulmuştur ve yalnızca WordPress süzgeçleri ile düzenlenmelidir.

@@ -23,41 +23,26 @@ if ( is_category() || is_tag() || is_tax() ) {
 <main id="sg-main" role="main">
 
     <!-- Page Hero -->
-    <div class="sg-page-hero">
-        <div class="container">
-            <div class="sg-page-hero-inner">
-                <h1>
-                    <?php
-                    if ( is_category() ) {
-                        echo '<i class="fa-regular fa-folder" style="color:var(--sg-accent);margin-right:10px;" aria-hidden="true"></i>';
-                        single_cat_title();
-                    } elseif ( is_tag() ) {
-                        echo '<i class="fa-solid fa-tag" style="color:var(--sg-accent);margin-right:10px;" aria-hidden="true"></i>';
-                        single_tag_title();
-                    } elseif ( is_author() ) {
-                        echo '<i class="fa-regular fa-user" style="color:var(--sg-accent);margin-right:10px;" aria-hidden="true"></i>';
-                        the_author();
-                    } elseif ( is_year() ) {
-                        echo '<i class="fa-regular fa-calendar" style="color:var(--sg-accent);margin-right:10px;" aria-hidden="true"></i>';
-                        echo esc_html( get_the_date( 'Y' ) );
-                    } elseif ( is_month() ) {
-                        echo '<i class="fa-regular fa-calendar" style="color:var(--sg-accent);margin-right:10px;" aria-hidden="true"></i>';
-                        echo esc_html( get_the_date( 'F Y' ) );
-                    } elseif ( is_post_type_archive( 'portfolio' ) ) {
-                        echo '<i class="fa-solid fa-briefcase" style="color:var(--sg-accent);margin-right:10px;" aria-hidden="true"></i>';
-                        _e( 'Referanslar', 'seogezegeni' );
-                    } else {
-                        _e( 'Arşiv', 'seogezegeni' );
-                    }
-                    ?>
-                </h1>
-
-                <?php if ( $archive_desc ) : ?>
-                    <p style="margin-top:12px;max-width:600px;"><?php echo wp_kses_post( $archive_desc ); ?></p>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
+    <?php
+    global $wp_query;
+    $sg_icon = 'fa-folder-open';
+    if ( is_tag() ) { $sg_icon = 'fa-tag'; }
+    elseif ( is_author() ) { $sg_icon = 'fa-user'; }
+    elseif ( is_date() ) { $sg_icon = 'fa-calendar'; }
+    $sg_badge = is_category() ? __( 'Kategori', 'seogezegeni' ) : ( is_tag() ? __( 'Etiket', 'seogezegeni' ) : ( is_author() ? __( 'Yazar', 'seogezegeni' ) : __( 'Arşiv', 'seogezegeni' ) ) );
+    $sg_desc  = $archive_desc ? wp_strip_all_tags( $archive_desc ) : sprintf( __( '%s ile ilgili güncel yazılar, rehberler ve pratik notlar.', 'seogezegeni' ), $archive_title );
+    get_template_part( 'template-parts/blog-hero', null, [
+        'badge' => $sg_badge,
+        'icon'  => $sg_icon,
+        'title' => $archive_title,
+        'desc'  => $sg_desc,
+        'stats' => [
+            [ (int) $wp_query->found_posts, __( 'Yazı', 'seogezegeni' ) ],
+            [ (int) wp_count_terms( [ 'taxonomy' => 'category', 'hide_empty' => true ] ), __( 'Kategori', 'seogezegeni' ) ],
+            [ '2017', __( 'Yayında', 'seogezegeni' ) ],
+        ],
+    ] );
+    ?>
 
     <!-- Breadcrumb Bar -->
     <div class="sg-breadcrumb-bar">

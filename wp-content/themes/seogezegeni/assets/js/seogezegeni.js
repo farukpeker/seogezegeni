@@ -465,8 +465,13 @@
             var $msg  = $('#sgHeroQuoteMsg');
             if (!$form.length) return;
 
+            $form.on('input change', 'input, textarea', function () {
+                $(this).removeClass('is-invalid').removeAttr('aria-invalid');
+            });
+
             $form.on('submit', function (e) {
                 e.preventDefault();
+                $form.find('.is-invalid').removeClass('is-invalid').removeAttr('aria-invalid');
                 var data = $form.serialize();
                 var $btn = $form.find('[type="submit"]');
                 $btn.prop('disabled', true);
@@ -475,10 +480,11 @@
                 $.post(sgData.ajaxUrl, data)
                 .done(function (res) {
                     if (res.success) {
-                        showMsg($msg, 'success', res.data.message);
+                        notifySent($msg, res);
                         $form[0].reset();
                     } else {
                         showMsg($msg, 'error', res.data.message);
+                        markInvalid($form);
                     }
                 })
                 .fail(function () {
@@ -499,8 +505,13 @@
             var $msg  = $('#sgContactMsg');
             if (!$form.length) return;
 
+            $form.on('input change', 'input, textarea', function () {
+                $(this).removeClass('is-invalid').removeAttr('aria-invalid');
+            });
+
             $form.on('submit', function (e) {
                 e.preventDefault();
+                $form.find('.is-invalid').removeClass('is-invalid').removeAttr('aria-invalid');
                 var data = $form.serialize();
                 var $btn = $form.find('[type="submit"]');
                 $btn.prop('disabled', true);
@@ -509,10 +520,15 @@
                 $.post(sgData.ajaxUrl, data)
                 .done(function (res) {
                     if (res.success) {
+                        if (res.data.redirect) {
+                            window.location.href = res.data.redirect;
+                            return;
+                        }
                         showMsg($msg, 'success', res.data.message);
                         $form[0].reset();
                     } else {
                         showMsg($msg, 'error', res.data.message);
+                        markInvalid($form);
                     }
                 })
                 .fail(function () {
@@ -603,6 +619,39 @@
     /* ============================================================
        HELPER: show message
        ============================================================ */
+    /* Hatalı / boş zorunlu alanları kırmızı kenarlıkla işaretle */
+    function markInvalid($form) {
+        $form.find('input[required], textarea[required]').each(function () {
+            var $i = $(this), v = $.trim($i.val());
+            var bad = !v || ($i.attr('type') === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+            if (bad) $i.addClass('is-invalid').attr('aria-invalid', 'true');
+        });
+        $form.find('.is-invalid').first().trigger('focus');
+    }
+
+    /* Contact Form 7 kuruluysa: başarılı gönderimde teşekkür sayfasına yönlendir */
+    document.addEventListener('wpcf7mailsent', function () {
+        if (sgData.thanksUrl) window.location.href = sgData.thanksUrl;
+    });
+
+    /* Başarılı gönderimde SweetAlert2 (yüklenemezse satır içi mesaj) */
+    function notifySent($el, res) {
+        if (window.Swal) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Teşekkürler!',
+                text: res.data.message,
+                confirmButtonText: 'Tamam',
+                confirmButtonColor: '#a8e63d',
+                background: '#0f172a',
+                color: '#ffffff'
+            });
+            $el.hide().text('');
+        } else {
+            showMsg($el, 'success', res.data.message);
+        }
+    }
+
     function showMsg($el, type, text) {
         var bg = type === 'success'
             ? 'rgba(168,230,61,.1)'

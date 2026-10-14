@@ -287,6 +287,11 @@ function seogezegeni_default_menu() {
     $a = ( $current === home_url( '/referanslar/' ) ) ? ' class="current-menu-item"' : '';
     echo '<li' . $a . ' role="none"><a href="' . esc_url( home_url( '/referanslar/' ) ) . '" role="menuitem">' . __( 'Referanslar', 'seogezegeni' ) . '</a></li>';
 
+    // Blog
+    $blog_url = get_option( 'page_for_posts' ) ? get_permalink( (int) get_option( 'page_for_posts' ) ) : home_url( '/blog/' );
+    $a = ( is_home() || is_singular( 'post' ) || is_category() ) ? ' class="current-menu-item"' : '';
+    echo '<li' . $a . ' role="none"><a href="' . esc_url( $blog_url ) . '" role="menuitem">' . __( 'Blog', 'seogezegeni' ) . '</a></li>';
+
     // İletişim
     $a = ( $current === home_url( '/iletisim/' ) ) ? ' class="current-menu-item"' : '';
     echo '<li' . $a . ' role="none"><a href="' . esc_url( home_url( '/iletisim/' ) ) . '" role="menuitem">' . __( 'İletişim', 'seogezegeni' ) . '</a></li>';
@@ -315,6 +320,7 @@ function seogezegeni_default_mobile_menu() {
     echo '</ul>';
     echo '</li>';
     echo '<li><a href="' . esc_url( home_url( '/referanslar/' ) ) . '">' . __( 'Referanslar', 'seogezegeni' ) . '</a></li>';
+    echo '<li><a href="' . esc_url( get_option( 'page_for_posts' ) ? get_permalink( (int) get_option( 'page_for_posts' ) ) : home_url( '/blog/' ) ) . '">' . __( 'Blog', 'seogezegeni' ) . '</a></li>';
     echo '<li><a href="' . esc_url( home_url( '/iletisim/' ) ) . '">' . __( 'İletişim', 'seogezegeni' ) . '</a></li>';
     echo '</ul>';
 }

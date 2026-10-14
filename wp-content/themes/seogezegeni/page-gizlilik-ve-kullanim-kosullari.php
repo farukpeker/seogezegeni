@@ -8,23 +8,7 @@ if ( have_posts() ) {
     the_post();
 }
 
-$legal_items = [
-    [
-        'icon'  => 'fa-solid fa-shield-halved',
-        'title' => __( 'Veri Güvenliği', 'seogezegeni' ),
-        'desc'  => __( 'Kişisel verilerin korunmasına ve güvenli işlenmesine önem veriyoruz.', 'seogezegeni' ),
-    ],
-    [
-        'icon'  => 'fa-solid fa-cookie-bite',
-        'title' => __( 'Çerez Kullanımı', 'seogezegeni' ),
-        'desc'  => __( 'Site deneyimi ve reklam ölçümleme süreçlerinde çerezlerden yararlanıyoruz.', 'seogezegeni' ),
-    ],
-    [
-        'icon'  => 'fa-solid fa-file-signature',
-        'title' => __( 'Kullanım Şartları', 'seogezegeni' ),
-        'desc'  => __( 'Web sitemizi kullanırken geçerli olan temel koşulları burada topladık.', 'seogezegeni' ),
-    ],
-];
+extract( sg_legal_content( get_the_ID() ) );
 ?>
 
 <main id="sg-main" class="sg-legal-page" role="main">
@@ -36,11 +20,11 @@ $legal_items = [
                     <div class="sg-legal-hero-copy" data-sg-reveal="left">
                         <span class="sg-hero-badge">
                             <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
-                            <?php esc_html_e( 'Yasal Bilgilendirme', 'seogezegeni' ); ?>
+                            <?php echo esc_html( $hero_badge ); ?>
                         </span>
                         <h1 id="legal-page-heading"><?php the_title(); ?></h1>
                         <p>
-                            <?php esc_html_e( 'SEO Gezegeni web sitesini kullanırken kişisel veriler, çerezler ve hizmet koşulları hakkında bilmeniz gerekenleri tek sayfada topladık.', 'seogezegeni' ); ?>
+                            <?php echo esc_html( $hero_text ); ?>
                         </p>
                     </div>
 

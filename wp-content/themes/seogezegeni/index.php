@@ -8,19 +8,22 @@ get_header();
 <main id="sg-main" role="main">
 
     <!-- Page Hero -->
-    <div class="sg-page-hero">
-        <div class="container">
-            <div class="sg-page-hero-inner">
-                <h1><?php
-                    if ( is_home() && ! is_front_page() ) {
-                        single_post_title();
-                    } else {
-                        _e( 'Blog', 'seogezegeni' );
-                    }
-                ?></h1>
-            </div>
-        </div>
-    </div>
+    <?php
+    $sg_post_count = (int) wp_count_posts()->publish;
+    $sg_cat_count  = (int) wp_count_terms( [ 'taxonomy' => 'category', 'hide_empty' => true ] );
+    $sg_hero_title = ( is_home() && ! is_front_page() ) ? single_post_title( '', false ) : __( 'Blog', 'seogezegeni' );
+    get_template_part( 'template-parts/blog-hero', null, [
+        'badge'  => __( 'SEO Gezegeni Blog', 'seogezegeni' ),
+        'title'  => $sg_hero_title,
+        'accent' => __( 'Rehberler ve Notlar', 'seogezegeni' ),
+        'desc'   => __( 'SEO, sosyal medya, online reklamcılık ve web tasarım üzerine güncel stratejiler, pratik rehberler ve dijital büyüme notları.', 'seogezegeni' ),
+        'stats'  => [
+            [ $sg_post_count, __( 'Yazı', 'seogezegeni' ) ],
+            [ $sg_cat_count, __( 'Kategori', 'seogezegeni' ) ],
+            [ '2017', __( 'Yayında', 'seogezegeni' ) ],
+        ],
+    ] );
+    ?>
 
     <!-- Breadcrumb Bar -->
     <div class="sg-breadcrumb-bar">

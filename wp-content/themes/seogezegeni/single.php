@@ -10,7 +10,7 @@ get_header();
 <main id="sg-main" role="main">
 
     <!-- Page Hero -->
-    <div class="sg-page-hero sg-single-hero">
+    <div class="sg-page-hero">
         <div class="container">
             <div class="sg-page-hero-inner">
                 <?php if ( have_posts() ) : the_post(); ?>
@@ -192,11 +192,15 @@ get_header();
 
                 <!-- Sidebar -->
                 <aside id="sg-sidebar" class="sg-single-sidebar" role="complementary" aria-label="<?php esc_attr_e('Kenar çubuğu', 'seogezegeni'); ?>">
-                    <?php if ( is_active_sidebar('sidebar') ) : ?>
-                        <?php dynamic_sidebar('sidebar'); ?>
-                    <?php else : ?>
+                    <!-- Arama -->
+                    <div class="sg-post-sidebar-widget sg-sidebar-search">
+                        <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>" class="sg-sidebar-search-form">
+                            <input type="search" name="s" placeholder="<?php esc_attr_e( 'Blogda ara...', 'seogezegeni' ); ?>" aria-label="<?php esc_attr_e( 'Ara', 'seogezegeni' ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>">
+                            <button type="submit" aria-label="<?php esc_attr_e( 'Ara', 'seogezegeni' ); ?>"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
 
-                        <!-- Son Yazılar -->
+                    <!-- Son Yazılar -->
                         <div class="sg-post-sidebar-widget">
                             <h4 class="sg-sidebar-widget-title">
                                 <i class="fa-solid fa-pen-nib" aria-hidden="true"></i>
@@ -224,6 +228,27 @@ get_header();
                             endif;
                             ?>
                         </div>
+
+                        <!-- Kategoriler -->
+                        <?php $sg_side_cats = get_categories( [ 'hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC' ] ); ?>
+                        <?php if ( $sg_side_cats ) : ?>
+                        <div class="sg-post-sidebar-widget">
+                            <h4 class="sg-sidebar-widget-title">
+                                <i class="fa-solid fa-folder-open" aria-hidden="true"></i>
+                                <?php _e('Kategoriler', 'seogezegeni'); ?>
+                            </h4>
+                            <ul class="sg-sidebar-service-list">
+                                <?php foreach ( $sg_side_cats as $sg_cat ) : ?>
+                                    <li>
+                                        <a href="<?php echo esc_url( get_category_link( $sg_cat ) ); ?>" class="sg-sidebar-service-link">
+                                            <?php echo esc_html( $sg_cat->name ); ?>
+                                            <span class="sg-sidebar-count"><?php echo (int) $sg_cat->count; ?></span>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                        <?php endif; ?>
 
                         <!-- Hizmetler -->
                         <div class="sg-post-sidebar-widget">
@@ -260,12 +285,12 @@ get_header();
                             </div>
                             <h4><?php _e('Ücretsiz SEO Analizi', 'seogezegeni'); ?></h4>
                             <p><?php _e('Web sitenizin SEO puanını öğrenin, eksiklerinizi keşfedin.', 'seogezegeni'); ?></p>
-                            <a href="<?php echo esc_url(home_url('/iletisim/')); ?>" class="sg-btn sg-btn-dark w-full">
+                            <a href="<?php echo esc_url(home_url('/iletisim/')); ?>" class="sg-btn sg-btn-primary">
                                 <?php _e('Ücretsiz Analiz Al', 'seogezegeni'); ?>
+                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                             </a>
                         </div>
 
-                    <?php endif; ?>
                 </aside><!-- /sidebar -->
 
             </div><!-- /.sg-single-layout -->
