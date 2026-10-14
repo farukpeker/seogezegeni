@@ -472,7 +472,7 @@
             $form.on('submit', function (e) {
                 e.preventDefault();
                 $form.find('.is-invalid').removeClass('is-invalid').removeAttr('aria-invalid');
-                var data = $form.serialize();
+                var data = $form.serialize() + '&sg_js=' + (((parseInt($form.find('[name="sg_ts"]').val(), 10) || 0) * 7) + 13);
                 var $btn = $form.find('[type="submit"]');
                 $btn.prop('disabled', true);
                 $btn.find('i').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin');
@@ -521,7 +521,7 @@
             $form.on('submit', function (e) {
                 e.preventDefault();
                 $form.find('.is-invalid').removeClass('is-invalid').removeAttr('aria-invalid');
-                var data = $form.serialize();
+                var data = $form.serialize() + '&sg_js=' + (((parseInt($form.find('[name="sg_ts"]').val(), 10) || 0) * 7) + 13);
                 var $btn = $form.find('[type="submit"]');
                 $btn.prop('disabled', true);
                 $btn.find('i').removeClass('fa-paper-plane').addClass('fa-spinner fa-spin');

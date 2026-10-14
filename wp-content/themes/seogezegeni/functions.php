@@ -410,7 +410,23 @@ function sg_is_spam_submission( array $texts ) {
         return true;
     }
 
+    // 2b) JS token: tarayıcıda çalışan form JS'i ekler; doğrudan admin-ajax'a POST atan botlarda yoktur.
+    $js = isset( $_POST['sg_js'] ) ? (int) $_POST['sg_js'] : 0;
+    if ( $js !== $ts * 7 + 13 ) {
+        return true;
+    }
+
     $all = implode( "\n", $texts );
+
+    // 3b) Türkçe karakter yoksa ve metin İngilizce stopword ağırlıklıysa spam.
+    $words = preg_split( '/[^a-z]+/', strtolower( $all ), -1, PREG_SPLIT_NO_EMPTY );
+    if ( count( $words ) >= 15 && ! preg_match( '/[çğıöşüÇĞİÖŞÜ]/u', $all ) ) {
+        $en   = [ 'the', 'and', 'of', 'to', 'in', 'is', 'that', 'for', 'with', 'are', 'was', 'you', 'have', 'has', 'this', 'from', 'they', 'their', 'more', 'about', 'which', 'were', 'been', 'when', 'your' ];
+        $tr   = [ 'merhaba', 'selam', 'bir', 'icin', 'ile', 've', 'bu', 'cok', 'istiyorum', 'teklif', 'site', 'seo', 'hizmet', 'fiyat', 'bilgi' ];
+        if ( count( array_intersect( $words, $en ) ) >= 4 && ! array_intersect( $words, $tr ) ) {
+            return true;
+        }
+    }
 
     // 3) Türkçe site: Kiril / CJK / Arapça ağırlıklı içerik.
     $letters = preg_match_all( '/\p{L}/u', $all );
@@ -460,7 +476,7 @@ if ( ! function_exists( 'sg_handle_contact' ) ) {
             wp_send_json_error( [ 'message' => __( 'Lütfen zorunlu alanları doldurun.', 'seogezegeni' ) ] );
         }
 
-        if ( sg_is_spam_submission( [ $name, $company, $message ] ) ) {
+        if ( sg_is_spam_submission( [ $name, $company, $website, $message ] ) ) {
             wp_send_json_error( [ 'message' => __( 'Mesajınız gönderilemedi. Lütfen daha sonra tekrar deneyin.', 'seogezegeni' ) ] );
         }
 
