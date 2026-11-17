@@ -534,11 +534,11 @@ function seogezegeni_breadcrumb() {
         echo '<span>' . esc_html( $posts_page_title ) . '</span>';
     } elseif ( is_category() ) {
         echo '<a href="' . esc_url( $posts_page_url ) . '">' . esc_html( $posts_page_title ) . '</a>';
-        echo '<span class="sep" aria-hidden="true">â€º</span>';
+        echo '<span class="sep" aria-hidden="true">›</span>';
         echo '<span>' . single_cat_title( '', false ) . '</span>';
     } elseif ( is_tag() ) {
         echo '<a href="' . esc_url( $posts_page_url ) . '">' . esc_html( $posts_page_title ) . '</a>';
-        echo '<span class="sep" aria-hidden="true">â€º</span>';
+        echo '<span class="sep" aria-hidden="true">›</span>';
         echo '<span>' . single_tag_title( '', false ) . '</span>';
     } elseif ( is_singular( 'portfolio' ) ) {
         echo '<a href="' . esc_url( home_url( '/referanslar/' ) ) . '">' . __( 'Referanslar', 'seogezegeni' ) . '</a>';
@@ -546,7 +546,7 @@ function seogezegeni_breadcrumb() {
         echo '<span>' . get_the_title() . '</span>';
     } elseif ( is_singular( 'post' ) ) {
         echo '<a href="' . esc_url( $posts_page_url ) . '">' . esc_html( $posts_page_title ) . '</a>';
-        echo '<span class="sep" aria-hidden="true">â€º</span>';
+        echo '<span class="sep" aria-hidden="true">›</span>';
         $cats = get_the_category();
         if ( $cats ) {
             echo '<a href="' . esc_url( get_category_link( $cats[0]->term_id ) ) . '">' . esc_html( $cats[0]->name ) . '</a>';
