@@ -32,6 +32,7 @@ $references_url = home_url( '/referanslar/' );
             <?php
             $references_query = new WP_Query( [
                 'post_type'      => 'portfolio',
+                'sg_priority_refs' => true,
                 'posts_per_page' => 8,
                 'post_status'    => 'publish',
                 'orderby'        => [ 'menu_order' => 'ASC', 'date' => 'DESC' ],

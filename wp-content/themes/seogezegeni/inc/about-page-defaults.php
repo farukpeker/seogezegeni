@@ -114,17 +114,17 @@ function sg_about_default_content() {
         'title' => __( 'OpenAI’dan Yapay Zekâda Yeni Adım', 'seogezegeni' ),
         'desc'  => __( 'Teknoloji ve dijital pazarlama gündeminden öne çıkan güncel paylaşım.', 'seogezegeni' ),
         'url'   => 'https://www.instagram.com/p/DaK4et6DSyX/',
-        'image' => 'https://scontent-ist2-1.cdninstagram.com/v/t39.30808-6/733575305_1785003562932493_4034273863766537928_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=104&ig_cache_key=MzkzMDIwMjAyNjMxNTQyNjk2Nw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkZFRUQueHBpZHMuMTA4MC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=B6F9oHlHEEAQ7kNvwGP4b7S&_nc_oc=AdqvhDcFO_FkIkd8HFYYXG0_hRZ5X-5rhiNy1-VrRJDqlby8iU4BqYS_3Z2vY_lSaKI&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-ist2-1.cdninstagram.com&_nc_gid=zAP2oDzqimLAjC-zxKDcBQ&_nc_ss=7a22e&oh=00_AQPVi7wUINHS4eU249NcLOqO6-Y1u39rp6AVE2VbA_p8Sg&oe=6ACEF26C'],
+        'image' => ''],
     [
         'title' => __( 'Instagram Deneyimi Değişiyor', 'seogezegeni' ),
         'desc'  => __( 'Reels, içerik akışı ve sosyal medya stratejisi hakkında güncel paylaşım.', 'seogezegeni' ),
         'url'   => 'https://www.instagram.com/p/DYew2_Pna6c/',
-        'image' => 'https://scontent-ist2-1.cdninstagram.com/v/t39.30808-6/701119789_1747046560061527_3013202353213918311_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=102&ig_cache_key=Mzg5OTc2OTE5MDkyNTMxMjg2MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNBUk9VU0VMX0lURU0ueHBpZHMuMTI1NC5zZHIucmVndWxhcl9waG90by5DMyJ9&_nc_ohc=t92q6fIH9A0Q7kNvwEPzLGX&_nc_oc=Ado_6ZwuDti-uJFg44fM0Wc1IEUKb9DlVWl5_uCmYgWl6J54QhPHfUCY7lcQyG-qGBQ&_nc_zt=23&_nc_ht=scontent-ist2-1.cdninstagram.com&_nc_gid=wy9CQ0M0Dv3ds2OdhXANgQ&_nc_ss=7b6a8&oh=00_AQMigv47L_aIr6SG1DyLvWoBXDrZB8_6vY7P0gBo95Yxjg&oe=6ACED4D9'],
+        'image' => ''],
     [
         'title' => __( 'Ajans Günlüğü', 'seogezegeni' ),
         'desc'  => __( 'Ofis hayatından, ekip enerjisinden ve ajans kültüründen kısa bir kesit.', 'seogezegeni' ),
-        'url'   => 'https://www.instagram.com/p/DZaAL04oUgq/',
-        'image' => 'https://scontent-ist1-1.cdninstagram.com/v/t51.71878-15/718942852_2066512658081436_3262498267232655870_n.jpg?stp=dst-jpg_e15_tt6&_nc_cat=101&ig_cache_key=MzkxNjQ0MzYzODY1MDk4MDM5NDEwMjYxMzAyMjY1MjA3MDA%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6IkNMSVBTLnhwaWRzLjY0MC5zZHIudmlkZW9fbmZyYW1lX2NvdmVyX2ZyYW1lLkMzIn0%3D&_nc_ohc=kwzOUAGFqAkQ7kNvwFPaFjC&_nc_oc=AdrR2ET4dMP7veyy_w4g_2pIJ9hNYTVMk9OGaO3tZXPapcA10Ojjg1gZEM2TLZWj6x4&_nc_zt=23&_nc_ht=scontent-ist1-1.cdninstagram.com&_nc_gid=wy9CQ0M0Dv3ds2OdhXANgQ&_nc_ss=7b6a8&oh=00_AQMs-MpePlMZA9DGsSO1wkU7T5AXfwEQMI25JRIEWPEKiA&oe=6ACECE74'],
+        'url'   => 'https://www.instagram.com/p/DfHa2kDRmpx/',
+        'image' => ''],
         ],
 
         'h_quality'    => __( 'Kalite İşlerimizin *Anahtar Sözcüğü*', 'seogezegeni' ),

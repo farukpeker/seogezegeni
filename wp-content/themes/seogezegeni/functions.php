@@ -732,6 +732,7 @@ function sg_load_more_references_ajax() {
 
     $references_query = new WP_Query( [
         'post_type'      => 'portfolio',
+        'sg_priority_refs' => true,
         'posts_per_page' => 12,
         'paged'          => $page,
         'post_status'    => 'publish',
@@ -1084,3 +1085,82 @@ function seogezegeni_comment_callback( $comment, $args, $depth ) {
     <?php
 }
 endif;
+
+/**
+ * Takip kodları (Google Analytics + ek head kodu) – Özelleştir > SEO Gezegeni Ayarları > Takip Kodları.
+ */
+function seogezegeni_google_analytics() {
+    if ( is_admin() || is_customize_preview() || ( is_user_logged_in() && current_user_can( 'manage_options' ) ) ) {
+        return;
+    }
+    $ga_id = trim( (string) get_theme_mod( 'sg_ga_id', 'G-VZK56G2G22' ) );
+    if ( preg_match( '/^(G|UA|GT|AW)-[A-Z0-9-]+$/i', $ga_id ) ) {
+        ?>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $ga_id ); ?>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '<?php echo esc_js( $ga_id ); ?>');
+</script>
+        <?php
+    }
+    $head_code = (string) get_theme_mod( 'sg_head_code', '' );
+    if ( '' !== trim( $head_code ) ) {
+        echo "
+" . $head_code . "
+"; // Yalnızca yönetici (Özelleştir) girebilir.
+    }
+}
+add_action( 'wp_head', 'seogezegeni_google_analytics', 1 );
+
+/**
+ * Referans sıralaması: ilk 8 marka sabit sırada, geri kalanlar menu_order/tarih ile.
+ * Sorguya 'sg_priority_refs' => true eklenince devreye girer.
+ */
+function sg_reference_priority_terms() {
+    return [ 'Memorial', 'Mono', 'Doğu', 'Volkan', 'Kapital Legal', 'Hamdidede', 'TÜV Austria', 'Klemsan' ];
+}
+
+function sg_reference_priority_clauses( $clauses, $query ) {
+    if ( ! $query->get( 'sg_priority_refs' ) ) {
+        return $clauses;
+    }
+    global $wpdb;
+    $cases = [];
+    foreach ( sg_reference_priority_terms() as $i => $term ) {
+        $like1   = $wpdb->esc_like( $term ) . '%';
+        $like2   = '% ' . $wpdb->esc_like( $term ) . '%';
+        $cases[] = $wpdb->prepare(
+            "WHEN {$wpdb->posts}.post_title LIKE %s OR {$wpdb->posts}.post_title LIKE %s THEN %d",
+            $like1, $like2, $i + 1
+        );
+    }
+    $priority = 'CASE ' . implode( ' ', $cases ) . ' ELSE 999 END';
+    $clauses['orderby'] = $priority . ' ASC, ' . $clauses['orderby'];
+    return $clauses;
+}
+add_filter( 'posts_clauses', 'sg_reference_priority_clauses', 10, 2 );
+
+/**
+ * Yazı içeriğinde kalan yerel (localhost) görsel/bağlantı adreslerini canlı site adresine çevirir.
+ */
+function sg_fix_localhost_urls( $content ) {
+    if ( false === stripos( $content, 'localhost' ) ) {
+        return $content;
+    }
+    $home = untrailingslashit( home_url() );
+    return preg_replace( '#https?://localhost(?::\d+)?/seogezegeni#i', $home, $content );
+}
+add_filter( 'the_content', 'sg_fix_localhost_urls', 5 );
+add_filter( 'wp_calculate_image_srcset', function ( $sources ) {
+    if ( ! is_array( $sources ) ) {
+        return $sources;
+    }
+    $home = untrailingslashit( home_url() );
+    foreach ( $sources as $k => $s ) {
+        $sources[ $k ]['url'] = preg_replace( '#https?://localhost(?::\d+)?/seogezegeni#i', $home, $s['url'] );
+    }
+    return $sources;
+} );

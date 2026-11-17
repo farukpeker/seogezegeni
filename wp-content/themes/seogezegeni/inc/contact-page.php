@@ -34,8 +34,8 @@ function sg_contact_default_content() {
                 'phone'   => '0232 344 22 72',
                 'mobile'  => $mobile,
                 'email'   => $email,
-                'address' => __( 'Mansuroğlu Mah. 1593/1 Sk. No:10, İnce Plaza, K:7, D:72, 35535, Bayraklı/İzmir', 'seogezegeni' ),
-                'map'     => 'https://www.google.com/maps/search/?api=1&query=Mansuroglu%20Mah.%201593%2F1%20Sk.%20No%3A10%20Ince%20Plaza%20Bayrakli%20Izmir',
+                'address' => __( 'Mansuroğlu Mah. 288/4 Sk. No:10, Kahyaoğlu Plaza, K:5, D:30, Bayraklı/İzmir', 'seogezegeni' ),
+                'map'     => 'https://www.google.com/maps?cid=13458195688211317830',
             ],
             [
                 'icon'    => 'fa-solid fa-building',

@@ -58,6 +58,7 @@ $paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
         <?php
         $references_query = new WP_Query( [
             'post_type'      => 'portfolio',
+            'sg_priority_refs' => true,
             'posts_per_page' => 12,
             'paged'          => $paged,
             'post_status'    => 'publish',

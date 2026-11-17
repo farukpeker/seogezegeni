@@ -288,6 +288,33 @@ function sg_pf_render_meta_box( $post, $box ) {
 /* ============================================================
    KAYDETME
    ============================================================ */
+/**
+ * Instagram/Facebook CDN görsel adresleri kısa sürede geçersiz olur.
+ * Kaydederken bu görseli Ortam Kitaplığı'na indirip kalıcı adresi kullanır.
+ */
+function sg_pf_localize_image( $url, $post_id = 0 ) {
+    $url  = trim( (string) $url );
+    $host = $url ? wp_parse_url( $url, PHP_URL_HOST ) : '';
+    if ( ! $host || ! preg_match( '/(cdninstagram\.com|fbcdn\.net)$/i', $host ) ) {
+        return $url;
+    }
+    require_once ABSPATH . 'wp-admin/includes/media.php';
+    require_once ABSPATH . 'wp-admin/includes/file.php';
+    require_once ABSPATH . 'wp-admin/includes/image.php';
+    $tmp = download_url( $url, 20 );
+    if ( is_wp_error( $tmp ) ) {
+        return $url;
+    }
+    $file = [ 'name' => 'instagram-' . substr( md5( $url ), 0, 10 ) . '.jpg', 'tmp_name' => $tmp ];
+    $id   = media_handle_sideload( $file, (int) $post_id );
+    if ( is_wp_error( $id ) ) {
+        @unlink( $tmp ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+        return $url;
+    }
+    $local = wp_get_attachment_url( $id );
+    return $local ? $local : $url;
+}
+
 function sg_pf_save( $post_id ) {
     $registry =& sg_pf_registry();
     foreach ( $registry as $id => $cfg ) {
@@ -317,6 +344,9 @@ function sg_pf_save( $post_id ) {
                         $clean_row[ $sub['id'] ] = 'icon' === $sub['type']
                             ? trim( preg_replace( '/[^a-z0-9\- ]/i', '', $v ) )
                             : sanitize_textarea_field( $v );
+                        if ( 'image' === $sub['id'] ) {
+                            $clean_row[ $sub['id'] ] = sg_pf_localize_image( $clean_row[ $sub['id'] ], $post_id );
+                        }
                     }
                     if ( implode( '', $clean_row ) !== '' ) {
                         $rows[] = $clean_row;

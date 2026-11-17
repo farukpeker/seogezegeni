@@ -230,7 +230,7 @@ $about_video_id = sg_youtube_video_id_from_url( $video_url );
                     <a class="sg-about-instagram-card" href="<?php echo esc_url( $ig['url'] ); ?>" target="_blank" rel="noopener" data-sg-reveal data-delay="<?php echo esc_attr( ( $index % 3 ) * 100 ); ?>">
                         <div class="sg-about-instagram-media">
                             <?php if ( ! empty( $ig['image'] ) ) : ?>
-                                <img src="<?php echo esc_url( $ig['image'] ); ?>" alt="<?php echo esc_attr( $ig['title'] ); ?>" loading="lazy">
+                                <img src="<?php echo esc_url( $ig['image'] ); ?>" alt="<?php echo esc_attr( $ig['title'] ); ?>" loading="lazy" onerror="this.outerHTML='&lt;i class=&quot;fa-brands fa-instagram&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;'">
                             <?php else : ?>
                                 <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                             <?php endif; ?>

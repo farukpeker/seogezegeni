@@ -122,6 +122,44 @@ function seogezegeni_customizer( WP_Customize_Manager $wp_customize ) {
         ]);
     }
 
+    /* ============================================================
+       Takip Kodları (Google Analytics vb.)
+       ============================================================ */
+    $wp_customize->add_section( 'sg_tracking_section', [
+        'title'    => __( 'Takip Kodları', 'seogezegeni' ),
+        'panel'    => 'sg_panel',
+        'priority' => 26,
+    ]);
+
+    $wp_customize->add_setting( 'sg_ga_id', [
+        'default'           => 'G-VZK56G2G22',
+        'sanitize_callback' => function ( $v ) {
+            $v = trim( (string) $v );
+            return preg_match( '/^(G|UA|GT|AW)-[A-Za-z0-9-]+$/', $v ) ? $v : '';
+        },
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'sg_ga_id', [
+        'label'       => __( 'Google Analytics Ölçüm Kimliği', 'seogezegeni' ),
+        'description' => __( 'Örn: G-XXXXXXXXXX. Boş bırakırsanız Analytics kodu eklenmez. Giriş yapmış yöneticiler sayılmaz.', 'seogezegeni' ),
+        'section'     => 'sg_tracking_section',
+        'type'        => 'text',
+    ]);
+
+    $wp_customize->add_setting( 'sg_head_code', [
+        'default'           => '',
+        'sanitize_callback' => function ( $v ) {
+            return current_user_can( 'unfiltered_html' ) ? (string) $v : '';
+        },
+        'transport'         => 'refresh',
+    ]);
+    $wp_customize->add_control( 'sg_head_code', [
+        'label'       => __( 'Ek Head Kodu (opsiyonel)', 'seogezegeni' ),
+        'description' => __( 'Meta Pixel, Search Console doğrulama vb. kodlar buraya yapıştırılır. &lt;head&gt; içine eklenir.', 'seogezegeni' ),
+        'section'     => 'sg_tracking_section',
+        'type'        => 'textarea',
+    ]);
+
     $wp_customize->add_section( 'sg_hero_section', [
         'title'    => __( 'Ana Sayfa – Hero Alanı', 'seogezegeni' ),
         'panel'    => 'sg_panel',

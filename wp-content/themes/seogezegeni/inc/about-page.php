@@ -94,7 +94,7 @@ function sg_about_fields() {
                     [ 'id' => 'title', 'label' => 'Başlık', 'type' => 'text' ],
                     [ 'id' => 'desc',  'label' => 'Açıklama', 'type' => 'textarea' ],
                     [ 'id' => 'url',   'label' => 'Paylaşım adresi', 'type' => 'text' ],
-                    [ 'id' => 'image', 'label' => 'Görsel adresi (Instagram CDN bağlantıları süresi dolabilir; kalıcı için Ortam Kitaplığı\'na yükleyin)', 'type' => 'text' ],
+                    [ 'id' => 'image', 'label' => 'Görsel adresi (Instagram görsel adresini yapıştırıp kaydederseniz otomatik olarak Ortam Kitaplığı\'na indirilir; ya da yüklediğiniz görselin adresini girin)', 'type' => 'text' ],
                 ] ),
             ],
         ],
